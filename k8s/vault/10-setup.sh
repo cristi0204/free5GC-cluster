@@ -2,14 +2,10 @@
 
 # INIT
 kubectl exec -n vault -ti vault-0 -- vault operator init -key-shares=1 -key-threshold=1 | tee vault-init.txt
-cat vault-init.txt | grep "Unseal Key" | cut -d' ' -f4 > vault-unseal-key.txt
-cat vault-init.txt | grep "Initial Root Token" | cut -d' ' -f4 > vault-root-token.txt
 
 # Remove nasty escape sequences
-export UNSEAL=$(cat vault-init.txt | grep "Unseal Key" | cut -d' ' -f4 | sed -e 's/\x1b.*$//g')
-export ROOT_TOKEN=$(cat vault-init.txt | grep "Initial Root Token" | cut -d' ' -f4 | sed -e 's/\x1b.*$//g')
-echo -e $UNSEAL
-echo -e $ROOT_TOKEN
+export UNSEAL=$(perl -ne 'print $1 if /Unseal Key 1:\s+([\w\\.\+\=\/]+)/' vault-init.txt)
+export ROOT_TOKEN=$(perl -ne 'print $1 if /Initial Root Token:\s+([\w\\.\+\=\/]+)/' vault-init.txt)
 
 kubectl exec -n vault -ti vault-0 -- vault operator unseal $UNSEAL
 kubectl exec -n vault -ti vault-1 -- vault operator unseal $UNSEAL
