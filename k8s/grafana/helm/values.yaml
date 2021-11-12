@@ -184,7 +184,7 @@ dashboardsConfigMaps: []
 ## @param datasources.secretName Secret name containing custom datasource files
 ##
 datasources:
-  secretName: ""
+  secretName: "prometheus"
 
 ## Create notifiers from a configMap
 ## The notifiersName must contain the files

@@ -78,7 +78,7 @@ admin:
   user: "admin"
   ## @param admin.password Admin password. If a password is not provided a random password will be generated
   ##
-  password: ""
+  password: "admin"
   ## @param admin.existingSecret Name of the existing secret containing admin password
   ##
   existingSecret: ""
@@ -185,7 +185,14 @@ dashboardsConfigMaps: []
 ##
 datasources:
   secretName: ""
-
+datasources:
+  datasources.yaml:
+    apiVersion: 1
+    datasources:
+    - name: Prometheus
+      type: prometheus
+      url: http://prometheus-kube-prometheus-prometheus.prometheus.svc.cluster.local:9090
+      httpMethod: GET
 ## Create notifiers from a configMap
 ## The notifiersName must contain the files
 ## @param notifiers.configMapName Name of a ConfigMap containing Grafana notifiers configuration
