@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # INIT
-kubectl exec -n vault -ti vault-0 -- vault operator init -key-shares=1 -key-threshold=1 | tee vault-init.txt
+#kubectl exec -n vault -ti vault-0 -- vault operator init -key-shares=1 -key-threshold=1 | tee vault-init.txt
 
 # Remove nasty escape sequences
 export UNSEAL=$(perl -ne 'print $1 if /Unseal Key 1:\s+([\w\\.\+\=\/]+)/' vault-init.txt)
@@ -12,8 +12,12 @@ kubectl exec -n vault -ti vault-1 -- vault operator unseal $UNSEAL
 kubectl exec -n vault -ti vault-2 -- vault operator unseal $UNSEAL
 kubectl exec -n vault -ti vault-0 -- vault login $ROOT_TOKEN
 
+# Change default Token TTL
+kubectl exec -n vault -ti vault-0 -- vault write sys/auth/token/tune max_lease_ttl=9000h
+kubectl exec -n vault -ti vault-0 -- vault write sys/auth/token/tune default_lease_ttl=9000h
+
 # Add Secrets
-kubectl exec -n vault -ti vault-0 -- vault secrets enable -version=2 -path="secret" kv     
+kubectl exec -n vault -ti vault-0 -- vault secrets enable -version=2 -path="secret" kv
 kubectl exec -n vault -ti vault-0 -- vault kv put secret/apps/microtask gitlab_token=glpat-ZQe_moVrrax-TzQT427n
 kubectl exec -n vault -ti vault-0 -- vault kv get secret/apps/microtask
 
