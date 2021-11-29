@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # INIT
-#kubectl exec -n vault -ti vault-0 -- vault operator init -key-shares=1 -key-threshold=1 | tee vault-init.txt
+kubectl exec -n vault -ti vault-0 -- vault operator init -key-shares=1 -key-threshold=1 | tee vault-init.txt
 
 # Remove nasty escape sequences
 export UNSEAL=$(perl -ne 'print $1 if /Unseal Key 1:\s+([\w\\.\+\=\/]+)/' vault-init.txt)
