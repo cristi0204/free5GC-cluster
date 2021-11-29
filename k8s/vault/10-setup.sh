@@ -48,5 +48,5 @@ kubectl exec -n vault -ti vault-0 -- sh -c 'vault write auth/my-kube/role/microt
         policies=microtask-policy \
         ttl=24h'
 
-TOKEN=$(kubectl exec -n vault -ti vault-0 -- vault token create --policy microtask-policy)
+TOKEN=$(kubectl exec -n vault -ti vault-0 -- vault token create --policy microtask-policy -period=5000h)
 echo "$TOKEN" > vault-app-token.txt

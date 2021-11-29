@@ -1,8 +1,8 @@
 [0mKey                  Value
 ---                  -----
-token                s.278Pi43Ch9oVsuYnClfb3AFz
-token_accessor       mJzHXgewP1FGLLeuwsEXRlny
-token_duration       9000h
+token                s.bV76wavGH4c3I7reqHvjQJNR
+token_accessor       IqVQI2MVMNd8zqRdDW2sDsiv
+token_duration       5000h
 token_renewable      true
 token_policies       ["default" "microtask-policy"]
 identity_policies    []
