@@ -74,8 +74,8 @@ diagnosticMode:
 ##
 image:
   registry: docker.io
-  repository: bitnami/redis
-  tag: 6.2.5-debian-10-r11
+  repository: redislabs/redisgraph
+  tag: 2.8.7
   ## Specify a imagePullPolicy
   ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
   ## ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
@@ -167,7 +167,8 @@ master:
   ##  - "--maxmemory-policy volatile-ttl"
   ##  - "--repl-backlog-size 1024mb"
   ##
-  extraFlags: []
+  extraFlags:
+    - "--loadmodule /usr/lib/redis/modules/redisgraph.so"
   ## @param master.extraEnvVars Array with extra environment variables to add to Redis&trade; master nodes
   ## e.g:
   ## extraEnvVars:
@@ -441,7 +442,7 @@ master:
 replica:
   ## @param replica.replicaCount Number of Redis&trade; replicas to deploy
   ##
-  replicaCount: 3
+  replicaCount: 1
   ## @param replica.configuration Configuration for Redis&trade; replicas nodes
   ## ref: https://redis.io/topics/config
   ##
@@ -468,7 +469,8 @@ replica:
   ##  - "--maxmemory-policy volatile-ttl"
   ##  - "--repl-backlog-size 1024mb"
   ##
-  extraFlags: []
+  extraFlags:
+    - "--loadmodule /usr/lib/redis/modules/redisgraph.so"
   ## @param replica.extraEnvVars Array with extra environment variables to add to Redis&trade; replicas nodes
   ## e.g:
   ## extraEnvVars:
