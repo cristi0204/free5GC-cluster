@@ -1,0 +1,16 @@
+
+
+version: '2'
+
+services:
+  grafana:
+    image: bitnami/grafana:8.3.3-debian-10-r23
+    ports:
+      - '3000:3000'
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: "admin"
+      GF_INSTALL_PLUGINS: "hamedkarbasi93-nodegraphapi-datasource=https://github.com/exaco/nodegraph-api-plugin/releases/download/v0.3.0/hamedkarbasi93-nodegraphapi-datasource-0.3.0.zip"
+      GF_ALLOW_LOADING_UNSIGNED_PLUGINS: "hamedkarbasi93-nodegraphapi-datasource"
+
+
+
