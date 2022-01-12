@@ -153,19 +153,19 @@ persistence:
       # Specify the "storageClass" used to provision the volume. Or the default
       # StorageClass will be used(the default).
       # Set it to "-" to disable dynamic provisioning
-      storageClass: "do-block-storage"
+      storageClass: "longhorn"
       subPath: ""
       accessMode: ReadWriteOnce
-      size: 5Gi
+      size: 20Gi
     chartmuseum:
       existingClaim: ""
-      storageClass: "do-block-storage"
+      storageClass: "longhorn"
       subPath: ""
       accessMode: ReadWriteOnce
-      size: 1Gi
+      size: 20Gi
     jobservice:
       existingClaim: ""
-      storageClass: "do-block-storage"
+      storageClass: "longhorn"
       subPath: ""
       accessMode: ReadWriteOnce
       size: 1Gi
@@ -173,24 +173,24 @@ persistence:
     # be ignored
     database:
       existingClaim: ""
-      storageClass: "do-block-storage"
+      storageClass: "longhorn"
       subPath: ""
       accessMode: ReadWriteOnce
-      size: 1Gi
+      size: 20Gi
     # If external Redis is used, the following settings for Redis will
     # be ignored
     redis:
       existingClaim: ""
-      storageClass: "do-block-storage"
+      storageClass: "longhorn"
       subPath: ""
       accessMode: ReadWriteOnce
-      size: 1Gi
+      size: 20Gi
     trivy:
       existingClaim: ""
-      storageClass: "do-block-storage"
+      storageClass: "longhorn"
       subPath: ""
       accessMode: ReadWriteOnce
-      size: 1Gi
+      size: 5Gi
   # Define which storage backend is used for registry and chartmuseum to store
   # images and charts. Refer to
   # https://github.com/docker/distribution/blob/master/docs/configuration.md#storage
