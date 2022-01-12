@@ -1,1 +1,1 @@
-kubectl create ns longhorn
+kubectl create ns longhorn-system

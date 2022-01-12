@@ -1,1 +1,1 @@
-helm upgrade --install --debug --namespace longhorn --values=values.yaml longhorn helm/
+helm upgrade --install --debug --namespace longhorn-system --values=values.yaml longhorn helm/
