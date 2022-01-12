@@ -1,1 +1,1 @@
-kubectl port-forward --namespace harbor svc/harbor 8088:80
+kubectl port-forward --namespace harbor svc/harbor-portal 8088:80
