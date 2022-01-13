@@ -54,7 +54,7 @@ ingress:
           path: "/"
           backend:
             service:
-              name: api-ui
+              name: api
               port:
                 number: 5000
 
