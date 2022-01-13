@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: api
+  annotations:
+  namespace: api
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - api.berlindevops.com
+      secretName: api-tls
+
+  rules:
+  - host: api.berlindevops.com 
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: api-ui
+            port:
+              number: 5000
