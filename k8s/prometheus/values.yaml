@@ -15,7 +15,7 @@ global:
   ##   - myRegistryKeySecretName
   ##
   imagePullSecrets: []
-  storageClass: ""
+  storageClass: "longhorn"
   labels: {}
 
 ## @section Common parameters
@@ -781,7 +781,7 @@ prometheus:
   persistence:
     ## @param prometheus.persistence.enabled Use PVCs to persist data. If the storageSpec is provided this will not take effect.
     ##
-    enabled: false
+    enabled: true
     ## @param prometheus.persistence.storageClass Persistent Volume Storage Class
     ## If defined, storageClassName: <storageClass>
     ## If set to "-", storageClassName: "", which disables dynamic provisioning
@@ -795,7 +795,7 @@ prometheus:
       - ReadWriteOnce
     ## @param prometheus.persistence.size Persistent Volume Size
     ##
-    size: 8Gi
+    size: 15Gi
   ## @param prometheus.priorityClassName Priority class assigned to the Pods
   ##
   priorityClassName: ""

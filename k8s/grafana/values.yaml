@@ -14,7 +14,7 @@ global:
   ##   - myRegistryKeySecretName
   ##
   imagePullSecrets: []
-  storageClass: ""
+  storageClass: "longhorn"
 
 ## @section Common parameters
 
@@ -193,6 +193,9 @@ datasources:
       type: prometheus
       url: http://prometheus-kube-prometheus-prometheus.prometheus.svc.cluster.local:9090
       httpMethod: GET
+    - name: Node Graph API Datasource Plugin
+      type: Node Graph
+      url: https://api.berlindevops.com
 ## Create notifiers from a configMap
 ## The notifiersName must contain the files
 ## @param notifiers.configMapName Name of a ConfigMap containing Grafana notifiers configuration
@@ -487,7 +490,7 @@ persistence:
   existingClaim: ""
   accessMode: ReadWriteOnce
   accessModes: []
-  size: 10Gi
+  size: 2Gi
 
 ## @section RBAC parameters
 
