@@ -193,6 +193,9 @@ datasources:
       type: prometheus
       url: http://prometheus-kube-prometheus-prometheus.prometheus.svc.cluster.local:9090
       httpMethod: GET
+    - name: Loki
+      type: loki
+      url: http://loki.loki.svc.cluster.local:3100
 ## Create notifiers from a configMap
 ## The notifiersName must contain the files
 ## @param notifiers.configMapName Name of a ConfigMap containing Grafana notifiers configuration
