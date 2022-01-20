@@ -121,6 +121,8 @@ extraEnv: |
     value: "25060"
   - name: DB_DATABASE
     value: defaultdb
+  - name: PROXY_ADDRESS_FORWARDING
+    value: "true"
 
 # Additional environment variables for Keycloak mapped from Secret or ConfigMap
 #extraEnvFrom: ""
@@ -327,9 +329,9 @@ ingress:
   # ingress for console only (/auth/admin)
   console:
     # If `true`, an Ingress is created for console path only
-    enabled: false
+    enabled:  false
     # The name of Ingress Class associated with the console ingress only
-    ingressClassName: ""
+    ingressClassName: "nginx"
     # Ingress annotations for console ingress only
     # Useful to set nginx.ingress.kubernetes.io/whitelist-source-range particularly
     annotations: {}
