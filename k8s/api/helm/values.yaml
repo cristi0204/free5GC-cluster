@@ -87,3 +87,13 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+extraEnvVars:
+  - name: REDIS_HOST
+    value: "redis-master.redisgraph.svc.cluster.local"
+  - name: REDIS_PORT
+    value: "6379"
+  - name: REDIS_GRAPH
+    value: "atoscrd"
+  - name: REDIS_PASSWORD
+    value: "0d7kdFBvL8"
