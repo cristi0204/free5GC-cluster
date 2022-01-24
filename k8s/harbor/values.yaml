@@ -119,7 +119,7 @@ expose:
 # the IP address of k8s node
 #
 # If Harbor is deployed behind the proxy, set it as the URL of proxy
-    externalURL: https://harbor.berlindevops.com
+externalURL: https://harbor.berlindevops.com
 
 # The internal TLS used for harbor components secure communicating. In order to enable https
 # in each components tls cert files need to provided in advance.
