@@ -1,0 +1,8 @@
+# Default values for atos.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+consul_http_addr: "consul-ui.consul.svc.cluster.local"
+vault_addr: "http://vault.vault.svc.cluster.local:8200"
+gitlab_token: "xfDcp4nC7FwR3th5L3x4"
+vault_token: "s.lya5gkucGdKQcBUsw2aOhqtF"
