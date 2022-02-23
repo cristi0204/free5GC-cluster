@@ -659,7 +659,12 @@ prometheus:
   ## @param prometheus.alertingEndpoints Alertmanagers to which alerts will be sent
   ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/api.md#alertmanagerendpoints
   ##
-  alertingEndpoints: []
+  alertingEndpoints:
+    - name: "prometheus-kube-prometheus-alertmanager"
+      namespace: "prometheus"
+      port: http
+      scheme: http
+
   ## @param prometheus.externalLabels External labels to add to any time series or alerts when communicating with external systems
   ##
   externalLabels: {}
@@ -852,7 +857,34 @@ prometheus:
   ##             summary: "Node overtemperature alarm (instance {{ $labels.instance }})"
   ##             description: "Physical node temperature alarm triggered\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
   ##
-  additionalPrometheusRules: []
+  additionalPrometheusRules:
+    - name: custom-alerting-rules
+      groups:
+        - name: prometheus-config
+          rules:
+            - alert: PrometheusConfigurationReload
+              expr: prometheus_config_last_reload_successful > 0
+              for: 1m
+              labels:
+                severity: error
+              annotations:
+                summary: "Prometheus configuration reload (instance {{ $labels.instance }})"
+                description: "Prometheus configuration reload error\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+            - alert: Watchdog
+              expr: vector(1)
+              labels:
+                severity: none
+              annotations:
+                summary: "Test Alerting function for AlertManager"
+                description: "This is the alerting function test for AlertManager"
+            - alert: Microtask
+              expr: Status > 0
+              labels:
+                severity: warning
+              annotations:
+                summary: "Test Alerting function for AlertManager to call api endpoint"
+                description: "This is the alerting function test for AlertManager to call api endpoint"
+
   ## Note that the prometheus will fail to provision if the correct secret does not exist.
   ## @param prometheus.additionalScrapeConfigs.enabled Enable additional scrape configs
   ## @param prometheus.additionalScrapeConfigs.type Indicates if the cart should use external additional scrape configs or internal configs
@@ -1381,13 +1413,17 @@ alertmanager:
       group_wait: 30s
       group_interval: 5m
       repeat_interval: 12h
-      receiver: 'null'
+      receiver: 'api_endpoint'
       routes:
         - match:
-            alertname: Watchdog
-          receiver: 'null'
+            alertname: Microtask
+          receiver: 'api_endpoint'
     receivers:
-      - name: 'null'
+      - name: 'webhook'
+        webhook_configs:
+          - url: "https://api.berlindevops.com/api/receiver"
+      - name: 'disabled'
+
   ## @param alertmanager.externalConfig Alertmanager configuration is created externally. If true, `alertmanager.config` is ignored, and a secret will not be created.
   ## Alertmanager requires a secret named `alertmanager-{{ template "kube-prometheus.alertmanager.fullname" . }}`
   ## It must contain:
