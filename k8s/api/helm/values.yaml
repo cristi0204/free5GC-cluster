@@ -4,6 +4,12 @@
 
 replicaCount: 1
 
+imageCredentials:
+  registry: registry.gitlab.com
+  username: atosnet.berlindevops
+  password: glpat-cQXUWQ6n8n1BLEq6ctyR
+  email: atosnet@berlindevops.com
+
 image:
   repository: registry.gitlab.com/atosnet/crd/api
   pullPolicy: Always
