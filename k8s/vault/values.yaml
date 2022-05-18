@@ -658,7 +658,7 @@ server:
       }
       storage "consul" {
         path = "vault"
-        address = "10.245.85.19:80"
+        address = "http://consul-headless.consul.svc.cluster.local:8500"
       }
 
       service_registration "kubernetes" {}
