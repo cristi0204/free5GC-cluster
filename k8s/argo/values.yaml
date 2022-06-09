@@ -3,7 +3,7 @@
 ##
 
 # -- Provide a name in place of `argocd`
-nameOverride: argocd
+nameOverride: argocdo
 # -- String to fully override `"argo-cd.fullname"`
 fullnameOverride: ""
 # -- Override the Kubernetes version, which is used to evaluate certain manifests
@@ -845,6 +845,8 @@ externalRedis:
   # -- The name of an existing secret with Redis credentials (must contain key `redis-password`).
   # When it's set, the `externalRedis.password` parameter is ignored
   existingSecret: ""
+  # -- External Redis Secret annotations
+  secretAnnotations: {}
 
 ## Server
 server:
@@ -878,8 +880,8 @@ server:
     imagePullPolicy: "" # IfNotPresent
 
   # -- Additional command line arguments to pass to Argo CD server
-  extraArgs: []
-  #  - --insecure
+  extraArgs:
+    - --insecure
 
   # This flag is used to either remove or pass the CLI flag --staticassets /shared/app to the Argo CD server app
   staticAssets:
@@ -1091,7 +1093,7 @@ server:
     # -- Additional ingress labels
     labels: {}
     # -- Defines which ingress controller will implement the resource
-    ingressClassName: "nginx"
+    ingressClassName: ""
 
     # -- List of ingress hosts
     ## Argo Ingress.
@@ -1107,18 +1109,19 @@ server:
     pathType: Prefix
     # -- Additional ingress paths
     extraPaths:
+      []
       # - path: /*
       #   backend:
       #     serviceName: ssl-redirect
       #     servicePort: use-annotation
       ## for Kubernetes >=1.19 (when "networking.k8s.io/v1" is used)
-       - path: /*
-         pathType: Prefix
-         backend:
-           service:
-             name: ssl-redirect
-             port:
-               name: use-annotation
+      # - path: /*
+      #   pathType: Prefix
+      #   backend:
+      #     service:
+      #       name: ssl-redirect
+      #       port:
+      #         name: use-annotation
 
     # -- Ingress TLS configuration
     tls:
@@ -1179,7 +1182,7 @@ server:
       ## for Kubernetes >=1.19 (when "networking.k8s.io/v1" is used)
       # - path: /*
       #   pathType: Prefix
-      #  backend:
+      #   backend:
       #     service:
       #       name: ssl-redirect
       #       port:
@@ -1873,6 +1876,9 @@ configs:
     #    ...
     #    -----END OPENSSH PRIVATE KEY-----
 
+  # -- Annotations to be added to `configs.credentialTemplates` Secret
+  credentialTemplatesAnnotations: {}
+
   # -- Repositories list to be used by applications
   ## Creates a secret for each key/value specified below to create repositories
   ## Note: the last example in the list would use a repository credential template, configured under "configs.repositoryCredentials".
@@ -1889,6 +1895,9 @@ configs:
     #   username: my-username
     # private-repo:
     #   url: https://github.com/argoproj/private-repo
+
+  # -- Annotations to be added to `configs.repositories` Secret
+  repositoriesAnnotations: {}
 
   secret:
     # -- Create the argocd-secret
@@ -1912,8 +1921,7 @@ configs:
     ## Ref: https://argoproj.github.io/argo-cd/operator-manual/sso/
     ## Note that all values must be non-empty.
     extra:
-      {}
-      # LDAP_PASSWORD: "mypassword"
+      oidc.keycloak.clientSecret: 42dd2f0f-8961-4585-b4a6-8afde04887ef
 
     # -- Argo TLS Data
     argocdServerTlsConfig:
