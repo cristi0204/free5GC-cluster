@@ -166,8 +166,7 @@ controller:
   # workflows. This controls where the service account and RBAC resources will
   # be created. Only valid when singleNamespace is false.
   workflowNamespaces:
-    - default
-
+    - argo
   # -- Specifies the container runtime interface to use (one of: `docker`, `kubelet`, `k8sapi`, `pns`, `emissary`)
   ## Ref: https://argoproj.github.io/argo-workflows/workflow-executors/
   containerRuntimeExecutor: emissary
@@ -329,7 +328,10 @@ server:
     # -- Service account name
     name: "admin"
     # -- Annotations applied to created service account
-    annotations: {}
+    annotations: {
+          workflows.argoproj.io/rbac-rule: "'ArgoWorkflowAdmin' in groups",
+          workflows.argoproj.io/rbac-rule-precedence: "1"
+        }
 
   # -- Annotations to be applied to the UI Service
   serviceAnnotations: {}
@@ -454,6 +456,9 @@ server:
        enabled: true
      scopes:
      - groups
+     - openid
+     - profile
+     - email
     ## All the values are required. SSO is activated by adding --auth-mode=sso
     ## to the server command line.
     #
@@ -500,7 +505,7 @@ artifactRepository:
     secretKeySecret:
       # name: <releaseName>-minio
       key: secretkey
-    insecure: true
+    insecure: false
     # bucket:
     # endpoint:
     # region:
