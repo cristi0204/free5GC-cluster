@@ -1,0 +1,20 @@
+# This example creates a Kubernetes resource 
+#
+# A Namespace creation is used for this example, but the same approach would apply
+# to other more interesting resource types.
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: k8s-create-ns-
+spec:
+  serviceAccountName: admin
+  entrypoint: k8s-create-ns
+  templates:
+    - name: k8s-create-ns
+      resource:
+        action: create
+        manifest: |
+          apiVersion: v1
+          kind: Namespace
+          metadata:
+            name: test-ns

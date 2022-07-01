@@ -1,0 +1,32 @@
+# This example creates a Kubernetes resource : ConfigMap 
+#
+# A configmap is used for this example, but the same approach would apply
+# to other more interesting resource types.
+#
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: k8-create-configmap-
+  namespace: argo
+spec:
+  serviceAccountName: admin
+  entrypoint: k8-create-configmap
+  templates:
+  - name: k8-create-configmap
+    resource:
+      action: create
+      setOwnerReference: true
+      manifest: |
+        apiVersion: v1
+        kind: ConfigMap
+        metadata:
+          name: test-configmap-to-be-deleted-1
+        data:
+          # Configuration values can be set as key-value properties
+          database: mongodb
+          database_uri: mongodb://localhost:27017
+          
+          # Or set as complete file contents (even JSON!)
+          keys: | 
+            image.public.key=771 
+            rsa.public.key=42
