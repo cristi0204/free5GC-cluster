@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: build-api-workflow-
+  namespace: atos-dev-1
+spec:
+  serviceAccountName: argo-admin
+  entrypoint: build-api
+  templates:
+    - name: build-api
+      steps:
+        - - name: build-ServiceAction
+            template: serviceaction-build
+
+
+    - name: serviceaction-build
+      resource:
+        action: create
+        manifest: |
+            apiVersion: core.atos.net/v1
+            kind: ServiceAction
+            metadata:
+              name: action-build-api
+            spec:
+              # atosService: The corresponding atosService this Action referres to
+              atosService: atos-dev
+              # executionPolicy [auto(default)|stop] auto: acction gets started by operator as soon as no other action is running any more. stop: operator will not touch it. 
+              executionPolicy: auto  
+
+              # List of Microtasks
+              microtasks:
+                - name: dev.buildah.build.git
+                  action: apply
