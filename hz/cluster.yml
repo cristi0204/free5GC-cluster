@@ -12,7 +12,7 @@ nodes:
     user: root
     docker_socket: /var/run/docker.sock
     ssh_key: ""
-    ssh_key_path: ~/.ssh/aos_rke
+    ssh_key_path: ~/.ssh/id_rsa_aos_hz_rke
     ssh_cert: ""
     ssh_cert_path: ""
     labels: {}
@@ -28,7 +28,7 @@ nodes:
     user: root
     docker_socket: /var/run/docker.sock
     ssh_key: ""
-    ssh_key_path: ~/.ssh/aos_rke
+    ssh_key_path: ~/.ssh/id_rsa_aos_hz_rke
     ssh_cert: ""
     ssh_cert_path: ""
     labels: {}
@@ -44,7 +44,7 @@ nodes:
     user: root
     docker_socket: /var/run/docker.sock
     ssh_key: ""
-    ssh_key_path: ~/.ssh/aos_rke
+    ssh_key_path: ~/.ssh/id_rsa_aos_hz_rke
     ssh_cert: ""
     ssh_cert_path: ""
     labels: {}
@@ -58,7 +58,7 @@ nodes:
     user: root
     docker_socket: /var/run/docker.sock
     ssh_key: ""
-    ssh_key_path: ~/.ssh/aos_rke
+    ssh_key_path: ~/.ssh/id_rsa_aos_hz_rke
     ssh_cert: ""
     ssh_cert_path: ""
     labels: {}
@@ -72,7 +72,7 @@ nodes:
     user: root
     docker_socket: /var/run/docker.sock
     ssh_key: ""
-    ssh_key_path: ~/.ssh/aos_rke
+    ssh_key_path: ~/.ssh/id_rsa_aos_hz_rke
     ssh_cert: ""
     ssh_cert_path: ""
     labels: {}
@@ -86,7 +86,7 @@ nodes:
     user: root
     docker_socket: /var/run/docker.sock
     ssh_key: ""
-    ssh_key_path: ~/.ssh/aos_rke
+    ssh_key_path: ~/.ssh/id_rsa_aos_hz_rke
     ssh_cert: ""
     ssh_cert_path: ""
     labels: {}
@@ -179,7 +179,7 @@ services:
     win_extra_binds: []
     win_extra_env: []
 network:
-  plugin: canal
+  plugin: flannel
   options: {}
   mtu: 0
   node_selector: {}
