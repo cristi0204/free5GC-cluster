@@ -234,7 +234,7 @@ system_images:
   aci_controller_container: noiro/aci-containers-controller:5.1.1.0.1ae238a
   aci_gbp_server_container: noiro/gbp-server:5.1.1.0.1ae238a
   aci_opflex_server_container: noiro/opflex-server:5.1.1.0.1ae238a
-ssh_key_path: ~/.ssh/aos_rke
+ssh_key_path: ~/.ssh/id_rsa_aos_hz_rke
 ssh_cert_path: ""
 ssh_agent_auth: false
 authorization:
@@ -249,7 +249,7 @@ ingress:
   options: {}
   node_selector: {}
   extra_args: {}
-  dns_policy: ""
+  dns_policy: "ClusterFirst"
   extra_envs: []
   extra_volumes: []
   extra_volume_mounts: []
