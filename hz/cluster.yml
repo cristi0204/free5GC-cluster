@@ -179,7 +179,7 @@ services:
     win_extra_binds: []
     win_extra_env: []
 network:
-  plugin: flannel
+  plugin: "calico" 
   options: {}
   mtu: 0
   node_selector: {}
@@ -190,8 +190,7 @@ authentication:
   sans: []
   webhook: null
 addons: ""
-addons_include:
-- ""
+addons_include: []
 system_images:
   etcd: rancher/mirrored-coreos-etcd:v3.5.3
   alpine: rancher/rke-tools:v0.1.80
@@ -249,7 +248,7 @@ ingress:
   options: {}
   node_selector: {}
   extra_args: {}
-  dns_policy: "ClusterFirst"
+  dns_policy: "ClusterFirstWithHostNet"
   extra_envs: []
   extra_volumes: []
   extra_volume_mounts: []

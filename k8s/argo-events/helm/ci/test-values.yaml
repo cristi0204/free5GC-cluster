@@ -1,2 +1,0 @@
-serviceAccount: argo-events-sa-test
-singleNamespace: false
