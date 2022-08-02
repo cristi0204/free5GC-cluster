@@ -248,7 +248,7 @@ ingress:
   options: {}
   node_selector: {}
   extra_args: 
-    default-ssl-certificate: "ingress-nginx/default-ssl-certificate"
+    default-ssl-certificate: "ingress-nginx/ingress-default-cert"
   dns_policy: "ClusterFirstWithHostNet"
   extra_envs: []
   extra_volumes: []
