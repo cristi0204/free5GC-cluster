@@ -372,7 +372,7 @@ service:
 ingress:
   ## @param ingress.enabled Enable ingress resource for Management console
   ##
-  enabled: false
+  enabled: true
   ## @param ingress.path Path for the default host
   ##
   path: /
@@ -387,7 +387,7 @@ ingress:
   certManager: false
   ## @param ingress.hostname Default host for the ingress resource, a host pointing to this will be created
   ##
-  hostname: consul-ui.local
+  hostname: consul.berlindevops.com
   ## @param ingress.annotations Ingress annotations done as key:value pairs
   ## For a full list of possible ingress annotations, please see
   ## ref: https://github.com/kubernetes/ingress-nginx/blob/master/docs/user-guide/nginx-configuration/annotations.md
@@ -400,9 +400,9 @@ ingress:
   ## or a custom one if you use the tls.existingSecret parameter
   ## You can use the ingress.secrets parameter to create this TLS secret or relay on cert-manager to create it
   ## Example:
-  ## existingSecret: name-of-existing-secret
+  existingSecret: consul.berlindevops.com-tls
   ##
-  tls: false
+  tls: true
   ## @param ingress.extraHosts An array with additional hostname(s) to be covered with the ingress record
   ## Most likely the hostname above will be enough, but in the event more hosts are needed, this is an array
   ## extraHosts:
