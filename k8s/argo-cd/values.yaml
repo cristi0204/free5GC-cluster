@@ -1240,7 +1240,7 @@ server:
 
     oidc.config: |
        name: Keycloak
-       issuer: https://keycloak.berlindevops.com/auth/realms/master
+       issuer: https://keycloak.berlindevops.com/realms/master
        clientID: argocd
        clientSecret: $oidc.keycloak.clientSecret
        requestedScopes:
