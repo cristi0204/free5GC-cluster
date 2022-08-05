@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: datasources
+  namespace: grafana
+  labels:
+     grafana_datasource: "1"
+type: Opaque
+stringData:
+  datasource-prometheus.yaml: |-
+    apiVersion: 1
+    datasources:
+      - name: Prometheus
+        type: prometheus
+        access: proxy
+        orgId: 1
+        url: http://prometheus-kube-prometheus-prometheus.prometheus.svc.cluster.local:9090
+        isDefault: true
+        editable: true
+        httpMethod: GET
+  datasource-loki.yaml: |-
+    apiVersion: 1
+    datasources:
+      - name: Loki
+        type: loki
+        access: proxy
+        orgId: 1
+        url: http://loki.loki.svc.cluster.local:3100
+        isDefault: false
+        editable: true
+        httpMethod: GET
+  datasource-nodegraph.yaml: |-
+    apiVersion: 1
+    datasources:
+      - name: Node Graph API Plugin
+        type: Node Graph API Plugin
+        access: proxy
+        orgId: 1
+        url: https://api.berlindevops.com
+        isDefault: false
+        editable: true
+        httpMethod: GET
