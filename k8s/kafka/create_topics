@@ -1,0 +1,3 @@
+kubectl -n kafka exec -ti kafka-cluster -- ./bin/kafka-topics.sh --bootstrap-server kafka-cluster-kafka-bootstrap:9092 --topic logs --create --partitions 1 --replication-factor 1
+
+kubectl -n kafka exec -ti kafka-cluster-kafka-0 -- ./bin/kafka-topics.sh --bootstrap-server kafka-cluster-kafka-bootstrap:9092 --topic metrics --create --partitions 1 --replication-factor 1
