@@ -6,8 +6,8 @@ metadata:
 spec:
   replicaCount: 1
   datasource:
-    url: "http://vmsingle-example-vmsingle-persisted.default.svc:8429"
+    url: "http://vmcluster-vmcluster-persisted.default.svc:8429"
   notifier:
-      url: "http://vmalertmanager-example-alertmanager.default.svc:9093"
+      url: "http://vmalertmanager-alertmanager.default.svc:9093"
   evaluationInterval: "30s"
   selectAllByDefault: true
