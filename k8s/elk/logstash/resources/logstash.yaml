@@ -14,7 +14,7 @@ spec:
     - containerPort: 5044
     env:
     - name: ES_HOSTS
-      value: "https://elk-cluster-es-internal-http:9200"
+      value: "https://elk-cluster-es-default:9200"
     - name: ES_USER
       value: "elastic"
     - name: ES_PASSWORD
@@ -47,6 +47,6 @@ spec:
           path: logstash.conf
   - name: cert-ca
     secret:
-      secretName: elastic-webhook-server-cert
+      secretName: elk-cluster-es-http-certs-public
 
 status: {}
