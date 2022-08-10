@@ -34,7 +34,7 @@ controller:
   # -- [priorityClassName] for the controller
   priorityClassName: ""
   # -- The number of controller pods to run
-  replicas: 2
+  replicas: 1
   image:
     # -- Registry to use
     registry: quay.io
@@ -150,7 +150,7 @@ imagePullSecrets: []
 
 dashboard:
   # -- Deploy dashboard server
-  enabled: false
+  enabled: true
   # -- Set cluster role to readonly
   readonly: false
   # -- Value of label `app.kubernetes.io/component`
@@ -231,19 +231,20 @@ dashboard:
   ##
   ingress:
     # -- Enable dashboard ingress support
-    enabled: false
+    enabled: true
     # -- Dashboard ingress annotations
     annotations: {}
     # -- Dashboard ingress labels
     labels: {}
     # -- Dashboard ingress class name
-    ingressClassName: ""
+    ingressClassName: "nginx"
 
     # -- Dashboard ingress hosts
     ## Argo Rollouts Dashboard Ingress.
     ## Hostnames must be provided if Ingress is enabled.
     ## Secrets must be manually created in the namespace
-    hosts: []
+    hosts: 
+       - argorollouts.berlindevops.com
       # - argorollouts.example.com
 
     # -- Dashboard ingress paths
@@ -267,7 +268,10 @@ dashboard:
       #         name: use-annotation
 
     # -- Dashboard ingress tls
-    tls: []
+    tls: 
+       - secretName: argorollouts-tls
+         hosts:
+           - argorollouts.berlindevops.com
       # - secretName: argorollouts-example-tls
       #   hosts:
       #     - argorollouts.example.com

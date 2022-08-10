@@ -1003,7 +1003,7 @@ server:
     # -- Certificate manager additional hosts
     additionalHosts: []
     # -- The name of the Secret that will be automatically created and managed by this Certificate resource
-    secretName: argocd-server-tls
+    secretName: argocd-tls
 
   ## Server service configuration
   service:
@@ -1093,7 +1093,7 @@ server:
     # -- Additional ingress labels
     labels: {}
     # -- Defines which ingress controller will implement the resource
-    ingressClassName: ""
+    ingressClassName: "nginx"
 
     # -- List of ingress hosts
     ## Argo Ingress.
@@ -1125,7 +1125,7 @@ server:
 
     # -- Ingress TLS configuration
     tls:
-      - secretName: argocd-tls-certificate
+      - secretName: argocd-tls
         hosts:
            - argocd.berlindevops.com
 
@@ -1240,7 +1240,7 @@ server:
 
     oidc.config: |
        name: Keycloak
-       issuer: https://keycloak.berlindevops.com/auth/realms/master
+       issuer: https://keycloak.berlindevops.com/realms/master
        clientID: argocd
        clientSecret: $oidc.keycloak.clientSecret
        requestedScopes:
@@ -1921,7 +1921,7 @@ configs:
     ## Ref: https://argoproj.github.io/argo-cd/operator-manual/sso/
     ## Note that all values must be non-empty.
     extra:
-      oidc.keycloak.clientSecret: 42dd2f0f-8961-4585-b4a6-8afde04887ef
+      oidc.keycloak.clientSecret: t2sWziELali4r00KMez7P2pZMEqj83Ly
 
     # -- Argo TLS Data
     argocdServerTlsConfig:

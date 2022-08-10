@@ -399,7 +399,7 @@ server:
     # -- Additional ingress labels
     labels: {}
     # -- Defines which ingress controller will implement the resource
-    ingressClassName: ""
+    ingressClassName: "nginx"
 
     # -- List of ingress hosts
     ## Hostnames must be provided if Ingress is enabled.
@@ -444,7 +444,7 @@ server:
     
   # -- SSO configuration when SSO is specified as a server auth mode.
   sso:
-     issuer: https://keycloak.berlindevops.com/auth/realms/master
+     issuer: https://keycloak.berlindevops.com/realms/master
      clientId:
        name: argoworkflows-secret
        key: clientId
