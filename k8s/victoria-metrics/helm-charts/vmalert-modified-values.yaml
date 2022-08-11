@@ -65,7 +65,7 @@ server:
   # vmalert reads metrics from source, next section represents its configuration. It can be any service which supports
   # MetricsQL or PromQL.
   datasource:
-    url: "http://localhost:8481"
+    url: "http://victoria-metrics-cluster-vmselect:8481"
     basicAuth:
       username: ""
       password: ""
@@ -78,7 +78,7 @@ server:
 
   notifier:
     alertmanager:
-      url: "https://alertmanager.berlindevops.com"
+      url: "http://vmalert-alertmanager:9093"
 
   extraArgs:
     envflag.enable: "true"
@@ -244,7 +244,7 @@ alertmanager:
   # key: value
 
   # external URL, that alertmanager will expose to receivers
-  baseURL: "https://alertmanager.berlindevops.com"
+  baseURL: "http://vmalert-alertmanager:9093"
   # use existing configmap if specified
   # otherwise .config values will be used
   configMap: ""
