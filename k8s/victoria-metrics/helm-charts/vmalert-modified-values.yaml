@@ -201,16 +201,16 @@ server:
   config:
     alerts:
       groups: 
-        - name: AlertGroupName
+        - name: ResourceAlert
           rules:
-            - alert: AlertName
-              expr: any_metric > 100
+            - alert: CPU
+              expr: usage{foo="cpu"} > 77
               for: 30s
               labels:
-                alertname: 'Any metric is too high'
+                alertname: 'CPU usage is too high'
                 severity: 'warning'
               annotations:
-                dashboard: '{{ $externalURL }}/d/dashboard?orgId=1{{ template "grafana.filter" (args .CommonLabels "account_id" "any_label") }}'
+                dashboard: ''
 
 serviceMonitor:
   enabled: false
