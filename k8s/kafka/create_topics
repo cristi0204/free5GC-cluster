@@ -1,0 +1,7 @@
+kubectl -n kafka exec -ti kafka-cluster -- ./bin/kafka-topics.sh --bootstrap-server kafka-cluster-kafka-bootstrap:9092 --topic logs --create --partitions 1 --replication-factor 1
+
+kubectl -n kafka exec -ti kafka-cluster-kafka-0 -- ./bin/kafka-topics.sh --bootstrap-server kafka-cluster-kafka-bootstrap:9092 --topic metrics --create --partitions 1 --replication-factor 1
+
+kubectl -n kafka run kafka-producer -ti --image=quay.io/strimzi/kafka:0.30.0-kafka-3.2.0 --rm=true --restart=Never -- bin/kafka-console-producer.sh --bootstrap-server kafka-cluster-kafka-bootstrap:9092 --topic logs
+
+kubectl -n kafka run kafka-consumer -ti --image=quay.io/strimzi/kafka:0.30.0-kafka-3.2.0 --rm=true --restart=Never -- bin/kafka-console-consumer.sh --bootstrap-server kafka-cluster-kafka-bootstrap:9092 --topic logs --from-beginning
