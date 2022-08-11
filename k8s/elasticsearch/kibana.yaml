@@ -1,0 +1,10 @@
+apiVersion: kibana.k8s.elastic.co/v1
+kind: Kibana
+metadata:
+  name: elk-cluster
+  namespace: elastic-system
+spec:
+  version: 8.3.3
+  count: 1
+  elasticsearchRef:
+    name: elk-cluster
