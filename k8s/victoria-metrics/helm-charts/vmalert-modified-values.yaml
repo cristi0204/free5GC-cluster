@@ -65,7 +65,7 @@ server:
   # vmalert reads metrics from source, next section represents its configuration. It can be any service which supports
   # MetricsQL or PromQL.
   datasource:
-    url: "http://victoria-metrics-cluster-vmselect:8481"
+    url: "http://victoria-metrics-cluster-vmselect:8481/select/0/prometheus"
     basicAuth:
       username: ""
       password: ""
