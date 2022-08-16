@@ -154,22 +154,24 @@ config:
   outputs:
     - influxdb:
         urls:
-          - "http://victoria-metrics-cluster-vminsert:8480/insert/0/influx/write"
-        database: "telegraf"
+          - "http://victoria-metrics-cluster-vminsert:8480/insert/0/influx"
+
+        skip_database_creation: true
+
   inputs:
      - kafka_consumer:
         brokers:
-          - "http://kafka-cluster-kafka-bootstrap-external-victoriametrics:9092"
+          - "kafka-cluster-kafka-bootstrap-external-victoriametrics:9092"
         topics: 
           - "metrics"
         ##version: “2.0.0”
         ##sasl_username: “(username)”
         ##sasl_password: “(password)”
-        ##consumer_group: “test”
-        ##offset: “oldest”
+        ##consumer_group: "test"
+        ##offset: "oldest"
         ##max_message_len: 1000000
-        data_format: "json"
-        insecure_skip_verify: true
+        data_format: "json_v2"
+        ##insecure_skip_verify: true
 
 
 metrics:
