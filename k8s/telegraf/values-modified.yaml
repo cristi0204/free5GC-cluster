@@ -171,6 +171,10 @@ config:
         ##offset: "oldest"
         ##max_message_len: 1000000
         data_format: "json_v2"
+        json_v2:
+          measurement_name_path: "class_id"
+          field:
+            path: "label"
         ##insecure_skip_verify: true
 
 
