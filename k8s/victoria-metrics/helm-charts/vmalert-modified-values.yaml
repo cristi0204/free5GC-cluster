@@ -72,9 +72,9 @@ server:
 
   remote:
     write:
-      url: ""
+      url: "http://victoria-metrics-cluster-vminsert:8480/insert/0/prometheus"
     read:
-      url: ""
+      url: "http://victoria-metrics-cluster-vmselect:8481/select/0/prometheus"
 
   notifier:
     alertmanager:
@@ -205,7 +205,7 @@ server:
           rules:
             - alert: CPU
               expr: usage{resource="cpu"} > 77
-              for: 30s
+              for: 0s
               labels:
                 alertname: 'CPU usage is too high'
                 severity: 'warning'
