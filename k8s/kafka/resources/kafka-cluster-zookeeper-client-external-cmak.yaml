@@ -1,0 +1,10 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: kafka-cluster-zookeeper-client-external-cmak
+  namespace: cmak
+spec:
+  type: ExternalName
+  externalName: 	kafka-cluster-zookeeper-client.kafka.svc.cluster.local
+  ports:
+  - port: 2181
