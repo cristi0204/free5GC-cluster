@@ -1,0 +1,5 @@
+cmak:
+  clusters:
+    - name: "cluster-prod"
+      curatorConfig:
+        zkConnect: "cmak:2181"
