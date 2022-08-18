@@ -44,7 +44,7 @@ cmak:
           kafkaVersion: "3.2.0"
           enabled: true
           curatorConfig:
-            zkConnect: "cmak:2181"
+            zkConnect: "zoo-entrance.kafka.svc:2181"
 
 reconcile:
   image:
