@@ -177,13 +177,10 @@ config:
         ##offset: "oldest"
         ##max_message_len: 1000000
         #data_format: "influx"
-        data_format: "json_v2"
-        json_v2:
-          measurement_name: "usage"
-          field:
-            path: "value"
-          tag:
-            path: "resource"
+        data_format: "json"
+        json_name_key: "measurement"
+        tag_keys:
+          - "resource"
         #insecure_skip_verify: true
 
 

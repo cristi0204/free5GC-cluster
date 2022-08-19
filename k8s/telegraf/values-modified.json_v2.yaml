@@ -139,7 +139,7 @@ config:
     precision: ""
     debug: true
     quiet: false
-    logfile: "/var/log/telegraf/telegraf.log"
+    logfile: ""
     hostname: "$HOSTNAME"
     omit_hostname: false
   processors:
@@ -157,6 +157,12 @@ config:
           - "http://victoria-metrics-cluster-vminsert:8480/insert/0/influx"
         content_encoding: "identity"
             #database: "metrics"
+    - file:
+        files:
+          - "stdout"
+    - influxdb:
+        urls:
+          - "udp://localhost:8089"
 
   inputs:
      - kafka_consumer:
@@ -170,14 +176,14 @@ config:
         ##consumer_group: "test"
         ##offset: "oldest"
         ##max_message_len: 1000000
-        data_format: "influx"
-        #data_format: "json_v2"
-        #json_v2:
-        #  measurement_name: "usage"
-        #  field:
-        #    path: "value"
-        #  tag:
-        #    path: "resource"
+        #data_format: "influx"
+        data_format: "json_v2"
+        json_v2:
+          measurement_name: "usage"
+          field:
+            path: "value"
+          tag:
+            path: "resource"
         #insecure_skip_verify: true
 
 
