@@ -220,3 +220,15 @@ config:
         - source_labels: [__meta_kubernetes_pod_name]
           action: replace
           target_label: kubernetes_pod_name
+
+persistence:
+  enabled: true
+  storageClassName: longhorn
+  accessModes:
+    - ReadWriteOnce
+  size: 5Gi
+  annotations: {}
+  extraLabels: {}
+  existingClaim: ""
+  # -- Bind Persistent Volume by labels. Must match all labels of targeted PV.
+  matchLabels: {}
