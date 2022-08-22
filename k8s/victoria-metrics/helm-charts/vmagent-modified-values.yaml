@@ -1,5 +1,5 @@
 remoteWriteUrls:
-   - http://vmcluster-victoria-metrics-cluster-vminsert.default.svc.cluster.local:8480/insert/0/prometheus/
+   - http://victoria-metrics-cluster-vminsert:8480/insert/0/prometheus
 
 config:
   global:
@@ -220,6 +220,18 @@ config:
         - source_labels: [__meta_kubernetes_pod_name]
           action: replace
           target_label: kubernetes_pod_name
+
+# ref:  https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/
+statefulset:
+  enabled: true
+  # -- create cluster of vmagents. See https://docs.victoriametrics.com/vmagent.html#scraping-big-number-of-targets
+  # available since 1.77.2 version https://github.com/VictoriaMetrics/VictoriaMetrics/releases/tag/v1.77.2
+  clusterMode: true
+  # -- replication factor for vmagent in cluster mode
+  replicationFactor: 1
+  # ref: https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#update-strategies
+  updateStrategy: {}
+    # type: RollingUpdate
 
 persistence:
   enabled: true
