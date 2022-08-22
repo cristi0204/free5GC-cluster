@@ -78,8 +78,8 @@ spec:
               subPath: alertad.conf
               {{- if .Values.alertaWebUIConfig }}
             - name: alerta-config
-              mountPath: /app/config.js
-              subPath: config.js
+              mountPath: /app/config.json
+              subPath: config.json
               {{- end }}
           resources:
 {{ toYaml .Values.resources | indent 12 }}

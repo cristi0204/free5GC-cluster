@@ -10,7 +10,7 @@ data:
     DATABASE_URL = "postgresql://{{ .Values.postgresql.postgresqlUsername }}:{{ .Values.postgresql.postgresqlPassword }}@{{ .Release.Name }}-postgresql:5432/{{ .Values.postgresql.postgresqlDatabase }}"
     {{- end }}
 {{- if .Values.alertaWebUIConfig }}
-  config.js: |
+  config.json: |
 {{ .Values.alertaWebUIConfig | indent 4 }}
 {{- end }}
 kind: ConfigMap

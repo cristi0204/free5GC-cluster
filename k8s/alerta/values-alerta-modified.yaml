@@ -17,7 +17,7 @@ service:
   port: 80
 
 ingress:
-  enabled: true
+  enabled: True
   annotations: {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
@@ -68,26 +68,19 @@ alertaInstallPlugins:
 # ref: http://docs.alerta.io/en/latest/configuration.html
 alertaConfig:
    DEBUG: "True"
-   AUTH_REQUIRED: "True"
+   AUTH_REQUIRED: "False"
    PLUGINS: "['normalise', 'enhance']"
 #   DATABASE_URL: "" # provide db url here if you're not using the postgres chart
 
 # ref: http://docs.alerta.io/en/latest/webui.html
 alertaWebUIConfig: |
-   // contents of config.js
-   'use strict';
-   angular.module('config', [])
-     .constant('config', {
-       'endpoint'    : "http://alerta.berlindevops.com:80/api",
-       'provider'    : "basic"
-     })
-     .constant('colors', {});
+      {"endpoint": "http://localhost:8080"}
 
 postgresql:
   enabled: true
   postgresqlUsername: alerta
   postgresqlDatabase: monitoring
-  postgresqlPassword: "2Atos@Atos" # provide a password here, otherwise it will be randomly generated inside postgresql helm chart and will not be available as a variable in the alerta helm chart
+  postgresqlPassword: 2Atos-Atos # provide a password here, otherwise it will be randomly generated inside postgresql helm chart and will not be available as a variable in the alerta helm chart
   persistence:
     enabled: true
     size: 5Gi
