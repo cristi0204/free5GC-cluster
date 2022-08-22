@@ -78,10 +78,13 @@ alertaWebUIConfig: |
 
 postgresql:
   enabled: true
-  postgresqlUsername: alerta
-  postgresqlDatabase: monitoring
-  postgresqlPassword: 2Atos-Atos # provide a password here, otherwise it will be randomly generated inside postgresql helm chart and will not be available as a variable in the alerta helm chart
+  auth:
+    username: alerta
+    password: alertaalerta # provide a password here, otherwise it will be randomly generated inside postgresql helm chart and will not be available as a variable in the alerta helm chart
+    database: monitoring
+
   persistence:
+    storageClass: longhorn
     enabled: true
     size: 5Gi
 
