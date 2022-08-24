@@ -17,13 +17,13 @@ service:
   port: 80
 
 ingress:
-  enabled: false
+  enabled: True
   annotations: {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   path: /
   hosts:
-    - alerta.example.com
+    - alerta.berlindevops.com
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
@@ -54,65 +54,37 @@ extraSecretMounts: []
   #   secretName: alertmanager-secret-files
   #   readOnly: true
 
-# alertaAdminPassword: "" # if not provided will be randomly generated
+alertaAdminPassword: "2Atos@Atos" # if not provided will be randomly generated
 # alertaAdminUsers: # list of email addresses
 #   - "admin@alerta.io"
 # alertaAdminKey: "<your_api_key_here>"
 # alertaApiKey: "<your_api_key_here>" # you probably want to set this to the same value as 'alertaAdminKey'
 
 # Alerta plugins to install
-# alertaInstallPlugins:
-#   - normalise
-#   - enhance
+alertaInstallPlugins:
+   - normalise
+   - enhance
 
 # ref: http://docs.alerta.io/en/latest/configuration.html
-# alertaConfig:
-#   DEBUG: "True"
-#   AUTH_REQUIRED: "True"
-#   PLUGINS: "['normalise', 'enhance']"
+alertaConfig:
+   DEBUG: "True"
+   AUTH_REQUIRED: "False"
+   PLUGINS: "['normalise', 'enhance']"
 #   DATABASE_URL: "" # provide db url here if you're not using the postgres chart
 
 # ref: http://docs.alerta.io/en/latest/webui.html
-# alertaWebUIConfig: |
-#   // contents of config.js
-#   'use strict';
-#   angular.module('config', [])
-#     .constant('config', {
-#       'endpoint'    : "/api",
-#       'provider'    : "basic"
-#     })
-#     .constant('colors', {});
+alertaWebUIConfig: |
+      {"endpoint": "http://localhost:8080"}
 
-#postgresql:
-#  enabled: true
-
-#To create user and database in postgresql
-global:
-  postgresql:
-    postgresqlDatabase: monitoring
-    postgresqlUsername: alerta
-    postgresqlPassword: alerta
-    usePasswordFiles: false
-  # persistence:
-  # enabled: true
-  # size: 1Gi
-
-#To create a connection url from alerta to postgresql
 postgresql:
   enabled: true
-  postgresqlUsername: alerta
-  postgresqlDatabase: monitoring
-  postgresqlPassword: alerta  # provide a password here, otherwise it will be randomly generated inside postgresql helm chart and will not be available as a variable in the alerta helm chart
-  persistence:
-    enabled: true
-    size: 5Gi
+  auth:
+    postgresPassword: "alertaalerta"
+    username: "alerta"
+    password: "alertaalerta" # provide a password here, otherwise it will be randomly generated inside postgresql helm chart and will not be available as a variable in the alerta helm chart
+    database: "monitoring"
 
-persistence:
-  enabled: true
-  existingClaim: data-alerta-postgresql-0
-
-volumePermissions:
-  enabled: true
+    storageClass: longhorn
 
   # If deploying on OpenShift
   # volumePermissions:
