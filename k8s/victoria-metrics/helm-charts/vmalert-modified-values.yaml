@@ -204,7 +204,7 @@ server:
         - name: ResourceAlert
           rules:
             - alert: CPU
-              expr: usage{resource="cpu"} > 77
+              expr: usage_value{resource="cpu"} > 77
               for: 0s
               labels:
                 alertname: 'CPU usage is too high'
