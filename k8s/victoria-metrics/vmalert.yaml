@@ -8,6 +8,8 @@ spec:
   datasource:
     url: "http://vmstorage-vmcluster-persistent-0:8429"
   notifier:
-      url: "http://vmalertmanager-alertmanager-0:9093"
+    url: "http://alerta:80"
+          #url: "http://vmalertmanager-alertmanager-0:9093"
+
   evaluationInterval: "30s"
   selectAllByDefault: true
