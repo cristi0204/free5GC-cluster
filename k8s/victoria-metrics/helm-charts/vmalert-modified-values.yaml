@@ -79,6 +79,7 @@ server:
   notifier:
     alertmanager:
       url: "http://vmalert-alertmanager:9093"
+      #url: "http://alerta:80"
 
   extraArgs:
     envflag.enable: "true"
