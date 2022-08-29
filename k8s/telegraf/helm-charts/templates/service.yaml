@@ -4,10 +4,7 @@ kind: Service
 metadata:
   name: {{ include "telegraf.fullname" . }}
   labels:
-    app.kubernetes.io/name: {{ include "telegraf.name" . }}
-    helm.sh/chart: {{ include "telegraf.chart" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
-    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    {{- include "telegraf.labels" . | nindent 4 }}
   {{- if .Values.service.annotations }}
   annotations:
 {{ toYaml .Values.service.annotations | indent 4 }}
@@ -15,15 +12,11 @@ metadata:
 spec:
   type: {{ .Values.service.type }}
   ports:
-  {{- range $objectKey, $objectValue := .Values.config.outputs }}
-  {{- range $key, $value := . -}}
-  {{- $tp := typeOf $value -}}
-  {{- if eq $key "health" }}
-  - port: {{ trimPrefix "http://:" $value.service_address | int64 }}
-    targetPort: {{ trimPrefix "http://:" $value.service_address | int64 }}
+  {{- $health := include "telegraf.health" . | fromYaml }}
+  {{- with $health }}
+  - port: {{ trimPrefix "http://:" .service_address | int64 }}
+    targetPort: {{ trimPrefix "http://:" .service_address | int64 }}
     name: "health"
-    {{- end }}
-  {{- end }}
   {{- end }}
   {{- range $objectKey, $objectValue := .Values.config.inputs }}
   {{- range $key, $value := . -}}
@@ -33,27 +26,58 @@ spec:
     targetPort: {{ trimPrefix ":" $value.service_address | int64 }}
     name: "http-listener"
     {{- end }}
+    {{- if eq $key "influxdb_listener" }}
+  - port: {{ trimPrefix ":" $value.service_address | int64 }}
+    targetPort: {{ trimPrefix ":" $value.service_address | int64 }}
+    name: "influxdb-listener"
+    {{- end }}
+    {{- if eq $key "http_listener_v2" }}
+  - port: {{ trimPrefix ":" $value.service_address | int64 }}
+    targetPort: {{ trimPrefix ":" $value.service_address | int64 }}
+    name: "http-listener-v2"
+    {{- end }}
+    {{- if eq $key "influxdb_v2_listener" }}
+  - port: {{ trimPrefix ":" $value.service_address | int64 }}
+    targetPort: {{ trimPrefix ":" $value.service_address | int64 }}
+    name: "influxdb-v2-listener"
+    {{- end }}
     {{- if eq $key "statsd" }}
   - port: {{ trimPrefix ":" $value.service_address | int64 }}
     targetPort: {{ trimPrefix ":" $value.service_address | int64 }}
     protocol: "UDP"
     name: "statsd"
     {{- end }}
-    {{- if eq $key "tcp-listener" }}
+    {{- if eq $key "tcp_listener" }}
   - port: {{ trimPrefix ":" $value.service_address | int64 }}
     targetPort: {{ trimPrefix ":" $value.service_address | int64 }}
-    name: "tcp_listener"
+    name: "tcp-listener"
     {{- end }}
-    {{- if eq $key "udp-listener" }}
+    {{- if eq $key "udp_listener" }}
   - port: {{ trimPrefix ":" $value.service_address | int64 }}
     targetPort: {{ trimPrefix ":" $value.service_address | int64 }}
     protocol: "UDP"
-    name: "udp_listener"
+    name: "udp-listener"
     {{- end }}
     {{- if eq $key "webhooks" }}
   - port: {{ trimPrefix ":" $value.service_address | int64 }}
     targetPort: {{ trimPrefix ":" $value.service_address | int64 }}
     name: "webhooks"
+    {{- end }}
+    {{- if eq $key "syslog" }}
+      {{- if regexMatch "^(tcp|udp).*" $value.server }}
+  - port: {{ regexFind "[0-9]+$" $value.server  | int64 }}
+    targetPort: {{ regexFind "[0-9]+$" $value.server  | int64 }}
+    protocol: {{ upper (substr 0 3 $value.server) }}
+    name: "syslog"
+      {{- end }}
+    {{- end }}
+    {{- if eq $key "socket_listener" }}
+    {{- if or (hasPrefix "udp" $value.service_address) (hasPrefix "tcp" $value.service_address) }}
+  - port: {{ regexFind "[0-9]+$" $value.service_address  | int64 }}
+    targetPort: {{ regexFind "[0-9]+$" $value.service_address  | int64 }}
+    protocol: {{ upper (substr 0 3 $value.service_address) }}
+    name: {{ printf "%s-%s" "socket-listener" (regexFind "[0-9]+$" $value.service_address) }}
+    {{- end }}
     {{- end }}
   {{- end -}}
   {{- end }}
@@ -68,6 +92,5 @@ spec:
   {{- end -}}
   {{- end }}
   selector:
-    app.kubernetes.io/name: {{ include "telegraf.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+    {{- include "telegraf.selectorLabels" . | nindent 4 }}
 {{- end -}}

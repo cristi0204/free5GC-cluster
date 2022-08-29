@@ -65,20 +65,21 @@ server:
   # vmalert reads metrics from source, next section represents its configuration. It can be any service which supports
   # MetricsQL or PromQL.
   datasource:
-    url: "http://victoria-metrics-cluster-vmselect:8481"
+    url: "http://victoria-metrics-cluster-vmselect:8481/select/0/prometheus"
     basicAuth:
       username: ""
       password: ""
 
   remote:
     write:
-      url: ""
+      url: "http://victoria-metrics-cluster-vminsert:8480/insert/0/prometheus"
     read:
-      url: ""
+      url: "http://victoria-metrics-cluster-vmselect:8481/select/0/prometheus"
 
   notifier:
     alertmanager:
       url: "http://vmalert-alertmanager:9093"
+      #url: "http://alerta:80"
 
   extraArgs:
     envflag.enable: "true"
@@ -204,8 +205,8 @@ server:
         - name: ResourceAlert
           rules:
             - alert: CPU
-              expr: usage{foo="cpu"} > 77
-              for: 30s
+              expr: usage_value{resource="cpu"} > 77
+              for: 0s
               labels:
                 alertname: 'CPU usage is too high'
                 severity: 'warning'
@@ -273,17 +274,24 @@ alertmanager:
     # if you want to force a specific nodePort. Must be use with service.type=NodePort
     # nodePort:
   ingress:
-    enabled: false
+    enabled: true
+    ingressClassName: nginx
     annotations: {}
     #   kubernetes.io/ingress.class: nginx
     #   kubernetes.io/tls-acme: 'true'
     extraLabels: {}
-    hosts: []
+    hosts:
+      - name: alertmanager.berlindevops.com
+        path: /
+        port: web
     #   - name: alertmanager.local
     #     path: /
     #     port: web
 
-    tls: []
+    tls: 
+      - secretName: alertmanager-ingress-tls
+        hosts:
+          - alertmanager.berlindevops.com
     #   - secretName: alertmanager-ingress-tls
     #     hosts:
     #       - alertmanager.local
