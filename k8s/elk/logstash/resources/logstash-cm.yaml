@@ -2,19 +2,19 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: logstash-configmap
+  name: logstash-configmap-test
   namespace: elastic-system
 data:
   logstash.yml: |
     http.host: "0.0.0.0"
     path.config: /usr/share/logstash/pipeline
   logstash.conf: |
-    # all input will come from filebeat, no local logs
     input {
       kafka{
         codec => json
         bootstrap_servers => "kafka-cluster-kafka-bootstrap-external-elastic:9092"
         topics => ["logs"]
+        group_id => "logstash_test"
       }
     }
     filter {
@@ -25,7 +25,7 @@ data:
         hosts => [ "${ES_HOSTS}" ]
         user => "${ES_USER}"
         password => "${ES_PASSWORD}"
-        ssl_certificate_verification => false
-        cacert => '/etc/logstash/certificates/tls.crt'
+        ssl_certificate_verification => true
+        cacert => '/etc/logstash/certificates/ca.crt'
       }
     }
