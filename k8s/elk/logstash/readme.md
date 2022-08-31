@@ -7,3 +7,17 @@ kubectl apply -f logstash-cm.yaml -n elastic-system
 
 #create pod
 kubectl apply -f logstash.yml -n elastic-system
+
+In order to install elasticsearch execute the scripts according to their numbers
+
+elasicssearch:
+  ./01-install-crds.sh
+  ./02-install-operator.sh
+  ./03-install-elasticsearch.sh
+  ./04-install-kibana.sh
+  ./05-install-logstash.sh
+
+logstash:
+  ./01-create-logstash-config-map.sh
+  ./02-create-logstash-pod.sh
+  ./03-create-logstash-service.sh
