@@ -1,1 +1,1 @@
-kubectl apply -f elasticsearch/operator.yaml -n elastic-system
+kubectl apply -f resources/operator.yaml -n elastic-system

@@ -1,1 +1,1 @@
-kubectl apply -f elasticsearch/elasticsearch.yaml -n elastic-system
+kubectl apply -f resources/elasticsearch.yaml -n elastic-system
