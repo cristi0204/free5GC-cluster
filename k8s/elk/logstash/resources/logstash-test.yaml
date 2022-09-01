@@ -3,12 +3,12 @@ kind: Pod
 metadata:
   labels:
     app: logstash
-  name: logstash
+  name: logstash-test
   namespace: elastic-system
 spec:
   containers:
   - image: docker.elastic.co/logstash/logstash:8.3.3
-    name: logstash
+    name: logstash-test
     ports:
     - containerPort: 25826
     - containerPort: 5044
@@ -41,12 +41,12 @@ spec:
           path: logstash.yml
   - name: logstash-pipeline-volume
     configMap:
-      name: logstash-configmap
+      name: logstash-configmap-test
       items:
         - key: logstash.conf
           path: logstash.conf
   - name: cert-ca
     secret:
-      secretName: elk-cluster-es-http-certs-public
+      secretName: elk-cluster-es-http-certs-internal
 
 status: {}

@@ -4,7 +4,7 @@ kind: Service
 metadata:
   labels:
     app: logstash
-  name: logstash
+  name: logstash-test
   namespace: elastic-system
 spec:
   ports:
@@ -15,6 +15,6 @@ spec:
     port: 5044
     targetPort: 5044
   selector:
-    app: logstash
+    app: logstash-test
 status:
   loadBalancer: {}
