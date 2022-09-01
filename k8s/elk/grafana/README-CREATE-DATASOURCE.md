@@ -1,22 +1,23 @@
-1. Basic auth
-Basic auth: turn on
+Basic auth
+    Basic auth: turn on
+
+Auth:
+    With CA Cert: turn on
+    Skip TLS Verify: turn on
 
 Basic Auth Details
-User: elastic
-Password: fetched by script tools/elastic-get-password.sh
-
-With CA Cert: turn on
-Skip TLS Verify: turn on
+    User: elastic
+    Password: fetched by script tools/elastic-get-password.sh
 
 TLS/SSL Auth Details:
-CA Cert: copy the content of 'tls.cert' of 'elk-cluster-es-http-certs-public' secret
+    CA Cert: copy the content of 'tls.cert' of 'elk-cluster-es-http-certs-public' secret
 Below is the path to the secrect in Rancher:
 https://rancher.berlindevops.com/dashboard/c/local/explorer/secret/elastic-system/elk-cluster-es-http-certs-public#data
 
 Elasticsearch details:
-Index name: mda-logs-* ( [mda-logs-]YYYY-MM-DD )
-Pattern: No pattern ( Daily )
-Time field name: @timestamp
+    Index name: mda-logs-* ( [mda-logs-]YYYY-MM-DD )
+    Pattern: No pattern ( Daily )
+    Time field name: @timestamp
 
 Warnig:
 1. Communication with elasticsearch is working
