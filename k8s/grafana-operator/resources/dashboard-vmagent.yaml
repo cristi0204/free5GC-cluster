@@ -1,0 +1,14 @@
+apiVersion: integreatly.org/v1alpha1
+kind: GrafanaDashboard
+metadata:
+  name: vmagent
+  labels:
+    app: grafana-mda
+spec:
+  url: https://grafana.com/api/dashboards/12683/revisions/9/download
+  plugins:
+    - name: "grafana-prometheus-datasource"
+      version: "5.0.0"
+  datasources:
+    - inputName: "$ds"
+      datasourceName: "VictoriaMetrics"

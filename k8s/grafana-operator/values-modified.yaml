@@ -623,7 +623,7 @@ grafana:
     ingressClassName: "nginx"
     ## @param grafana.ingress.hostname The hostname under which the grafana instance should be reachable. If empty the parameter will not be set.
     ##
-    hostname: grafana
+    hostname: grafana-mda.berlindevops.com
     ## @param grafana.ingress.path The path for the ingress instance to forward to the grafana app
     ##
     path: /
@@ -698,6 +698,8 @@ grafana:
       reporting_enabled: false
       check_for_updates: false
     security:
+      admin_user: "admin"
+      admin_password: "2Atos@Atos"
       # ## Grafana Admin credentials, if omitted they will be admin:<random_pass>
       # admin_user:
       # admin_password:

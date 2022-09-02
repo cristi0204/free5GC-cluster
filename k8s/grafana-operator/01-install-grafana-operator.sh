@@ -1,1 +1,1 @@
-helm upgrade --install --debug --namespace grafana --values=values-modified.yaml grafana-operator helm/
+helm upgrade --install --debug --namespace grafana-mda --values=values-modified.yaml grafana-operator helm/
