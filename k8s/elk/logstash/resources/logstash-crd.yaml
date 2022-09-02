@@ -16,6 +16,7 @@ spec:
     served: true
     storage: true
     schema:
+    #TODO Remove all values in the Following section and create a correct CRD-Template
       openAPIV3Schema:
         description: Logstash-CRD for using logstash as a stateful deployment.
         properties:
