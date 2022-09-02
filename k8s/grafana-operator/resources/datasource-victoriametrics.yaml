@@ -1,0 +1,17 @@
+apiVersion: integreatly.org/v1alpha1 
+kind: GrafanaDataSource 
+metadata: 
+  name: victoriametrics 
+spec: 
+  name: victoriametrics.yaml 
+  datasources: 
+    - name: VictoriaMetrics
+      type: prometheus 
+      access: proxy 
+      url: http://victoria-metrics-cluster-vmselect.victoriametrics.svc.cluster.local:8481/select/0/prometheus 
+      isDefault: true 
+      version: 1 
+      editable: false 
+      jsonData:      
+        tlsSkipVerify: true 
+        timeInterval: "30s"
