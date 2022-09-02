@@ -1,2 +1,3 @@
 .DS_Store
 .idea
+k8s/elk/logstash/helm-charts/charts/common-2.0.1.tgz
