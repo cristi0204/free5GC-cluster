@@ -26,6 +26,6 @@ data:
         user => "${ES_USER}"
         password => "${ES_PASSWORD}"
         ssl_certificate_verification => true
-        cacert => '/etc/logstash/certificates/tls.crt'
+        cacert => '/etc/logstash/certificates/ca.crt'
       }
     }
