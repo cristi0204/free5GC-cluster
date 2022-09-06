@@ -1,14 +1,39 @@
 vmselect:
+  image:
+    # -- Image repository
+    repository: victoriametrics/vmselect
+    # -- Image tag
+    tag: v1.81.1-cluster
+    # -- Image pull policy
+    pullPolicy: IfNotPresent
+
   podAnnotations:
       prometheus.io/scrape: "true"
       prometheus.io/port: "8481"
 
 vminsert:
+  image:
+    # -- Image repository
+    repository: victoriametrics/vminsert
+    # -- Image tag
+    tag: v1.81.1-cluster
+    # -- Image pull policy
+    pullPolicy: IfNotPresent
+
   podAnnotations:
       prometheus.io/scrape: "true"
       prometheus.io/port: "8480"
 
 vmstorage:
+
+  image:
+    # -- Image repository
+    repository: victoriametrics/vmstorage
+    # -- Image tag
+    tag: v1.81.1-cluster
+    # -- Image pull policy
+    pullPolicy: IfNotPresent
+
   podAnnotations:
       prometheus.io/scrape: "true"
       prometheus.io/port: "8482"

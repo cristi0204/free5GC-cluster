@@ -27,7 +27,7 @@ server:
   enabled: true
   image:
     repository: victoriametrics/vmalert
-    tag: "" # rewrites Chart.AppVersion
+    tag: v1.81.1 # rewrites Chart.AppVersion
     pullPolicy: IfNotPresent
   nameOverride: ""
   fullnameOverride: ""
@@ -233,7 +233,7 @@ alertmanager:
     labels: {}
     annotations: {}
   image: prom/alertmanager
-  tag: v0.20.0
+  tag: v0.24.0
   retention: 120h
   nodeSelector: {}
   priorityClassName: ""
