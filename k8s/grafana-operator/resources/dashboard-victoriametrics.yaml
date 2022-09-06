@@ -1,0 +1,59 @@
+apiVersion: integreatly.org/v1alpha1
+kind: GrafanaDashboard
+metadata:
+  name: dashboard-vmagent
+  labels:
+    app: grafana
+spec:
+  customFolderName: "VictoriaMetrics"
+  configMapRef:
+    name: vmagent.json
+    key: vmagent_rev1.json
+  datasources:
+    - inputName: "$ds"
+      datasourceName: "VictoriaMetrics"
+---
+apiVersion: integreatly.org/v1alpha1
+kind: GrafanaDashboard
+metadata:
+  name: dashboard-vmalert
+  labels:
+    app: grafana
+spec:
+  customFolderName: "VictoriaMetrics"
+  configMapRef:
+    name: vmalert.json
+    key: vmalert_rev1.json
+  datasources:
+    - inputName: "$ds"
+      datasourceName: "VictoriaMetrics"
+---   
+apiVersion: integreatly.org/v1alpha1
+kind: GrafanaDashboard
+metadata:
+  name: dashboard-victoriametrics-cluster
+  labels:
+    app: grafana
+spec:
+  customFolderName: "VictoriaMetrics"
+  configMapRef:
+    name: victoriametrics-cluster.json
+    key: victoriametrics-cluster_rev1.json
+  datasources:
+    - inputName: "$ds"
+      datasourceName: "VictoriaMetrics"
+---   
+apiVersion: integreatly.org/v1alpha1
+kind: GrafanaDashboard
+metadata:
+  name: dashboard-victoriametrics-cluster-per-tenant-statistic
+  labels:
+    app: grafana
+spec:
+  customFolderName: "VictoriaMetrics"
+  configMapRef:
+    name: victoriametrics-cluster-per-tenant-statistic.json
+    key: victoriametrics-cluster-per-tenant-statistic_rev1.json
+  datasources:
+    - inputName: "$ds"
+      datasourceName: "VictoriaMetrics"

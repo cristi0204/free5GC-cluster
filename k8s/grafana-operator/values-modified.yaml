@@ -16,6 +16,10 @@ global:
   imagePullSecrets: []
   storageClass: "longhorn"  
 
+spec:
+  client:
+    preferService: true
+
 ## @section Common parameters
 ##
 
@@ -750,6 +754,9 @@ grafana:
   dashboardLabelSelectors:
     - matchLabels:
         app.kubernetes.io/instance: "{{ .Release.Name }}"
+    - matchExpressions:
+        - { key: app, operator: In, values: [ grafana ] }
+  
   ## @param grafana.dashboardNamespaceSelector Watch for dashboards only in the Namespaces that have the specified namespace label
   ## Ref: https://github.com/grafana-operator/grafana-operator/blob/master/documentation/multi_namespace_support.md#2-dashboardnamespaceselector
   ## e.g:
