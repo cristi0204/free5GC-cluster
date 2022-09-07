@@ -157,12 +157,12 @@ config:
           - "http://victoria-metrics-cluster-vminsert:8480/insert/0/influx"
         content_encoding: "identity"
             #database: "metrics"
-    - file:
-        files:
-          - "stdout"
-    - influxdb:
-        urls:
-          - "udp://localhost:8089"
+#    - file:
+#        files:
+#          - "stdout"
+#    - influxdb:
+#        urls:
+#          - "udp://localhost:8089"
 
   inputs:
      - kafka_consumer:
