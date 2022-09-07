@@ -27,7 +27,7 @@ server:
   enabled: true
   image:
     repository: victoriametrics/vmalert
-    tag: v1.81.1 # rewrites Chart.AppVersion
+    tag: "" # rewrites Chart.AppVersion
     pullPolicy: IfNotPresent
   nameOverride: ""
   fullnameOverride: ""
