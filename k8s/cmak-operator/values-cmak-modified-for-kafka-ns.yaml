@@ -6,7 +6,7 @@ cmak:
       baseSleepTimeMs: 100
       maxSleepTimeMs: 1000
     enabled: true
-    kafkaVersion: "2.2.0"
+    kafkaVersion: "2.4.0"
     jmxEnabled: false
     jmxUser: null
     jmxPass: null
@@ -40,11 +40,22 @@ cmak:
     jaasConfig: null
 
   clusters:
-        - name: "cluster-prod"
-          kafkaVersion: "3.2.0"
-          enabled: true
-          curatorConfig:
-            zkConnect: "zoo-entrance.kafka.svc:2181"
+    - name: "cluster-prod"
+      kafkaVersion: "2.4.0"
+      enabled: true
+      curatorConfig:
+        zkConnect: "kafka-cluster-zookeeper-client:2181"
+        #zkConnect: "zoo-entrance.kafka.svc:2181"
+
+  labels:
+    app.kubernetes.io/instance: cmak
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: cmak
+    app.kubernetes.io/version: 0.0.0
+    helm.sh/chart: cmak-operator-0.0.0
+    strimzi.io/cluster: kafka-cluster
+    strimzi.io/kind: Kafka
+    strimzi.io/name: kafka-cluster-zookeeper
 
 reconcile:
   image:
