@@ -67,8 +67,8 @@ server:
   datasource:
     url: "http://victoria-metrics-cluster-vmselect:8481/select/0/prometheus"
     basicAuth:
-      username: ""
-      password: ""
+      username:
+      password:
 
   remote:
     write:
