@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: aop
+  namespace: argo
+spec:
+  destination:
+    namespace: atos-dev
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: operator/helm
+    repoURL: https://gitlab.com/atosnet/crd.git
+    targetRevision: main
