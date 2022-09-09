@@ -79,7 +79,7 @@ server:
   notifier:
     alertmanager:
       url: "http://vmalert-alertmanager:9093"
-      #url: "http://alerta:80"
+            #url: "http://alerta:80"
 
   extraArgs:
     envflag.enable: "true"
@@ -246,6 +246,7 @@ alertmanager:
 
   # external URL, that alertmanager will expose to receivers
   baseURL: "http://vmalert-alertmanager:9093"
+  
   # use existing configmap if specified
   # otherwise .config values will be used
   configMap: ""
@@ -254,7 +255,8 @@ alertmanager:
       resolve_timeout: 5m
     route:
       # default receiver
-      receiver: devnull
+      #receiver: devnull
+      receiver: alerta
       # tag to group by
       group_by: ["alertname"]
       # How long to initially wait to send a notification for a group of alerts
@@ -264,7 +266,11 @@ alertmanager:
       # How long to wait before sending a notification again if it has already been sent successfully for an alert
       repeat_interval: 24h
     receivers:
-      - name: devnull
+      #- name: devnull
+      - name: alerta
+        webhook_configs:
+        - url: 'http://alerta:80/api/webhooks/prometheus'
+          send_resolved: false      
   templates: {}
   #  alertmanager.tmpl: |-
   service:
