@@ -1,0 +1,1 @@
+kubectl apply -f resources/elk-cluster-es-http-external-elastic-workload.yaml -n elastic-workload
