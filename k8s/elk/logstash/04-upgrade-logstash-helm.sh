@@ -1,1 +1,0 @@
-helm upgrade logstash ./helm-charts -f values-modified.yaml -n elastic-workload
