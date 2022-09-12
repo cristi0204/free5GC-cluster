@@ -167,7 +167,7 @@ config:
   inputs:
      - kafka_consumer:
         brokers:
-          - "kafka-cluster-kafka-bootstrap-external-victoriametrics:9092"
+          - "kafka-cluster-kafka-bootstrap-external-victoriametrics-workload:9092"
         topics: 
           - "metrics"
         ##version: “2.0.0”
