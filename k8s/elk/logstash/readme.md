@@ -1,6 +1,6 @@
 #https://raphaeldelio.medium.com/deploy-logstash-and-filebeat-on-kubernetes-with-eck-ssl-and-filebeat-d9f616737390
 #Create config map
-#There should be generated dedicated certifacte for communication with Elasticsearch cluster or logstash pod name should changed.
+#There should be generated dedicated certifacte for communication with Elasticsearch cluster.
 #Currently accepted names are:elk-cluster-es-http, elk-cluster-es-http.elastic-system.svc, elk-cluster-es-http.elastic-system, #elk-cluster-es-internal-http.elastic-system.svc, elk-cluster-es-internal-http.elastic-system, *.elk-cluster-es-default.elastic-system.svc
 #Currently ssl certifacte verfication is turn off (ssl_certificate_verification => false)
 kubectl apply -f logstash-cm.yaml -n elastic-system
@@ -17,16 +17,12 @@ elasicssearch:
   ./04-install-kibana.sh
   ./05-install-logstash.sh
 
+
 logstash:
-  ./01-create-logstash-config-map.sh
-  ./02-create-logstash-pod.sh
-  ./03-create-logstash-service.sh
+  elastic-system-namespace:
+    ./01-install-logstash-helm-elastic-system.sh
+    ./02-upgrade-logstash-helm-elastic-system.sh
 
-The logstash-stateful.yaml and logstash-crd.yaml are not usable yet and need more work.
-To create logstash with a stateful-set use the helm chart:
-
-  ./01-install-logstash-helm.sh
-
-and to upgrade the deployment
-
-  ./02-upgrade-logstash-helm.sh
+  elastic-workload-namespace:
+    ./03-install-logstash-helm-elastic-workload.sh
+    ./04-upgrade-logstash-helm-elastic-workload.sh

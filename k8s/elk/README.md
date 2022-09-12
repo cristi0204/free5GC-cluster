@@ -13,9 +13,10 @@ structure:
     ./05-create_idx_mda_logs_tmplt.sh
 
 logstash:
-    ./01-create-logstash-config-map.sh
-    ./02-create-logstash-pod.sh
-    ./03-create-logstash-service.sh
+  elastic-system-namespace:
+    ./01-install-logstash-helm-elastic-system.sh
+    ./02-upgrade-logstash-helm-elastic-system.sh
 
-    or use the helm-chart:
-    ./04-install-logstash-helm.sh
+  elastic-workload-namespace:
+    ./03-install-logstash-helm-elastic-workload.sh
+    ./04-upgrade-logstash-helm-elastic-workload.sh
