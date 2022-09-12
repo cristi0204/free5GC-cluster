@@ -1,0 +1,16 @@
+apiVersion: kibana.eck.github.com/v1alpha1
+kind: IndexPattern
+metadata:
+  name: indexpattern-sample
+spec:
+  space: space-sample
+  #dependencies:
+  #  - type: index-pattern
+  #    name: indexpattern-base-sample
+  body: |
+    {
+        "attributes": {
+            "title": "index-*",
+            "timeFieldName": "@timestamp"
+        }
+    }

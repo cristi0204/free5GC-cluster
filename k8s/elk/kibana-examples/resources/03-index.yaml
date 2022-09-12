@@ -1,0 +1,25 @@
+apiVersion: es.eck.github.com/v1alpha1
+kind: Index
+metadata:
+  name: index-sample
+spec:
+  dependencies:
+    indexTemplates:
+      - indextemplate-sample
+    #indices:
+    #  - index-base-sample
+  body: |
+    {
+      "settings": {
+        "number_of_shards": 1,
+        "number_of_replicas": 0
+      },
+      "mappings": {
+          "properties": {
+            "field1": { "type": "text" }
+          }
+      },
+      "aliases": {
+          "index-sample-alias": {}
+      }
+    }
