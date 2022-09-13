@@ -30,6 +30,14 @@ See the history of versions of ``victoria-metrics`` application with command.
 helm history victoria-metrics-cluster -n victoria-metrics
 ```
 
+# How to change the rules for alertmanager
+
+Change the rules in the vmalert-rules.yaml file and apply the new rules using:
+
+```console
+helm upgrade vmalert ./victoria-metrics-alert -f vmalert-rules.yaml -n victoriametrics
+```
+
 # How to uninstall VictoriaMetrics
 
 Remove application with command.
