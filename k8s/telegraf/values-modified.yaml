@@ -154,7 +154,7 @@ config:
   outputs:
     - influxdb_v2:
         urls:
-          - "http://victoria-metrics-cluster-vminsert:8480/insert/0/influx"
+          - "http://victoria-metrics-cluster-vminsert.victoriametrics.svc.cluster.local:8480/insert/0/influx"
         content_encoding: "identity"
             #database: "metrics"
 #    - file:
@@ -167,7 +167,7 @@ config:
   inputs:
      - kafka_consumer:
         brokers:
-          - "kafka-cluster-kafka-bootstrap-external-victoriametrics:9092"
+          - "kafka-cluster-kafka-bootstrap.kafka.svc.cluster.local:9092"
         topics: 
           - "metrics"
         ##version: “2.0.0”

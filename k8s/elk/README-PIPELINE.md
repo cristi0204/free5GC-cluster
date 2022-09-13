@@ -16,3 +16,6 @@ An mda-logs-YYYY-MM-DD daily index is created when new messages appear.
 
 4. Kibana
 Define mda-log-* pattern to see messages in the index. 
+
+In order to login to Kibana you can use 'elastic' user. Password for this user can be fetched by the following command:
+kubectl get secret elk-cluster-es-elastic-user -o=jsonpath='{.data.elastic}' -n elastic-system | base64 --decode; echo
