@@ -32,8 +32,8 @@ stringData:
   datasource-nodegraph.yaml: |-
     apiVersion: 1
     datasources:
-      - name: Node Graph API Plugin
-        type: Node Graph API Plugin
+      - name: Node Graph API
+        type: Node Graph API
         access: proxy
         orgId: 1
         url: https://api.berlindevops.com

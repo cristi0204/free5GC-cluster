@@ -119,7 +119,7 @@ smtp:
 ## @param plugins Grafana plugins to be installed in deployment time separated by commas
 ## Specify plugins as a list separated by commas ( you will need to scape them when specifying from command line )
 ## Example:
-## plugins: grafana-kubernetes-app,grafana-example-app
+   plugins: grafana-kubernetes-app,grafana-example-app
 ##
 ## ex:plugins: "hamedkarbasi93-nodegraphapi-datasource"
 plugins: ""

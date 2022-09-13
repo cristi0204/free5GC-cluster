@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: grafana
+spec:
+  destination:
+    name: ''
+    namespace: grafana
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: k8s/grafana/helm
+    repoURL: 'https://gitlab.com/atosnet/cluster.git'
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - ../values.yaml
+  project: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
