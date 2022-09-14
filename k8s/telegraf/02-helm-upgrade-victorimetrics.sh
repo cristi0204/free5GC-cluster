@@ -1,1 +1,0 @@
-helm upgrade telegraf ./helm-charts -f values-modified.json_v2.yaml -n victoriametrics

@@ -6,3 +6,5 @@ kubectl apply -f 05-saved-search.yaml -n elastic-system
 kubectl apply -f 06-visualization.yaml -n elastic-system
 kubectl apply -f 07-lens.yaml -n elastic-system
 kubectl apply -f 08-dashboard.yaml -n elastic-system
+kubectl apply -f 09-role.yaml -n elastic-system
+kubectl apply -f 10-user.yaml -n elastic-system
