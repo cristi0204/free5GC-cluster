@@ -1,3 +1,5 @@
 .DS_Store
 .idea
 k8s/elk/logstash/helm-charts/charts/common-2.0.1.tgz
+k8s/elk/elasticsearch-helm/charts/common-2.0.1.tgz
+k8s/elk/elasticsearch-helm/charts/kibana-10.2.1.tgz
