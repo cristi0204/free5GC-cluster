@@ -1,0 +1,25 @@
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: elasticsearchuser-secret
+type: Opaque
+data:
+  elasticsearchuser-sample: dGVzdGVy
+
+---
+apiVersion: es.eck.github.com/v1alpha1
+kind: ElasticsearchUser
+metadata:
+  name: elasticsearchuser-sample
+spec:
+  secretName: elasticsearchuser-secret
+  body: |
+    {
+      "roles" : [ "kibana_admin", "elasticsearchrole-sample" ],
+      "full_name" : "Manual tester",
+      "email" : "manual.tester@gmail.com",
+      "metadata" : {
+        "intelligence" : 7
+      }
+    }
