@@ -199,19 +199,7 @@ server:
   # use existing configmap if specified
   # otherwise .config values will be used
   configMap: ""
-  config:
-    alerts:
-      groups: 
-        - name: ResourceAlert
-          rules:
-            - alert: CPU
-              expr: usage_value{resource="cpu"} > 77
-              for: 0s
-              labels:
-                alertname: 'CPU usage is too high'
-                severity: 'warning'
-              annotations:
-                dashboard: ''
+  config: ""
 
 serviceMonitor:
   enabled: false
