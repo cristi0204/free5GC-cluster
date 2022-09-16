@@ -40,11 +40,18 @@ cmak:
     jaasConfig: null
 
   clusters:
-        - name: "cluster-prod"
-          kafkaVersion: "3.2.0"
-          enabled: true
-          curatorConfig:
-            zkConnect: "zoo-entrance.kafka.svc:2181"
+    - name: "cluster-kafka-operator"
+      kafkaVersion: "3.1.0"
+      enabled: true
+      curatorConfig:
+        zkConnect: "zoo-entrance.kafka.svc.cluster.local:2181"
+
+    - name: "cluster-kafka-helm"
+      kafkaVersion: "3.1.0"
+      enabled: true
+      curatorConfig:
+        zkConnect: "kafka-zookeeper.kafka-helm.svc.cluster.local:2181"
+
 
 reconcile:
   image:
