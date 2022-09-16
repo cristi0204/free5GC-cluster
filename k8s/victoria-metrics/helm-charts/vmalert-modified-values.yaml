@@ -270,9 +270,9 @@ alertmanager:
   ingress:
     enabled: true
     ingressClassName: nginx
-    annotations: {}
-    #   kubernetes.io/ingress.class: nginx
-    #   kubernetes.io/tls-acme: 'true'
+    annotations:
+      kubernetes.io/ingress.class: nginx
+      kubernetes.io/tls-acme: 'true'
     extraLabels: {}
     hosts:
       - name: alertmanager.berlindevops.com
