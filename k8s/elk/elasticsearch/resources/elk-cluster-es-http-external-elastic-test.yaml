@@ -1,0 +1,10 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: elk-cluster-es-http-external
+  namespace: elastic-tests
+spec:
+  type: ExternalName
+  externalName: elk-cluster-es-http.elastic-system.svc.cluster.local
+  ports:
+  - port: 9200

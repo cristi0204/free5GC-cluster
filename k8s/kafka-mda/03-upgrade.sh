@@ -1,0 +1,1 @@
+helm upgrade --install --debug --namespace kafka-mda --values=values.yaml kafka-mda helm/

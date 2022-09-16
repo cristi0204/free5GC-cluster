@@ -14,7 +14,7 @@ spec:
           "index.lifecycle.name": "mda-logs-policy"
         },
         "mappings": {
-           "enabled": false
+           "enabled": true
          }
       }
     }
