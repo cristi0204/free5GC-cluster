@@ -25,9 +25,9 @@ ingress:
   hosts:
     - alerta.berlindevops.com
   tls:
-    - secretName: chart-example-tls
+    - secretName: alerta-tls-certificate
       hosts:
-        - chart-example.local
+        - alerta.berlindevops.com
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
