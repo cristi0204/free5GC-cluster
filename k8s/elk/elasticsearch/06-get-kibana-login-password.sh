@@ -1,0 +1,1 @@
+kubectl get secret elk-cluster-es-elastic-user -n elastic-system -o=jsonpath='{.data.elastic}' | base64 --decode; echo

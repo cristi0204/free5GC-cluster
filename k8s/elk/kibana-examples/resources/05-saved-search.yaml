@@ -1,0 +1,32 @@
+apiVersion: kibana.eck.github.com/v1alpha1
+kind: SavedSearch
+metadata:
+  name: savedsearch-sample
+spec:
+  space: space-sample
+  dependencies:
+    - type: index-pattern
+      name: indexpattern-sample
+  body: |
+    {
+      "attributes": {
+         "columns": [
+            "_source"
+         ],
+         "description": "",
+         "hits": 0,
+         "kibanaSavedObjectMeta": {
+            "searchSourceJSON": "{\"highlightAll\":true,\"version\":true,\"query\":{\"query\":\"(message: test)\",\"language\":\"kuery\"},\"filter\":[],\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\"}"
+         },
+         "sort": [],
+         "title": "Message contains test",
+         "version": 1
+      },
+      "references": [
+         {
+            "id": "indexpattern-sample",
+            "name": "kibanaSavedObjectMeta.searchSourceJSON.index",
+            "type": "index-pattern"
+         }
+      ]
+    }

@@ -1,0 +1,1 @@
+helm upgrade elasticsearch ./eck-elasticsearch -f values-eck-elasticsearch.yaml -n elastic-system-mda

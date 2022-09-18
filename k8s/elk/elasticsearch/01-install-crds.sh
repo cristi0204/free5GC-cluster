@@ -1,0 +1,1 @@
+kubectl apply -f resources/crds.yaml -n elastic-system

@@ -1,0 +1,21 @@
+apiVersion: es.eck.github.com/v1alpha1
+kind: IndexTemplate
+metadata:
+  name: indextemplate-sample
+spec:
+  #dependencies:
+  #  indexTemplates:
+  #    - indextemplate-base
+  #  indices:
+  #    - index-base-sample
+  body: |
+    {
+      "index_patterns" : ["index-*"],
+      "priority" : 1,
+      "template": {
+        "settings" : {
+          "number_of_shards" : 2,
+          "number_of_replicas" : 0
+        }
+      }
+    }

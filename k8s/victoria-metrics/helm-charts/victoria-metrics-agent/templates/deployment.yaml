@@ -54,6 +54,7 @@ spec:
           args:
             - -promscrape.config=/config/scrape.yml
             - -remoteWrite.tmpDataPath=/tmpData
+            - -remoteWrite.maxDiskUsagePerURL=1GiB
           {{- range .Values.remoteWriteUrls }}
             - -remoteWrite.url={{ . }}
           {{- end }}
