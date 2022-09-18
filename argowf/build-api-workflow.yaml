@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Workflow
 metadata:
   generateName: build-api-workflow-
-  namespace: atos-dev-1
+  namespace: atos-dev
 spec:
   serviceAccountName: argo-admin
   entrypoint: build-api

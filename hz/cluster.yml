@@ -33,22 +33,20 @@ nodes:
     ssh_cert_path: ""
     labels: {}
     taints: []
-  - address: 10.200.1.103
-    port: "22"
-    internal_address: ""
-    role:
-    - controlplane
-    - worker
-    - etcd
-    hostname_override: ""
-    user: root
-    docker_socket: /var/run/docker.sock
-    ssh_key: ""
-    ssh_key_path: ~/.ssh/id_rsa_aos_hz_rke
-    ssh_cert: ""
-    ssh_cert_path: ""
-    labels: {}
-    taints: []
+    #- address: 10.200.1.103
+    #port: "22"
+    #internal_address: ""
+    #role:
+    #- worker
+    #hostname_override: ""
+    #user: root
+    #docker_socket: /var/run/docker.sock
+    #ssh_key: ""
+    #ssh_key_path: ~/.ssh/id_rsa_aos_hz_rke
+    #ssh_cert: ""
+    #ssh_cert_path: ""
+    #labels: {}
+    #taints: []
   - address: 10.200.1.104
     port: "22"
     internal_address: ""
@@ -67,7 +65,9 @@ nodes:
     port: "22"
     internal_address: ""
     role:
+    - controlplane
     - worker
+    - etcd
     hostname_override: ""
     user: root
     docker_socket: /var/run/docker.sock
@@ -244,11 +244,10 @@ enable_cri_dockerd: null
 kubernetes_version: ""
 private_registries: []
 ingress:
-  provider: "nginx"
+  provider: ""
   options: {}
   node_selector: {}
-  extra_args: 
-    default-ssl-certificate: "ingress-nginx/ingress-default-cert"
+  extra_args: {}
   dns_policy: "ClusterFirstWithHostNet"
   extra_envs: []
   extra_volumes: []

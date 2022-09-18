@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+	name: consul-argocd
+	namespace: consul
+	
+spec:
+	project: default
+	source:
+	    repoURL: https://gitlab.com/atosnet/cluster.git
+		path: ./k8s/consul/helm
+		targetRevision: HEAD
+	destination:
+		namespace: consul
+		server: https://kubernetes.default.svc
+	syncPolicy:
+		automated:
+			selfHeal: false
+			prune: false
