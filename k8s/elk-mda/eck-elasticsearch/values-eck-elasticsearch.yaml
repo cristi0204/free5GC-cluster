@@ -1,4 +1,7 @@
 ---
+
+version: 8.4.1
+
 nodeSets:
 - name: masters
   count: 3
