@@ -1,7 +1,7 @@
 ---
 # Version of Kibana.
 #
-version: 8.2.3
+version: 8.4.1
 
 # Labels that will be applied to Kibana.
 #
@@ -29,7 +29,7 @@ spec:
         # Type of service to deploy for Kibana.
         # This deploys a load balancer in a cloud service provider, where supported.
         # 
-        type: LoadBalancer
+        type: ClusterIP
     # tls:
     #   selfSignedCertificate:
     #     subjectAltNames:

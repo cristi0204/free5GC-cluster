@@ -1,0 +1,1 @@
+helm upgrade elastic-operator ./helm -f values-eck-operator.yaml -n elastic-system-mda

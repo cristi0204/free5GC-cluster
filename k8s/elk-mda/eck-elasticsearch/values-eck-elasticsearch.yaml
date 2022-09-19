@@ -1,7 +1,7 @@
 ---
 nodeSets:
 - name: masters
-  count: 1
+  count: 3
   config:
     node.roles: ["master"]
     # Comment out when setting the vm.max_map_count via initContainer, as these are mutually exclusive.
@@ -49,10 +49,11 @@ nodeSets:
       # Adjust to your storage class name
       #
       # storageClassName: local-storage
-- name: worker
-  count: 1
+- name: workers
+  count: 3
   config:
-    node.roles: ["data_content", "ingest"]
+    #More aboutNode-Roles: https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-node.html
+    node.roles: ["data", "ingest","transform"]
     # Comment out when setting the vm.max_map_count via initContainer, as these are mutually exclusive.
     # For production workloads, it is strongly recommended to increase the kernel setting vm.max_map_count to 262144
     # and leave node.store.allow_mmap unset.
