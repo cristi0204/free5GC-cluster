@@ -1,0 +1,1 @@
+helm upgrade --install --debug --namespace victoriametrics-workload --values=values.yaml telegraf helm/

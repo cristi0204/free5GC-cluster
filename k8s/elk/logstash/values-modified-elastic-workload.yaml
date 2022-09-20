@@ -128,7 +128,7 @@ extraEnvVarsCM: ""
 input: |-
       kafka {
         codec => json
-        bootstrap_servers => "kafka-cluster-kafka-bootstrap.kafka-mda.svc.cluster.local:9092"
+        bootstrap_servers => "kafka.kafka.svc.cluster.local:9092"
         topics => ["logs"]
       }
 ## @param filter Filter Plugins configuration

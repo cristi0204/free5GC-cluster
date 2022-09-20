@@ -1,0 +1,13 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaTopic
+metadata:
+  name: {{ include "helm-kafka.fullname" . }}-logs
+  labels:
+    strimzi.io/cluster: kafka-cluster
+  {{- include "helm-kafka.labels" . | nindent 4 }}
+spec:
+  config:
+    retention.ms: 86000000
+  partitions: 5
+  replicas: 2
+  topicName: logs

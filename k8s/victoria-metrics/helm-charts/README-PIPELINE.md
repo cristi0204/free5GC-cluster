@@ -2,7 +2,9 @@
 Send a json message to the kafka
 
 Example message:  
-  {"measurement":"usage","resource":"cpu","value":91}
+  {"measurement":"usage","resource":"cpu","value":94}
+  {"measurement":"usage","resource":"memory","value":81}
+  {"measurement":"usage","resource":"storage","value":86}
 
 Kafka producer invocation:
   ./invoke-kafka-metrics-producer.sh
