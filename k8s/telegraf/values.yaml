@@ -167,7 +167,7 @@ config:
   inputs:
      - kafka_consumer:
         brokers:
-          - "kafka-cluster-kafka-bootstrap.kafka-mda.svc.cluster.local:9092"
+          - "kafka.kafka.svc.cluster.local:9092"
         topics: 
           - "metrics"
         ##version: “2.0.0”

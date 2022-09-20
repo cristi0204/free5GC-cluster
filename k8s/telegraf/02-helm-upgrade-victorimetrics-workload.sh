@@ -1,1 +1,0 @@
-helm upgrade telegraf ./helm-charts -f values-modified.yaml -n victoriametrics-workload
