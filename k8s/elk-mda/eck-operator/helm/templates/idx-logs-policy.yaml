@@ -1,0 +1,9 @@
+{{- if .Values.indexLifecyclePolicy.enabled -}}
+---
+apiVersion: es.eck.github.com/v1alpha1
+kind: IndexLifecyclePolicy
+metadata:
+  name: {{ .Values.indexLifecyclePolicy.name }}
+spec:
+  body: {{ .Values.indexLifecyclePolicy.body | toJson }}
+{{- end }}

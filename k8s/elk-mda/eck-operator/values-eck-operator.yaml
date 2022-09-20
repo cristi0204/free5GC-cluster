@@ -21,3 +21,46 @@ installCRDs: false
 
 webhook:
   enabled: false
+
+indexLifecyclePolicy:
+  enabled: true
+  name: mda-logs-policy
+  body: |
+    {
+      "policy": {
+        "phases": {
+          "hot": {
+            "actions": {
+              "rollover" : {
+                "max_age": "1d"
+              }
+            }
+          },                
+          "delete": {
+            "min_age": "90d",
+            "actions": {
+              "delete": {}
+            }
+          }
+        }
+      }
+    }
+
+indexTemplate:
+  enabled: true
+  name: mda-logs-tmplt
+  body: |
+    {
+      "index_patterns" : ["mda-logs-*"],
+      "priority" : 1,
+      "template": {
+        "settings" : {
+          "number_of_shards" : 2,
+          "number_of_replicas" : 0,
+          "index.lifecycle.name": "mda-logs-policy"
+        },
+        "mappings": {
+           "enabled": true
+         }
+      }
+    }

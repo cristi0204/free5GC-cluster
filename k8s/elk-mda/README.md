@@ -6,6 +6,10 @@ You can edit the values file for the operator/elasticsearch and kibana seperatly
     values-eck-operator.yaml
     values-eck-kibana.yaml
 
+NOTE: values-eck-operator.yaml contains values for indexLifecyclePolicy and indexTemplate
+      These two are costume templates (idx-logs-policy.yaml/idx-logs-tmplt.yaml),
+      which are used to configure IndexLifecyclePolicy and IndexTemplate for the elastic system.
+
 The Scripts can be used to install/upgrade/delete the whole elastic-stack:
 
     ./01-install-elastic-stack.sh

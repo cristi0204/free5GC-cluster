@@ -1,0 +1,1 @@
+helm install logstash ./helm -f values-elastic-connection.yaml -n elastic-system-mda
