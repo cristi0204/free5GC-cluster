@@ -142,7 +142,7 @@ readinessProbe:
   initialDelaySeconds: 10
   periodSeconds: 30
 
-createGlobalResources: false
+createGlobalResources: true
 # Override the exclude pattern for exclude some labels
 labelsExclusionPattern: ""
 # Controls whether Strimzi generates network policy resources (By default true)

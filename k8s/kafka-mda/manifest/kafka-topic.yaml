@@ -1,0 +1,27 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaTopic
+metadata:
+  name: logs
+  namespace: kafka-mda
+  labels:
+    strimzi.io/cluster: kafka-cluster
+spec:
+  topicName: logs
+  partitions: 5
+  replicas: 2
+  config:
+    retention.ms: 86000000
+---
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaTopic
+metadata:
+  name: metrics
+  namespace: kafka-mda
+  labels:
+    strimzi.io/cluster: kafka-cluster
+spec:
+  topicName: metrics
+  partitions: 5
+  replicas: 2
+  config:
+    retention.ms: 86000000
