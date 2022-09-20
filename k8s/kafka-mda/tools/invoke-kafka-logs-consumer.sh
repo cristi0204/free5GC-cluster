@@ -1,0 +1,1 @@
+kubectl -n elastic-system run kafka-consumer -ti --image=quay.io/strimzi/kafka:0.31.0-kafka-3.2.1 --rm=true --restart=Never -- bin/kafka-console-consumer.sh --bootstrap-server kafka-cluster-kafka-bootstrap-external-elastic:9092 --topic logs --from-beginning --consumer-property group.id=logstash_log_consumers
