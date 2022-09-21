@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Pod
+metadata:
+   name: kafkatestpod
+   labels:
+    app: kafkamsg-generator
+spec:
+   containers:
+   - name: kafkamsg-generator
+     image: harbor.berlindevops.com/library/kafkatestimg:1.1
+     imagePullPolicy: Always
+     ports:
+       - containerPort: 4422
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kafkamsg-service
+spec:
+  internalTrafficPolicy: Cluster
+  ports:
+  - port: 4422
+    protocol: TCP
+    targetPort: 4422
+  selector:
+    app: kafkamsg-generator
+  type: ClusterIP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kafkatest-service
+spec:
+  type: ExternalName
+  externalName: kafka-cluster-kafka-bootstrap.kafka-mda.svc.cluster.local
+  ports:
+    - protocol: TCP
+      port: 9092
+      targetPort: 9092
