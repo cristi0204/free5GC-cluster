@@ -619,7 +619,18 @@ notifiers: {}
 ##
 ## `path` must be /var/lib/grafana/dashboards/<provider_name>
 ##
-dashboardProviders: {}
+dashboardProviders:
+  dashboardproviders.yaml:
+    apiVersion: 1
+    providers:
+    - name: 'default'
+      orgId: 1
+      folder: 'VictoriaMetrics'
+      type: file
+      disableDeletion: true
+      editable: true
+      options:
+        path: /var/lib/grafana/dashboards/default
 #  dashboardproviders.yaml:
 #    apiVersion: 1
 #    providers:
@@ -642,6 +653,12 @@ dashboards:
   default:
     vmagent-dashboard:
       file: dashboards/vmagent_rev1.json
+    vmalert-dashboard:
+      file: dashboards/vmalert_rev1.json
+    victoriametrics-cluster-dashboard:
+      file: dashboards/victoriametrics-cluster_rev1.json
+    victoriametrics-cluster-per-tenant-statistic-dashboard:
+      file: dashboards/victoriametrics-cluster-per-tenant-statistic_rev1.json
 
   # default:
   #   some-dashboard:
