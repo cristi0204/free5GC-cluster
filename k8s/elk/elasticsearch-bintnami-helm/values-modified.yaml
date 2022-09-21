@@ -1,15 +1,3 @@
-## @section Global parameters
-## Global Docker image parameters
-## Please, note that this will override the image parameters, including dependencies, configured to use the global value
-## Current available global Docker image parameters: imageRegistry, imagePullSecrets and storageClass
-
-## @param global.imageRegistry Global Docker image registry
-## @param global.imagePullSecrets Global Docker registry secret names as an array
-## @param global.storageClass Global StorageClass for Persistent Volume(s)
-## @param global.elasticsearch.service.name Elasticsearch service name to be used in the Kibana subchart (ignored if kibanaEnabled=false)
-## @param global.elasticsearch.service.ports.restAPI Elasticsearch service restAPI port to be used in the Kibana subchart (ignored if kibanaEnabled=false)
-## @param global.kibanaEnabled Whether or not to enable Kibana
-##
 global:
   imageRegistry: ""
   ## E.g.
@@ -25,48 +13,6 @@ global:
         restAPI: 9200
   kibanaEnabled: true
 
-## @section Common parameters
-
-## @param kubeVersion Override Kubernetes version
-##
-kubeVersion: ""
-## @param nameOverride String to partially override common.names.fullname
-##
-nameOverride: ""
-## @param fullnameOverride String to fully override common.names.fullname
-##
-fullnameOverride: ""
-## @param commonLabels Labels to add to all deployed objects
-##
-commonLabels: {}
-## @param commonAnnotations Annotations to add to all deployed objects
-##
-commonAnnotations: {}
-## @param clusterDomain Kubernetes cluster domain name
-##
-clusterDomain: cluster.local
-## @param extraDeploy Array of extra objects to deploy with the release
-##
-extraDeploy: []
-## @param namespaceOverride String to fully override common.names.namespace
-##
-namespaceOverride: ""
-
-## Enable diagnostic mode in the deployment
-##
-diagnosticMode:
-  ## @param diagnosticMode.enabled Enable diagnostic mode (all probes will be disabled and the command will be overridden)
-  ##
-  enabled: false
-  ## @param diagnosticMode.command Command to override all containers in the deployment
-  ##
-  command:
-    - sleep
-  ## @param diagnosticMode.args Args to override all containers in the deployment
-  ##
-  args:
-    - infinity
-
 ## @section Elasticsearch cluster Parameters
 
 ## @param clusterName Elasticsearch cluster name
@@ -78,98 +24,10 @@ clusterName: elk-cluster
 containerPorts:
   restAPI: 9200
   transport: 9300
-## @param plugins Comma, semi-colon or space separated list of plugins to install at initialization
-## ref: https://github.com/bitnami/containers/tree/main/bitnami/elasticsearch#environment-variables
-##
-plugins: ""
-## @param snapshotRepoPath File System snapshot repository path
-## ref: https://github.com/bitnami/containers/tree/main/bitnami/elasticsearch#environment-variables
-##
-snapshotRepoPath: ""
+
 ## @param config Override elasticsearch configuration
 ##
 config: {}
-## @param extraConfig Append extra configuration to the elasticsearch node configuration
-## Use this instead of `config` to add more configuration
-## See below example:
-## extraConfig:
-##   node:
-##     store:
-##       allow_mmap: false
-## ref: https://www.elastic.co/guide/en/elasticsearch/reference/current/settings.html
-##
-extraConfig: {}
-## @param extraHosts A list of external hosts which are part of this cluster
-## Example Use Case: When you have a cluster with nodes spaned acorss multiple K8s or namespaces
-## extraHosts:
-##   - datacenter2-elasticsearch-master-hl.namespace2.svc
-##   - datacenter2-elasticsearch-data-hl.namespace2.svc
-extraHosts: []
-## @param extraVolumes A list of volumes to be added to the pod
-## Example Use Case: mount ssl certificates when elasticsearch has tls enabled
-## extraVolumes:
-##   - name: es-certs
-##     secret:
-##       defaultMode: 420
-##       secretName: es-certs
-extraVolumes: []
-## @param extraVolumeMounts A list of volume mounts to be added to the pod
-## extraVolumeMounts:
-##   - name: es-certs
-##     mountPath: /certs
-##     readOnly: true
-extraVolumeMounts: []
-## @param initScripts Dictionary of init scripts. Evaluated as a template.
-## Specify dictionary of scripts to be run at first boot
-## Alternatively, you can put your scripts under the files/docker-entrypoint-initdb.d directory
-## For example:
-## initScripts:
-##   my_init_script.sh: |
-##      #!/bin/sh
-##      echo "Do something."
-##
-initScripts: {}
-## @param initScriptsCM ConfigMap with the init scripts. Evaluated as a template.
-## Note: This will override initScripts
-##
-initScriptsCM: ""
-## @param initScriptsSecret Secret containing `/docker-entrypoint-initdb.d` scripts to be executed at initialization time that contain sensitive data. Evaluated as a template.
-##
-initScriptsSecret: ""
-## @param extraEnvVars Array containing extra env vars to be added to all pods (evaluated as a template)
-## For example:
-## extraEnvVars:
-##  - name: MY_ENV_VAR
-##    value: env_var_value
-##
-extraEnvVars: []
-## @param extraEnvVarsCM ConfigMap containing extra env vars to be added to all pods (evaluated as a template)
-##
-extraEnvVarsCM: ""
-## @param extraEnvVarsSecret Secret containing extra env vars to be added to all pods (evaluated as a template)
-##
-extraEnvVarsSecret: ""
-## @param sidecars Add additional sidecar containers to the all elasticsearch node pod(s)
-## e.g:
-## sidecars:
-##   - name: your-image-name
-##     image: your-image
-##     imagePullPolicy: Always
-##     ports:
-##       - name: portname
-##         containerPort: 1234
-##
-sidecars: []
-## @param initContainers Add additional init containers to the all elasticsearch node pod(s)
-## ref: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
-## e.g:
-## initContainers:
-##  - name: your-image-name
-##    image: your-image
-##    imagePullPolicy: Always
-##    command: ['sh', '-c', 'echo "hello world"']
-##
-initContainers: []
 
 ## Bitnami Elasticsearch image
 ## @param image.registry Elasticsearch image registry
@@ -190,17 +48,6 @@ image:
   ## ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
   ##
   pullPolicy: IfNotPresent
-  ## Optionally specify an array of imagePullSecrets.
-  ## Secrets must be manually created in the namespace.
-  ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
-  ## e.g:
-  ## pullSecrets:
-  ##   - myRegistryKeySecretName
-  ##
-  pullSecrets: []
-  ## Enable debug mode
-  ##
-  debug: false
 
 ## X-Pack security parameters
 ## Note: TLS configuration is required in order to configure password authentication
@@ -327,23 +174,7 @@ service:
   ## ref http://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip
   ##
   externalTrafficPolicy: Cluster
-  ## @param service.annotations Additional custom annotations for Elasticsearch service
-  ##
-  annotations: {}
-  ## @param service.extraPorts Extra ports to expose in Elasticsearch service (normally used with the `sidecars` value)
-  ##
-  extraPorts: []
-  ## @param service.sessionAffinity Session Affinity for Kubernetes service, can be "None" or "ClientIP"
-  ## If "ClientIP", consecutive client requests will be directed to the same Pod
-  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies
-  ##
-  sessionAffinity: None
-  ## @param service.sessionAffinityConfig Additional settings for the sessionAffinity
-  ## sessionAffinityConfig:
-  ##   clientIP:
-  ##     timeoutSeconds: 300
-  ##
-  sessionAffinityConfig: {}
+
 
 ## Elasticsearch ingress parameters
 ## ref: http://kubernetes.io/docs/user-guide/ingress/
@@ -360,20 +191,11 @@ ingress:
   apiVersion: ""
   ## @param ingress.hostname Default host for the ingress record
   ##
-  hostname: elasticsearch.local
+  hostname: elasticsearch.berlindevops.com
   ## @param ingress.path Default path for the ingress record
   ## NOTE: You may need to set this to '/*' in order to use this with ALB ingress controllers
   ##
   path: /
-  ## @param ingress.annotations Additional annotations for the Ingress resource. To enable certificate autogeneration, place here your cert-manager annotations.
-  ## Use this parameter to set the required annotations for cert-manager, see
-  ## ref: https://cert-manager.io/docs/usage/ingress/#supported-annotations
-  ## e.g:
-  ## annotations:
-  ##   kubernetes.io/ingress.class: nginx
-  ##   cert-manager.io/cluster-issuer: cluster-issuer-name
-  ##
-  annotations: {}
   ## @param ingress.tls Enable TLS configuration for the host defined at `ingress.hostname` parameter
   ## TLS certificates will be retrieved from a TLS secret with name: `{{- printf "%s-tls" .Values.ingress.hostname }}`
   ## You can:
@@ -381,7 +203,7 @@ ingress:
   ##   - Rely on cert-manager to create it by setting the corresponding annotations
   ##   - Rely on Helm to create self-signed certificates by setting `ingress.selfSigned=true`
   ##
-  tls: false
+  tls: true
   ## @param ingress.selfSigned Create a TLS secret for this ingress record using self-signed certificates generated by Helm
   ##
   selfSigned: false
@@ -390,31 +212,6 @@ ingress:
   ## ref: https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/
   ##
   ingressClassName: ""
-  ## @param ingress.extraHosts An array with additional hostname(s) to be covered with the ingress record
-  ## e.g:
-  ## extraHosts:
-  ##   - name: elasticsearch.local
-  ##     path: /
-  ##
-  extraHosts: []
-  ## @param ingress.extraPaths An array with additional arbitrary paths that may need to be added to the ingress under the main host
-  ## e.g:
-  ## extraPaths:
-  ## - path: /*
-  ##   backend:
-  ##     serviceName: ssl-redirect
-  ##     servicePort: use-annotation
-  ##
-  extraPaths: []
-  ## @param ingress.extraTls TLS configuration for additional hostname(s) to be covered with this ingress record
-  ## ref: https://kubernetes.io/docs/concepts/services-networking/ingress/#tls
-  ## e.g:
-  ## extraTls:
-  ## - hosts:
-  ##     - elasticsearch.local
-  ##   secretName: elasticsearch.local-tls
-  ##
-  extraTls: []
   ## @param ingress.secrets Custom TLS certificates as secrets
   ## NOTE: 'key' and 'certificate' are expected in PEM format
   ## NOTE: 'name' should line up with a 'secretName' set further up
@@ -1718,23 +1515,6 @@ ingest:
     ##             name: http
     ##
     extraRules: []
-
-
-## @section Metrics parameters
-
-## Elasticsearch Prometheus exporter configuration
-## ref: https://hub.docker.com/r/bitnami/elasticsearch-exporter/tags/
-##
-metrics:
-  ## @param metrics.enabled Enable prometheus exporter
-  ##
-  enabled: false
-  ## @param metrics.nameOverride Metrics pod name
-  ##
-  nameOverride: ""
-  ## @param metrics.fullnameOverride String to fully override common.names.fullname
-  ##
-  fullnameOverride: ""
   ## @param metrics.image.registry Metrics exporter image registry
   ## @param metrics.image.repository Metrics exporter image repository
   ## @param metrics.image.tag Metrics exporter image tag
@@ -1791,69 +1571,7 @@ metrics:
     annotations:
       prometheus.io/scrape: "true"
       prometheus.io/port: "9114"
-  ## @param metrics.podAffinityPreset Metrics Pod affinity preset. Ignored if `affinity` is set. Allowed values: `soft` or `hard`
-  ## ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity
-  ##
-  podAffinityPreset: ""
-  ## @param metrics.podAntiAffinityPreset Metrics Pod anti-affinity preset. Ignored if `affinity` is set. Allowed values: `soft` or `hard`
-  ## Ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity
-  ##
-  podAntiAffinityPreset: ""
-  ## Node affinity preset
-  ## Ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#node-affinity
-  ## @param metrics.nodeAffinityPreset.type Metrics Node affinity preset type. Ignored if `affinity` is set. Allowed values: `soft` or `hard`
-  ## @param metrics.nodeAffinityPreset.key Metrics Node label key to match Ignored if `affinity` is set.
-  ## @param metrics.nodeAffinityPreset.values Metrics Node label values to match. Ignored if `affinity` is set.
-  ##
-  nodeAffinityPreset:
-    type: ""
-    ## E.g.
-    ## key: "kubernetes.io/e2e-az-name"
-    ##
-    key: ""
-    ## E.g.
-    ## values:
-    ##   - e2e-az1
-    ##   - e2e-az2
-    ##
-    values: []
-  ## @param metrics.affinity Metrics Affinity for pod assignment
-  ## Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
-  ## Note: podAffinityPreset, podAntiAffinityPreset, and  nodeAffinityPreset will be ignored when it's set
-  ##
-  affinity: {}
-  ## @param metrics.nodeSelector Metrics Node labels for pod assignment
-  ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
-  ##
-  nodeSelector: {}
-  ## @param metrics.tolerations Metrics Tolerations for pod assignment
-  ## Ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
-  ##
-  tolerations: []
-  ## @param metrics.topologySpreadConstraints Topology Spread Constraints for pod assignment spread across your cluster among failure-domains. Evaluated as a template
-  ## Ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/#spread-constraints-for-pods
-  ##
-  topologySpreadConstraints: []
-  ## Elasticsearch Prometheus exporter resource requests and limits
-  ## ref: https://kubernetes.io/docs/user-guide/compute-resources/
-  ## We usually recommend not to specify default resources and to leave this as a conscious
-  ## choice for the user. This also increases chances charts run on environments with little
-  ## resources, such as Minikube. If you do want to specify resources, uncomment the following
-  ## lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  ## @param metrics.resources.limits The resources limits for the container
-  ## @param metrics.resources.requests The requested resources for the container
-  ##
-  resources:
-    ## Example:
-    ## limits:
-    ##    cpu: 100m
-    ##    memory: 128Mi
-    limits: {}
-    ## Examples:
-    ## requests:
-    ##    cpu: 100m
-    ##    memory: 128Mi
-    requests: {}
+
   ## Elasticsearch metrics container's liveness probe
   ## ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes
   ## @param metrics.livenessProbe.enabled Enable/disable the liveness probe (metrics pod)
@@ -2166,3 +1884,51 @@ kibana:
     hosts:
       - '{{ include "elasticsearch.service.name" . }}'
     port: '{{ include "elasticsearch.service.ports.restAPI" . }}'
+
+  ingress:
+    ## @param ingress.enabled Enable ingress controller resource
+    ##
+    enabled: true
+    ## DEPRECATED: Use ingress.annotations instead of ingress.certManager
+    ## certManager: false
+    ##
+    ## @param ingress.pathType Ingress Path type
+    ##
+    pathType: ImplementationSpecific
+    ## @param ingress.apiVersion Override API Version (automatically detected if not set)
+    ##
+    apiVersion: ""
+    ## @param ingress.hostname Default host for the ingress resource. If specified as "*" no host rule is configured
+    ##
+    hostname: kibana.berlindevops.com
+    ## @param ingress.path The Path to Kibana. You may need to set this to '/*' in order to use this with ALB ingress controllers.
+    ##
+    path: /
+    ## @param ingress.tls Enable TLS configuration for the hostname defined at ingress.hostname parameter
+    ## TLS certificates will be retrieved from a TLS secret with name: {{- printf "%s-tls" .Values.ingress.hostname }}
+    ## You can use the ingress.secrets parameter to create this TLS secret or rely on cert-manager to create it
+    ##
+    tls: true
+    ## @param ingress.selfSigned Create a TLS secret for this ingress record using self-signed certificates generated by Helm
+    ##
+    selfSigned: true
+    ## @param ingress.secrets If you're providing your own certificates, please use this to add the certificates as secrets
+    ## key and certificate should start with -----BEGIN CERTIFICATE----- or
+    ## -----BEGIN RSA PRIVATE KEY-----
+    ##
+    ## name should line up with a tlsSecret set further up
+    ## If you're using cert-manager, this is unneeded, as it will create the secret for you if it is not set
+    ##
+    ## It is also possible to create and manage the certificates outside of this helm chart
+    ## Please see README.md for more information
+    ## e.g:
+    ## - name: kibana.local-tls
+    ##   key:
+    ##   certificate:
+    ##
+    secrets: []
+    ## @param ingress.ingressClassName IngressClass that will be be used to implement the Ingress (Kubernetes 1.18+)
+    ## This is supported in Kubernetes 1.18+ and required if you have more than one IngressClass marked as the default for your cluster .
+    ## ref: https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/
+    ##
+    ingressClassName: ""
