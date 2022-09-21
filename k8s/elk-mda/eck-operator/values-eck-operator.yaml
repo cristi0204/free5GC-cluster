@@ -22,6 +22,11 @@ installCRDs: false
 webhook:
   enabled: false
 
+softMultiTenancy:
+  # enabled determines whether the operator is installed with soft multi-tenancy extensions.
+  # This requires network policies to be enabled on the Kubernetes cluster.
+  enabled: false
+
 indexLifecyclePolicy:
   enabled: true
   name: mda-logs-policy
