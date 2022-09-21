@@ -1,0 +1,1 @@
+https://github.com/grafana/helm-charts/tree/grafana-6.38.6/charts/grafana

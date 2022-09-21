@@ -1,0 +1,14 @@
+kubernetesClusterDomain: cluster.local
+
+datasources:
+- access: proxy
+  editable: false
+  isDefault: false
+  jsonData:
+    timeInterval: 30s
+    tlsSkipVerify: true
+  name: VictoriaMetricsTest
+  type: prometheus
+  url: http://victoria-metrics-cluster-vmselect.victoriametrics.svc.cluster.local:8481/select/0/prometheus
+  version: 1
+name: victoriametrics-test.yaml

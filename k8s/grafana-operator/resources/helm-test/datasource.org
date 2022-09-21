@@ -1,0 +1,22 @@
+apiVersion: integreatly.org/v1alpha1
+kind: GrafanaDataSource
+metadata:
+  name: {{ include "helm-resources.fullname" . }}-victoriametrics
+  labels:
+  {{- include "helm-resources.labels" . | nindent 4 }}
+spec:
+
+{{- range $datasource := .Values.datasources }}
+  - access: {{ $datasource.access }}
+    editable: {{ $datasource.editable }}
+    isDefault: {{ $datasource.isDefault }}
+    jsonData:
+    {{- range $name, $value := $datasource.jsonData }}
+      {{ $name }}: {{ $value }} \
+    {{- end }}
+    name: {{ $datasource.name }}
+    type: {{ $datasource.type }}
+    url: {{ $datasource.url }}
+    url: {{ $datasource.version }}        
+{{- end }}
+name: {{ .Values.name }}

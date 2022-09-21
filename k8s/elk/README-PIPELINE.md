@@ -6,7 +6,7 @@ invoke-kafka-logs-producer.sh
 
 Example message:
 A. {"name":"Cristiano", "age":37, "car":"Ferrari"}
-B. {"al_log_timestamp": 1663655923915000,"al_log_severity": 0,"al_log_timestamp_origin": 1663655923915000,"al_log_value": "TEST4 This is one line from the log, maybe contains word error.","al_log_type": "logMsg","al_log_subtype": "logMsg_1","al_log_name": "mda-logs"}
+B. {"al_log_timestamp": 1663655923915000,"al_log_severity": 0,"al_log_timestamp_origin": 1663655923915000,"al_log_value": "TEST5 This is one line from the log, maybe contains word error.","al_log_type": "logMsg","al_log_subtype": "logMsg_1","al_log_name": "mda-logs"}
 
 Kibana query: al_log_value : TEST3
 
