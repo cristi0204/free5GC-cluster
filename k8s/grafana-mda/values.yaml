@@ -208,7 +208,7 @@ ingress:
   pathType: Prefix
 
   hosts:
-    - grafana-mda2.berlindevops.com
+    - grafana-mda.berlindevops.com
   ## Extra paths to prepend to every host configuration. This is useful when working with annotation based services.
   extraPaths: []
   # - path: /*
@@ -294,11 +294,11 @@ extraContainerVolumes: []
 ##
 persistence:
   type: pvc
-  enabled: true
+  enabled: false
   # storageClassName: default
   accessModes:
     - ReadWriteOnce
-  size: 5Gi
+  size: 10Gi
   # annotations: {}
   finalizers:
     - kubernetes.io/pvc-protection
@@ -347,14 +347,14 @@ initChownData:
 
 # Administrator credentials when not using an existing secret (see below)
 adminUser: admin
-adminPassword: 2Atos@Atos
+# adminPassword: strongpassword
 
 # Use an existing secret for the admin user.
-#admin:
+admin:
   ## Name of the secret. Can be templated.
-  #existingSecret: ""
-  #userKey: admin-user
-  #passwordKey: admin-password
+  existingSecret: ""
+  userKey: admin-user
+  passwordKey: admin-password
 
 ## Define command to be executed at startup by grafana container
 ## Needed if using `vault-env` to manage secrets (ref: https://banzaicloud.com/blog/inject-secrets-into-pods-vault/)
@@ -500,7 +500,20 @@ plugins: []
 ## Configure grafana datasources
 ## ref: http://docs.grafana.org/administration/provisioning/#datasources
 ##
-datasources: {}
+datasources:
+  victoriametrics.yaml:
+    apiVersion: 1
+    datasources:
+    - name: VictoriaMetrics
+      type: prometheus
+      url: http://victoria-metrics-cluster-vmselect.victoriametrics.svc.cluster.local:8481/select/0/prometheus
+      access: proxy
+      isDefault: true
+      editable: false
+      jsonData:
+        timeInterval: 30s
+        tlsSkipVerify: true 
+
 #  datasources.yaml:
 #    apiVersion: 1
 #    datasources:
@@ -606,7 +619,18 @@ notifiers: {}
 ##
 ## `path` must be /var/lib/grafana/dashboards/<provider_name>
 ##
-dashboardProviders: {}
+dashboardProviders:
+  dashboardproviders.yaml:
+    apiVersion: 1
+    providers:
+    - name: 'default'
+      orgId: 1
+      folder: 'VictoriaMetrics'
+      type: file
+      disableDeletion: true
+      editable: true
+      options:
+        path: /var/lib/grafana/dashboards/default
 #  dashboardproviders.yaml:
 #    apiVersion: 1
 #    providers:
@@ -625,7 +649,17 @@ dashboardProviders: {}
 ##
 ## dashboards per provider, use provider name as key.
 ##
-dashboards: {}
+dashboards: 
+  default:
+    vmagent-dashboard:
+      file: dashboards/vmagent_rev1.json
+    vmalert-dashboard:
+      file: dashboards/vmalert_rev1.json
+    victoriametrics-cluster-dashboard:
+      file: dashboards/victoriametrics-cluster_rev1.json
+    victoriametrics-cluster-per-tenant-statistic-dashboard:
+      file: dashboards/victoriametrics-cluster-per-tenant-statistic_rev1.json
+
   # default:
   #   some-dashboard:
   #     json: |
