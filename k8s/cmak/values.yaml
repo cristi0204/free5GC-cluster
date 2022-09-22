@@ -6,16 +6,16 @@ cmak:
       baseSleepTimeMs: 100
       maxSleepTimeMs: 1000
     enabled: true
-    kafkaVersion: "2.4.0"
-    jmxEnabled: false
+    kafkaVersion: "3.1.0"
+    jmxEnabled: true
     jmxUser: null
     jmxPass: null
     jmxSsl: false
     pollConsumers: true
-    filterConsumers: false
-    logkafkaEnabled: false
+    filterConsumers: true
+    logkafkaEnabled: true
     activeOffsetCacheEnabled: true
-    displaySizeEnabled: false
+    displaySizeEnabled: true
     tuning:
       brokerViewUpdatePeriodSeconds: 30
       clusterManagerThreadPoolSize: 10
@@ -40,22 +40,12 @@ cmak:
     jaasConfig: null
 
   clusters:
-    - name: "cluster-prod"
-      kafkaVersion: "2.4.0"
+    - name: "cluster-kafka"
+      kafkaVersion: "3.1.0"
       enabled: true
       curatorConfig:
-        zkConnect: "kafka-cluster-zookeeper-client:2181"
-        #zkConnect: "zoo-entrance.kafka.svc:2181"
+        zkConnect: "kafka-zookeeper.kafka.svc.cluster.local:2181"
 
-  labels:
-    app.kubernetes.io/instance: cmak
-    app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/name: cmak
-    app.kubernetes.io/version: 0.0.0
-    helm.sh/chart: cmak-operator-0.0.0
-    strimzi.io/cluster: kafka-cluster
-    strimzi.io/kind: Kafka
-    strimzi.io/name: kafka-cluster-zookeeper
 
 reconcile:
   image:
@@ -132,35 +122,34 @@ ui:
     #       key: SPECIAL_LEVEL
 
 # various settings for Zookeeper container
-#zk:
-#  image:
-#    repository: zookeeper
-#    tag: "3.6.1"
-#    pullPolicy: IfNotPresent
+zk:
+  image:
+    repository: zookeeper
+    tag: "3.6.1"
+    pullPolicy: IfNotPresent
   ## resource requests and limits
   ## http://kubernetes.io/docs/user-guide/compute-resources/
-#  resources:
-#    limits: {}
+  resources:
+    limits: {}
     #   cpu: 100m
     #   memory: 128Mi
-#    requests: {}
+    requests: {}
     #   cpu: 100m
     #   memory: 128Mi
 
 # uncomment section and remove null to create Ingress resource
-#ingress: null
 ingress:
   # # ingress host
-   host: www.cmak.berlindevops.com
+  host: cmak.berlindevops.com
   #
   # # ingress
-   path: /
-   pathType: ImplementationSpecific
+  path: /
+  # pathType: ImplementationSpecific
   #
   # # Enable TLS configuration for the hostname defined at ingress.host
   # # secret name will be "${ingress.host.replace(".", "-")}"
-  # tls: null
-  #   # secret: null
+  tls:
+    secret: cmak-berlindevops-com
   #
   # # optional ingress annotations
   # annotations: {}

@@ -137,10 +137,10 @@ existingLog4jConfigMap: ""
 heapOpts: -Xmx1024m -Xms1024m
 ## @param deleteTopicEnable Switch to enable topic deletion or not
 ##
-deleteTopicEnable: false
+deleteTopicEnable: true
 ## @param autoCreateTopicsEnable Switch to enable auto creation of topics. Enabling auto creation of topics not recommended for production or similar environments
 ##
-autoCreateTopicsEnable: true
+autoCreateTopicsEnable: false
 ## @param logFlushIntervalMessages The number of messages to accept before forcing a flush of data to disk
 ##
 logFlushIntervalMessages: _10000
@@ -167,13 +167,13 @@ logsDirs: /bitnami/kafka/data
 maxMessageBytes: _1000012
 ## @param defaultReplicationFactor Default replication factors for automatically created topics
 ##
-defaultReplicationFactor: 1
+defaultReplicationFactor: 2
 ## @param offsetsTopicReplicationFactor The replication factor for the offsets topic
 ##
-offsetsTopicReplicationFactor: 1
+offsetsTopicReplicationFactor: 3
 ## @param transactionStateLogReplicationFactor The replication factor for the transaction topic
 ##
-transactionStateLogReplicationFactor: 1
+transactionStateLogReplicationFactor: 2
 ## @param transactionStateLogMinIsr Overridden min.insync.replicas config for the transaction topic
 ##
 transactionStateLogMinIsr: 1
@@ -185,7 +185,7 @@ numIoThreads: 8
 numNetworkThreads: 3
 ## @param numPartitions The default number of log partitions per topic
 ##
-numPartitions: 1
+numPartitions: 5
 ## @param numRecoveryThreadsPerDataDir The number of threads per data directory to be used for log recovery at startup and flushing at shutdown
 ##
 numRecoveryThreadsPerDataDir: 1
@@ -1450,10 +1450,10 @@ provisioning:
   enabled: true
   ## @param provisioning.numPartitions Default number of partitions for topics when unspecified
   ##
-  numPartitions: 1
+  numPartitions: 5
   ## @param provisioning.replicationFactor Default replication factor for topics when unspecified
   ##
-  replicationFactor: 1
+  replicationFactor: 2
   ## @param provisioning.topics Kafka topics to provision
   ## - name: topic-name
   ##   partitions: 1
@@ -1468,15 +1468,15 @@ provisioning:
       partitions: 5
       replicationFactor: 2
       config:
-        max.message.bytes: 86000000
+        max.message.bytes: 64000
         flush.messages: 1
-
     - name: metrics
       partitions: 5
       replicationFactor: 2
       config:
-        max.message.bytes: 86000000
+        max.message.bytes: 64000
         flush.messages: 1
+
   ## @param provisioning.tolerations Tolerations for pod assignment
   ## Ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
   ##

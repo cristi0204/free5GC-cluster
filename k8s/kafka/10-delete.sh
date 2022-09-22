@@ -1,0 +1,1 @@
+helm delete kafka -n kafka
