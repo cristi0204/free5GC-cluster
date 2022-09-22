@@ -12,7 +12,6 @@ spec:
     repoURL: 'https://gitlab.com/atosnet/cluster.git'
     targetRevision: HEAD
     helm:
-      values: ''
       valueFiles:
         - ../values.yaml
   project: default
