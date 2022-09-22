@@ -1,0 +1,15 @@
+apiVersion: integreatly.org/v1alpha1
+kind: GrafanaDashboard
+metadata:
+  name: {{ include "helm-resources.fullname" . }}-dashboard-vmalert
+  labels:
+    app: grafana
+  {{- include "helm-resources.labels" . | nindent 4 }}
+spec:
+  configMapRef:
+    key: vmalert_rev1.json
+    name: vmalert.json
+  customFolderName: VictoriaMetrics
+  datasources:
+  - datasourceName: VictoriaMetrics
+    inputName: $ds

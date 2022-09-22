@@ -1,0 +1,15 @@
+apiVersion: integreatly.org/v1alpha1
+kind: GrafanaDashboard
+metadata:
+  name: {{ include "helm-resources.fullname" . }}-dashboard-victoriametrics-cluster-per-tenant-statistic
+  labels:
+    app: grafana
+  {{- include "helm-resources.labels" . | nindent 4 }}
+spec:
+  configMapRef:
+    key: victoriametrics-cluster-per-tenant-statistic_rev1.json
+    name: victoriametrics-cluster-per-tenant-statistic.json
+  customFolderName: VictoriaMetrics
+  datasources:
+  - datasourceName: VictoriaMetrics
+    inputName: $ds
