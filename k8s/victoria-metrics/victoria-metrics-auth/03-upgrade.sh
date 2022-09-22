@@ -1,0 +1,1 @@
+helm upgrade --install --debug --namespace victoriametrics --values=values.yaml vmauth helm/
