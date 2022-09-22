@@ -1,0 +1,1 @@
+helm delete vmauth -n victoriametrics

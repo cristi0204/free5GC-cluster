@@ -1,0 +1,1 @@
+helm delete victoria-metrics-cluster -n victoriametrics
