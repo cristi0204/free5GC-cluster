@@ -1,1 +1,1 @@
-kubectl create ns grafana
+kubectl create ns grafana-mda
