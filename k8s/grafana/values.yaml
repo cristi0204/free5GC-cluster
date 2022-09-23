@@ -625,13 +625,32 @@ dashboardProviders:
     providers:
     - name: 'default'
       orgId: 1
-      folder: 'VictoriaMetrics'
+      folder: ''
       type: file
       disableDeletion: true
       editable: true
       sizeLimit: 1000000
       options:
         path: /var/lib/grafana/dashboards/default
+    - name: 'vmcluster'
+      orgId: 1
+      folder: 'VictoriaMetrics'
+      type: file
+      disableDeletion: true
+      editable: true
+      sizeLimit: 1000000
+      options:
+        path: /var/lib/grafana/dashboards/vmcluser
+    - name: 'vmcomponents'
+      orgId: 1
+      folder: 'VictoriaMetrics'
+      type: file
+      disableDeletion: true
+      editable: true
+      sizeLimit: 1000000
+      options:
+        path: /var/lib/grafana/dashboards/vmcomponents
+
 #  dashboardproviders.yaml:
 #    apiVersion: 1
 #    providers:
@@ -652,10 +671,12 @@ dashboardProviders:
 ##
 dashboards: 
   default:
+  vmcomponents:
     vmagent-dashboard:
       file: dashboards/vmagent_rev1.json
     vmalert-dashboard:
       file: dashboards/vmalert_rev1.json
+  vmcluster:
     victoriametrics-cluster-dashboard:
       file: dashboards/victoriametrics-cluster_rev1.json
     victoriametrics-cluster-per-tenant-statistic-dashboard:
