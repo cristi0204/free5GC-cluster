@@ -1,1 +1,1 @@
-helm delete grafana -n grafana-mda
+helm delete grafana -n grafana
