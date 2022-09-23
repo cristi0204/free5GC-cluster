@@ -1,1 +1,1 @@
-kubectl create ns victoriametrics
+kubectl create ns alerta

@@ -1,0 +1,1 @@
+helm upgrade --install --debug --namespace alerta --values=values.yaml alerta helm/

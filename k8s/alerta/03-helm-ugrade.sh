@@ -1,1 +1,0 @@
-helm upgrade alerta ./helm-charts -f values-alerta-modified.yaml -n victoriametrics
