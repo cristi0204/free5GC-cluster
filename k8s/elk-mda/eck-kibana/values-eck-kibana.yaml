@@ -5,8 +5,8 @@ version: 8.4.1
 
 # Labels that will be applied to Kibana.
 #
-labels:
-  appname: kibana
+labels: {}
+  #appname: kibana
   # key: value
 
 # Annotations that will be applied to Kibana.
