@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kibana
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: HTTPS  
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+  - host: kibana2.berlindevops.com
+    http:
+      paths:
+      - backend:
+          service: 
+            name: elastic-kibana-eck-kibana-kb-http
+            port: 
+              number: 5601
+        path: /
+        pathType: ImplementationSpecific
+  tls:
+  - hosts:
+    - kibana2.berlindevops.com
+    secretName: kibana2-tls-certificate         
