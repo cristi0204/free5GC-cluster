@@ -208,7 +208,7 @@ ingress:
   pathType: Prefix
 
   hosts:
-    - grafana-mda.berlindevops.com
+    - grafana.berlindevops.com
   ## Extra paths to prepend to every host configuration. This is useful when working with annotation based services.
   extraPaths: []
   # - path: /*
@@ -228,7 +228,7 @@ ingress:
   tls:
     - secretName: grafana.berlindevops.com-tls
       hosts:
-       - grafana-mda2.berlindevops.com
+       - grafana.berlindevops.com
 
 resources: {}
 #  limits:
