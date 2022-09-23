@@ -269,7 +269,7 @@ alertmanager:
       #- name: devnull
       - name: alerta
         webhook_configs:
-        - url: 'http://alerta:80/api/webhooks/prometheus'
+        - url: 'http://alerta.alerta.svc.cluster.local:80/api/webhooks/prometheus'
           send_resolved: false      
   templates: {}
   #  alertmanager.tmpl: |-
