@@ -1,1 +1,1 @@
-helm install logstash ./helm-charts -f values-modified-elastic-system.yaml -n elastic
+helm install logstash ./helm -f values-modified-elastic-system.yaml -n elastic
