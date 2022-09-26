@@ -6,6 +6,6 @@ kind: IndexTemplate
 metadata:
   name: {{ .name }}
 spec:
-  body: {{ .body | toJson }}
+  body: {{ .body }}
 {{- end }}
 {{- end }}
