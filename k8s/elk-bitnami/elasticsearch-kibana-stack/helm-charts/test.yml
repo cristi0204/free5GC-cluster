@@ -1,0 +1,26 @@
+---
+apiVersion: es.eck.github.com/v1alpha1
+kind: IndexLifecyclePolicy
+metadata:
+  name: mda-logs-policy
+spec:
+  body: | 
+    {
+      "policy": {
+        "phases": {
+          "hot": {
+            "actions": {
+              "rollover" : {
+                "max_age": "1d"
+              }
+            }
+          },                
+          "delete": {
+            "min_age": "90d",
+            "actions": {
+              "delete": {}
+            }
+          }
+        }
+      }
+    }

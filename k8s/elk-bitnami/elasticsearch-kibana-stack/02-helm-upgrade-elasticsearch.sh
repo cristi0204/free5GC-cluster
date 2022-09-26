@@ -1,0 +1,1 @@
+helm upgrade elasticsearch-helm ./helm-charts  -f values-modified.yaml -n elastic

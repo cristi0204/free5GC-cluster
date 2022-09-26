@@ -1,0 +1,57 @@
+---
+# Version of Kibana.
+#
+version: 8.4.1
+
+# Labels that will be applied to Kibana.
+#
+labels: {}
+  #appname: kibana
+  # key: value
+
+# Annotations that will be applied to Kibana.
+#
+annotations: {}
+  # key: value
+
+spec:
+  # Count of Kibana replicas to create.
+  #
+  count: 1
+
+  # Reference to ECK-managed Elasticsearch resource, ideally from {{ "elasticsearch.fullname" }}
+  #
+  elasticsearchRef:
+    name: elasticsearch-eck-elasticsearch
+    # namespace: default
+  http:
+    service:
+      spec:
+        # Type of service to deploy for Kibana.
+        # This deploys a load balancer in a cloud service provider, where supported.
+        # 
+        type: ClusterIP
+        ports:
+          - port: 5601
+            targetPort: http
+            protocol: TCP
+            name: http
+    #tls:
+    #  certificate:
+    #    secretName: kibana2-tls-certificate
+
+
+##service:
+#  type: ClusterIP
+#  port: 80
+#
+#ingress:
+#  enabled: true
+#  servicename: elastic-kibana-eck-kibana-kb-http
+#  path: /
+#  hosts:
+#    - kibana2.berlindevops.com
+#  tls:
+#    - secretName: kibana2-tls-certificate
+#      hosts:
+#        - kibana2.berlindevops.com

@@ -1,0 +1,1 @@
+helm install elasticsearch ./helm-charts -f values-modified.yaml -n elastic
