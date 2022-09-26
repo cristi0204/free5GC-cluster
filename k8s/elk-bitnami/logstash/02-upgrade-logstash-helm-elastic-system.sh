@@ -1,1 +1,1 @@
-helm upgrade logstash ./helm-charts -f values-modified-elastic-system.yaml -n elastic
+helm upgrade logstash ./helm -f values-modified-elastic-system.yaml -n elastic
