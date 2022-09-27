@@ -1,1 +1,1 @@
-helm delete elasticsearch -n elastic
+helm delete elasticsearch-helm -n elastic
