@@ -85,7 +85,7 @@ image:
   pullSecrets: []
   ## Set to true if you would like to see extra information on logs
   ##
-  debug: true
+  debug: false
 ## @param hostAliases Add deployment host aliases
 ## https://kubernetes.io/docs/concepts/services-networking/add-entries-to-pod-etc-hosts-with-host-aliases/
 ##
@@ -105,16 +105,11 @@ monitoringAPIPort: 9600
 ##  - name: ELASTICSEARCH_HOST
 ##    value: "x.y.z"
 ##
-extraEnvVars: []
-#    - name: ES_HOSTS
-#      value: "elk-cluster-es-http"
-#    - name: ES_USER
-#      value: "elastic"
-#    - name: ES_PASSWORD
-#      valueFrom:
-#        secretKeyRef:
-#          name: elk-cluster-es-elastic-user
-#          key: elastic
+extraEnvVars:
+  - name: ELASTICSEARCH_HOST
+    value: "elasticsearch"
+  - name: ELASTICSEARCH_PORT
+    value: "9200"
 
 ## @param extraEnvVarsSecret To add secrets to environment
 ##
@@ -131,6 +126,7 @@ input: |-
         bootstrap_servers => "kafka.kafka.svc.cluster.local:9092"
         topics => ["logs"]
       }
+      
 ## @param filter Filter Plugins configuration
 ## ref: https://www.elastic.co/guide/en/logstash/current/filter-plugins.html
 ## e.g:
@@ -151,17 +147,7 @@ output: |-
         hosts => ["${ELASTICSEARCH_HOST}:${ELASTICSEARCH_PORT}"]
         manage_template => false
         index => "mda-logs-%{+YYYY.MM.dd}"
-      }      
-      
-#      elasticsearch {
-#        index => "mda-logs-%{+YYYY-MM-dd}"
-#        hosts => [ "${ES_HOSTS}" ]
-#        user => "${ES_USER}"
-#        password => "${ES_PASSWORD}"
-#        ssl => true
-#        ssl_certificate_verification => false
-#        cacert => '/etc/logstash/certificates/ca.crt'
-#      }
+      }   
 
 ## @param existingConfiguration Name of existing ConfigMap object with the Logstash configuration (`input`, `filter`, and `output` will be ignored).
 ##
@@ -176,20 +162,14 @@ enableMultiplePipelines: false
 ##     configMap:
 ##       name: myconfigmap
 ##
-extraVolumes:
-  - name: cert-ca
-    secret:
-      secretName: elk-cluster-es-default-es-transport-certs
+extraVolumes: []
 ## @param extraVolumeMounts Array to add extra mounts (normally used with extraVolumes, evaluated as a template)
 ## extraVolumeMounts:
 ##   - mountPath: /opt/bitnami/desired-path
 ##     name: myvolume
 ##     readOnly: true
 ##
-extraVolumeMounts:
-  - name: cert-ca
-    mountPath: "/etc/logstash/certificates"
-    readOnly: true
+extraVolumeMounts: []
 
  ## ServiceAccount for Logstash
  ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
