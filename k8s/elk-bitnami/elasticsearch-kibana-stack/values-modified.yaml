@@ -1898,6 +1898,8 @@ kibana:
     ## @param ingress.apiVersion Override API Version (automatically detected if not set)
     ##
     apiVersion: ""
+    annotations:
+      kubernetes.io/ingress.class: nginx
     ## @param ingress.hostname Default host for the ingress resource. If specified as "*" no host rule is configured
     ##
     hostname: kibana.berlindevops.com
@@ -1936,7 +1938,7 @@ kibana:
     ingressClassName: ""
 
 indexLifecyclePolicy:
-  enabled: false
+  enabled: true
   policies:
     - name: mda-logs-policy
       body: |
@@ -1961,7 +1963,7 @@ indexLifecyclePolicy:
         }
 
 indexTemplate:
-  enabled: false
+  enabled: true
   templates:
     - name: mda-logs-tmplt
       body: |

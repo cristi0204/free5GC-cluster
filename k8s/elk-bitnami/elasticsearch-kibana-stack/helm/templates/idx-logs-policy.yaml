@@ -6,6 +6,6 @@ kind: IndexLifecyclePolicy
 metadata:
   name: {{ .name }}
 spec:
-  body: {{ .body }}
+  body: {{ .body | toJson }}
 {{- end }}
 {{- end }}
