@@ -1898,8 +1898,10 @@ kibana:
     ## @param ingress.apiVersion Override API Version (automatically detected if not set)
     ##
     apiVersion: ""
-    annotations:
-      kubernetes.io/ingress.class: nginx
+
+    annotations: {}
+      #kubernetes.io/ingress.class: nginx
+
     ## @param ingress.hostname Default host for the ingress resource. If specified as "*" no host rule is configured
     ##
     hostname: kibana.berlindevops.com
@@ -1935,7 +1937,7 @@ kibana:
     ## This is supported in Kubernetes 1.18+ and required if you have more than one IngressClass marked as the default for your cluster .
     ## ref: https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/
     ##
-    ingressClassName: ""
+    ingressClassName: "nginx"
 
 indexLifecyclePolicy:
   enabled: true
