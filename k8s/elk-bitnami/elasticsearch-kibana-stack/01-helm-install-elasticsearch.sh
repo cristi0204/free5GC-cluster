@@ -1,1 +1,1 @@
-helm install elasticsearch ./helm -f values-modified.yaml -n elastic
+helm install elasticsearch-helm ./helm -f values-modified.yaml -n elastic

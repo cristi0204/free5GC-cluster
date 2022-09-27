@@ -1936,7 +1936,7 @@ kibana:
     ingressClassName: ""
 
 indexLifecyclePolicy:
-  enabled: true
+  enabled: false
   policies:
     - name: mda-logs-policy
       body: |
@@ -1961,7 +1961,7 @@ indexLifecyclePolicy:
         }
 
 indexTemplate:
-  enabled: true
+  enabled: false
   templates:
     - name: mda-logs-tmplt
       body: |
