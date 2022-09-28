@@ -55,7 +55,7 @@ image:
 security:
   ## @param security.enabled Enable X-Pack Security settings
   ##
-  enabled: true
+  enabled: false
   ## @param security.elasticPassword Password for 'elastic' user
   ## Ref: https://github.com/bitnami/containers/tree/main/bitnami/elasticsearch#security
   ##
@@ -1885,13 +1885,13 @@ kibana:
       - '{{ include "elasticsearch.service.name" . }}'
     port: '{{ include "elasticsearch.service.ports.restAPI" . }}'
     security:
-      auth:
-        enabled: true
-        kibanaUser: elastic
-        kibanaPassword: "2Atos@Atos"
+#      auth:
+#        enabled: true
+#        kibanaUser: elastic
+#        kibanaPassword: "2Atos@Atos"
       tls:
         enabled: true
-        existingSecret: elasticsearch-coordinating-crt
+#        existingSecret: elasticsearch-coordinating-crt
 #        usePemCerts: true
 
   ingress:
