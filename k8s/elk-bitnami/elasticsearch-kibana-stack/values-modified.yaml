@@ -1888,11 +1888,11 @@ kibana:
       auth:
         enabled: true
         kibanaUser: elastic
-        kibanaPassword: 2Atos@Atos
+        kibanaPassword: "2Atos@Atos"
       tls:
         enabled: true
-        existingSecret: kibana.berlindevops.com-tls
-        userPemCerts: true
+        existingSecret: elasticsearch-coordinating-crt
+        usePemCerts: true
 
   ingress:
     ## @param ingress.enabled Enable ingress controller resource
