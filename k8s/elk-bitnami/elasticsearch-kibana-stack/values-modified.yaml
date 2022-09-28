@@ -1884,6 +1884,15 @@ kibana:
     hosts:
       - '{{ include "elasticsearch.service.name" . }}'
     port: '{{ include "elasticsearch.service.ports.restAPI" . }}'
+    security:
+      auth:
+        enabled: true
+        kibanaUser: elastic
+        kibanaPassword: 2Atos@Atos
+      tls:
+        enabled: true
+        existingSecret: kibana.berlindevops.com-tls
+        userPemCerts: true
 
   ingress:
     ## @param ingress.enabled Enable ingress controller resource
