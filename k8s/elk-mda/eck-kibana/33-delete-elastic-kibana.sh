@@ -1,1 +1,1 @@
-helm delete elastic-kibana -n elastic-system-mda
+helm delete elastic-kibana -n elastic-system
