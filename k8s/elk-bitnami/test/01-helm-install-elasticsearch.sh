@@ -1,0 +1,1 @@
+helm install idx-template ./ -f values.yaml -n elastic

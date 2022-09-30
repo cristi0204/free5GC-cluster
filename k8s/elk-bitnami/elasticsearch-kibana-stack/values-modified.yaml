@@ -1944,7 +1944,7 @@ indexLifecyclePolicy:
   policies:
     - name: mda-logs-policy
       body: |
-        {
+        '{
           "policy": {
             "phases": {
               "hot": {
@@ -1962,14 +1962,14 @@ indexLifecyclePolicy:
               }
             }
           }
-        }
+        }'
 
 indexTemplate:
   enabled: true
   templates:
     - name: mda-logs-tmplt
       body: |
-        {
+        '{
           "index_patterns" : ["mda-logs-*"],
           "priority" : 1,
           "template": {
@@ -1982,4 +1982,4 @@ indexTemplate:
               "enabled": true
             }
           }
-        }
+        }'
