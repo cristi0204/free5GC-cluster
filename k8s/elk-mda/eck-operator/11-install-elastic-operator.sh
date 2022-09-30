@@ -1,1 +1,1 @@
-helm install elastic-operator ./helm -f values-eck-operator.yaml -n elastic-system-mda
+helm upgrade --install --debug --namespace elastic-system elastic-operator ./helm -f values-eck-operator.yaml 

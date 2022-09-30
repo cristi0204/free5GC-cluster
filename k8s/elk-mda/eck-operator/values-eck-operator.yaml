@@ -1,4 +1,4 @@
-managedNamespaces: ["elastic-system-mda"]
+managedNamespaces: ["elastic-system"]
 
 # replicaCount is the number of operator pods to run.
 replicaCount: 1
@@ -9,18 +9,18 @@ image:
   # pullPolicy is the container image pull policy.
   pullPolicy: IfNotPresent
   # tag is the container image tag. If not defined, defaults to chart appVersion.
-  tag: 2.4.0
+  tag: 2.3.0
 
-createClusterScopedResources: false
+createClusterScopedResources: true
 
 config:
   # no RBAC access to cluster-wide storage classes, hence disable storage class validation
   validateStorageClass: false
 
-installCRDs: false
+installCRDs: true
 
 webhook:
-  enabled: false
+  enabled: true
 
 softMultiTenancy:
   # enabled determines whether the operator is installed with soft multi-tenancy extensions.
@@ -31,43 +31,43 @@ indexLifecyclePolicy:
   enabled: true
   policies:
     - name: mda-logs-policy
-      body: |
-        {
-          "policy": {
-            "phases": {
-              "hot": {
-                "actions": {
-                  "rollover" : {
-                    "max_age": "1d"
-                  }
-                }
-              },                
-              "delete": {
-                "min_age": "90d",
-                "actions": {
-                  "delete": {}
-                }
+  body: |
+    {
+      "policy": {
+        "phases": {
+          "hot": {
+            "actions": {
+              "rollover" : {
+                "max_age": "1d"
               }
+            }
+          },                
+          "delete": {
+            "min_age": "90d",
+            "actions": {
+              "delete": {}
             }
           }
         }
+      }
+    }
 
 indexTemplate:
   enabled: true
   templates:
     - name: mda-logs-tmplt
-      body: |
-        {
-          "index_patterns" : ["mda-logs-*"],
-          "priority" : 1,
-          "template": {
-            "settings" : {
-              "number_of_shards" : 2,
-              "number_of_replicas" : 0,
-              "index.lifecycle.name": "mda-logs-policy"
-            },
-            "mappings": {
-              "enabled": true
-            }
-          }
-        }
+  body: |
+    {
+      "index_patterns" : ["mda-logs-*"],
+      "priority" : 1,
+      "template": {
+        "settings" : {
+          "number_of_shards" : 2,
+          "number_of_replicas" : 0,
+          "index.lifecycle.name": "mda-logs-policy"
+        },
+        "mappings": {
+           "enabled": true
+         }
+      }
+    }

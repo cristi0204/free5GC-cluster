@@ -1,1 +1,1 @@
-helm install elasticsearch ./helm -f values-eck-elasticsearch.yaml -n elastic-system-mda
+helm upgrade --install --debug --namespace elastic-system elasticsearch ./helm -f values-eck-elasticsearch.yaml

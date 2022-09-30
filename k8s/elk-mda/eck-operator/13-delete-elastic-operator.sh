@@ -1,1 +1,1 @@
-helm delete elastic-operator -n elastic-system-mda
+helm delete elastic-operator -n elastic-system

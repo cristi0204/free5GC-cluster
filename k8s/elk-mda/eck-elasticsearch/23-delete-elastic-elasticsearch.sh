@@ -1,1 +1,1 @@
-helm delete elasticsearch -n elastic-system-mda
+helm delete elasticsearch -n elastic-system
