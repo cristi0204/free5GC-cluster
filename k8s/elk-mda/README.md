@@ -12,13 +12,13 @@ NOTE: values-eck-operator.yaml contains values for indexLifecyclePolicy and inde
 
 The Scripts can be used to install/upgrade/delete the whole elastic-stack:
 
-    ./01-install-elastic-stack.sh
-    ./02-upgrade-elastic-stack.sh
-    ./03-delete-elastic-stack.sh
-
+    03-upgrade-all.sh
+    10-delete-all.sh
 
 But they can also deployed/deleted seperatly (Scripts 11-\*.sh - 33-\*.sh).
 
 Note: The operator has to be deployed before elasticsearch and elasticsearch before kibana!
 
-TODO: Logstash
+
+cr operator (to create policies, templates ...) installed in version 0.4
+https://github.com/xco-sk/eck-custom-resources/tree/v0.4.0

@@ -1,0 +1,11 @@
+{{- if $.Values.indexTemplate.enabled -}}
+{{- range .Values.indexTemplate.templates }}
+---
+apiVersion: es.eck.github.com/v1alpha1
+kind: IndexTemplate
+metadata:
+  name: {{ .name }}
+spec:
+  body: {{ .body | toString }}
+{{- end }}
+{{- end }}
