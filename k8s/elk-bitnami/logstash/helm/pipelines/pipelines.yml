@@ -1,0 +1,6 @@
+- pipeline.id: kafka-logs-json
+  path.config: "/opt/bitnami/logstash/config/kafka-logs-json.conf"
+- pipeline.id: kafka-logstraps-grok
+  path.config: "/opt/bitnami/logstash/config/kafka-logstraps-grok.conf"
+- pipeline.id: file-logstraps-grok
+  path.config: "/opt/bitnami/logstash/config/file-logstraps-grok.conf"  

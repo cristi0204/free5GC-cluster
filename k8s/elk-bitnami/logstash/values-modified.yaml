@@ -107,7 +107,7 @@ monitoringAPIPort: 9600
 ##
 extraEnvVars:
   - name: ELASTICSEARCH_HOST
-    value: "elasticsearch"
+    value: "elasticsearch.elastic.svc.cluster.local"
   - name: ELASTICSEARCH_PORT
     value: "9200"
 
@@ -120,12 +120,13 @@ extraEnvVarsCM: ""
 ## @param input [string] Input Plugins configuration
 ## ref: https://www.elastic.co/guide/en/logstash/current/input-plugins.html
 ##
-input: |-
-      kafka {
-        codec => json
-        bootstrap_servers => "kafka.kafka.svc.cluster.local:9092"
-        topics => ["logs"]
-      }
+
+#input: |-
+#      kafka {
+#        codec => json
+#        bootstrap_servers => "kafka.kafka.svc.cluster.local:9092"
+#        topics => ["logs"]
+#      }
       
 ## @param filter Filter Plugins configuration
 ## ref: https://www.elastic.co/guide/en/logstash/current/filter-plugins.html
@@ -138,24 +139,28 @@ input: |-
 ##     match => [ "timestamp" , "dd/MMM/yyyy:HH:mm:ss Z" ]
 ##   }
 ##
-filter: ""
+
+#filter: ""
+
+
 ## @param output [string] Output Plugins configuration
 ## ref: https://www.elastic.co/guide/en/logstash/current/output-plugins.html
 ##
-output: |-
-      elasticsearch {
-        hosts => ["${ELASTICSEARCH_HOST}:${ELASTICSEARCH_PORT}"]
-        manage_template => false
-        index => "mda-logs-%{+YYYY.MM.dd}"
-      }   
+
+#output: |-
+#      elasticsearch {
+#        hosts => ["${ELASTICSEARCH_HOST}:${ELASTICSEARCH_PORT}"]
+#        manage_template => false
+#        index => "mda-logs-%{+YYYY.MM.dd}"
+#      }   
 
 ## @param existingConfiguration Name of existing ConfigMap object with the Logstash configuration (`input`, `filter`, and `output` will be ignored).
 ##
-existingConfiguration: ""
+existingConfiguration: "multiplepipelines"
 ## @param enableMultiplePipelines Allows user to use multiple pipelines
 ## ref: https://www.elastic.co/guide/en/logstash/master/multiple-pipelines.html
 ##
-enableMultiplePipelines: false
+enableMultiplePipelines: true
 ## @param extraVolumes Array to add extra volumes (evaluated as a template)
 ## extraVolumes:
 ##   - name: myvolume
@@ -467,7 +472,7 @@ service:
 persistence:
   ## @param persistence.enabled Enable Logstash data persistence using PVC
   ##
-  enabled: false
+  enabled: true
   ## @param persistence.existingClaim A manually managed Persistent Volume and Claim
   ## If defined, PVC must be created manually before volume will be bound
   ## The value is evaluated as a template
