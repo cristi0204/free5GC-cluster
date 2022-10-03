@@ -1,0 +1,1 @@
+helm upgrade --install --debug --namespace elastic-system eck-cr ./helm -f values.yaml

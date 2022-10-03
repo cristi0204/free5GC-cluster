@@ -1,0 +1,17 @@
+{{- if .Values.metrics.enabled }}
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ .Release.Name }}-service-monitor
+spec:
+  endpoints:
+    - path: /metrics
+      port: metrics
+      scheme: http
+  namespaceSelector:
+    matchNames:
+      - {{ .Release.Namespace }}
+  selector:
+    matchLabels:
+      {{- include "eck-custom-resources-operator.labels" . | nindent 6 }}
+{{- end }}

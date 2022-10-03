@@ -1,1 +1,1 @@
-helm upgrade --install --debug --namespace elastic-system elastic-kibana ./helm -f values-eck-kibana.yaml
+helm upgrade --install --debug --namespace elastic-system logstash ./helm -f values-elastic-connection.yaml

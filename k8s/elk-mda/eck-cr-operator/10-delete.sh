@@ -1,0 +1,1 @@
+helm delete eck-cr -n elastic-system
