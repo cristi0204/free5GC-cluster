@@ -1,0 +1,42 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: buildkit-
+spec:
+  entrypoint: image
+  imagePullSecrets:
+    - name: aop-image-pull
+  templates:
+    - name: image
+      container:
+        image: harbor.berlindevops.com/aac/gitbuild:latest
+        workingDir: /home/build
+        env: 
+          - name: "SRC_GIT_URL"
+            value: "https://atos-gitlab-read@gitlab.com/atosnet/crd.git"
+          - name: "SRC_GIT_REF"
+            value: "issue/AT-246-fix-api-source-repo-path"
+          - name: "SRC_GIT_TOKEN"
+            value: "QzhCWu3rBTL3ZbiaFtA9"
+          - name: "SRC_GIT_DOCKERFILE"
+            value: "api/app/Dockerfile"
+          - name: "TARGET_REPO"
+            value: "harbor.berlindevops.com/aac"
+          - name: "TARGET_IMAGE"
+            value: "api"
+          - name: "TARGET_TAG"
+            value: "v0.0.1"
+          - name: "TARGET_AUTH_BASE64"
+            value: "ewoJImF1dGhzIjogewoJCSJoYXJib3IuYmVybGluZGV2b3BzLmNvbSI6IHsKCQkJImF1dGgiOiAiY205aWIzUWtZMmxqWkRwdFVWZDBlalZJU2tGUFUyNWxUREV4VG1SaE5YQnZka1ZMUjJWUldtMWtVQT09IgoJCX0KCX0KfQ=="
+          - name: "SRC_AUTH_BASE64"
+            value: "ewoJImF1dGhzIjogewoJCSJoYXJib3IuYmVybGluZGV2b3BzLmNvbSI6IHsKCQkJImF1dGgiOiAiY205aWIzUWtZMmxqWkRwdFVWZDBlalZJU2tGUFUyNWxUREV4VG1SaE5YQnZka1ZMUjJWUldtMWtVQT09IgoJCX0KCX0KfQ=="
+        command: [/bin/sh, -c]
+        args: ["
+         cp build.sh /home/build/; /home/build/build.sh"]
+        securityContext:
+          capabilities:
+            add:
+              - ALL
+          privileged: true
+          allowPrivilegeEscalation: true
+          runAsUser: 0
