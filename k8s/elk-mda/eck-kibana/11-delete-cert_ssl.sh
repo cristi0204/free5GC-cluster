@@ -1,0 +1,1 @@
+kubectl delete secret tls kibana2.berlindevops.com-tls --namespace=elastic-system

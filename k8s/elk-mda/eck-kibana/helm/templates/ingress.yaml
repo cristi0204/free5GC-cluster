@@ -12,7 +12,7 @@ metadata:
 {{ toYaml . | indent 4 }}
 {{- end }}
 spec:
-  ingressClassName: nginx
+  #ingressClassName: nginx
 {{- if .Values.ingress.tls }}
   tls:
   {{- range .Values.ingress.tls }}
@@ -24,16 +24,16 @@ spec:
   {{- end }}
 {{- end }}
   rules:
-  {{- range .Values.ingress.hosts }}
-    - host: {{ . | quote }}
+  {{- range .Values.ingress.rules }}
+    - host: {{ .host }}
       http:
         paths:
-          - path: {{ $ingressPath }}
+          - path: {{ .ingressPath }}
             pathType: ImplementationSpecific
             backend:
               service:
-                name: {{ $fullName }}
+                name: {{ .serviceFullName }}
                 port:
-                  name: http
+                  number: {{ .servicePortNumber }}
   {{- end }}
 {{- end }}

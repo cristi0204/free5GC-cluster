@@ -1,1 +1,0 @@
-helm delete logstash -n elastic-system-mda

@@ -1,0 +1,1 @@
+helm upgrade --install --debug --namespace elastic-system elastic-kibana ./helm -f values-eck-kibana.yaml
