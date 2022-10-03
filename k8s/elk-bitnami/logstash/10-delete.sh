@@ -1,1 +1,1 @@
-helm delete logstash -n elastic
+helm delete elasticsearch-logstash -n elastic

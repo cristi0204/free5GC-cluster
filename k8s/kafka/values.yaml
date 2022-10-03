@@ -1476,6 +1476,12 @@ provisioning:
       config:
         max.message.bytes: 64000
         flush.messages: 1
+    - name: logstraps
+      partitions: 5
+      replicationFactor: 2
+      config:
+        max.message.bytes: 64000
+        flush.messages: 1        
 
   ## @param provisioning.tolerations Tolerations for pod assignment
   ## Ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/

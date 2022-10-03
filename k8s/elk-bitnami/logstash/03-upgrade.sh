@@ -1,1 +1,1 @@
-helm upgrade --install --debug --namespace elastic --values=values-modified.yaml logstash helm/
+helm upgrade --install --debug --namespace elastic --values=values-modified.yaml elasticsearch-logstash helm/

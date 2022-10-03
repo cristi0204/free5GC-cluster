@@ -26,3 +26,6 @@ logstash:
   elastic-workload-namespace:
     ./03-install-logstash-helm-elastic-workload.sh
     ./04-upgrade-logstash-helm-elastic-workload.sh
+
+
+https://docs.bitnami.com/kubernetes/apps/logstash/configuration/use-multiple-pipelines/    
