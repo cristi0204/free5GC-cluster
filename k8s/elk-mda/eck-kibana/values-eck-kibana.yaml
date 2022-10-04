@@ -55,7 +55,7 @@ ingress:
   rules:
     - host: kibana2.berlindevops.com
       ingressPath: "/"
-      serviceFullName: elastic-kibana-eck-kibana-kb-http
+      serviceFullName: elastic-eck-kibana-kb-http
       servicePortNumber: 5601
   tls:
     - secretName: kibana2.berlindevops.com-tls
