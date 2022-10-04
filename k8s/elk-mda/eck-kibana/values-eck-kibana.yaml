@@ -3,6 +3,8 @@
 #
 version: 8.4.1
 
+licenseType: enterprise
+
 # Labels that will be applied to Kibana.
 #
 labels: {}
