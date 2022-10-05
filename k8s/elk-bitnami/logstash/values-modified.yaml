@@ -10,7 +10,12 @@
 global:
   imageRegistry: ""
   ## E.g.
-  ## imagePullSecrets:
+  ## imagePullSecrets:  
+  ## imageP#output: |-
+#      elasticsearch {
+#        hosts => ["${ELASTICSEARCH_HOST}:${ELASTICSEARCH_PORT}"]
+#        manage_template => false
+#        index => "mda-logs-%{+YYYY.MM.dd}"ullSecrets:
   ##   - myRegistryKeySecretName
   ##
   imagePullSecrets: []
@@ -107,7 +112,7 @@ monitoringAPIPort: 9600
 ##
 extraEnvVars:
   - name: ELASTICSEARCH_HOST
-    value: "elasticsearch.elastic.svc.cluster.local"
+    value: "elastic-bitnami-elasticsearch.elastic.svc.cluster.local"
   - name: ELASTICSEARCH_PORT
     value: "9200"
 
