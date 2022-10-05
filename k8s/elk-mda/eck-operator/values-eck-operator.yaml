@@ -20,7 +20,7 @@ config:
 installCRDs: true
 
 webhook:
-  enabled: true
+  enabled: false
 
 softMultiTenancy:
   # enabled determines whether the operator is installed with soft multi-tenancy extensions.
