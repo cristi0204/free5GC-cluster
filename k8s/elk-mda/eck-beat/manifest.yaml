@@ -4,9 +4,9 @@ metadata:
   name: elasticsearch
 spec:
   type: filebeat
-  version: 8.4.2
+  version: 8.4.1
   elasticsearchRef:
-    name: elasticsearch-eck-elasticsearch
+    name: elastic-eck-elasticsearch
   config:
     filebeat.inputs:
     - type: container
