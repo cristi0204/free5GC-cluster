@@ -1,0 +1,17 @@
+{{- if .Values.lens.enabled -}}
+{{- range .Values.lens.lenses }}
+---
+apiVersion: kibana.eck.github.com/v1alpha1
+kind: Lens
+metadata:
+  name: {{ .name }}
+spec:
+  space: {{ .spacename }}
+  {{- with .dependencies }}
+  dependencies:
+    {{- toYaml . | nindent 8 }}
+  {{- end }}
+
+  body: {{ .body | toJson }}
+{{- end }}
+{{- end }}

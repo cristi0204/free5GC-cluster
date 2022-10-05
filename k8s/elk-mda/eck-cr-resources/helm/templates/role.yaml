@@ -1,0 +1,11 @@
+{{- if .Values.role.enabled -}}
+{{- range .Values.role.roles }}
+---
+apiVersion: es.eck.github.com/v1alpha1
+kind: ElasticsearchRole
+metadata:
+  name: {{ .name }}
+spec:
+  body: {{ .body | toJson }}
+{{- end }}
+{{- end }}

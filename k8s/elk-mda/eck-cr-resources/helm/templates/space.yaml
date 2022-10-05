@@ -1,0 +1,11 @@
+{{- if .Values.space.enabled -}}
+{{- range .Values.space.spaces }}
+---
+apiVersion: kibana.eck.github.com/v1alpha1
+kind: Space
+metadata:
+  name: {{ .name }}
+spec:
+  body: {{ .body | toJson }}
+{{- end }}
+{{- end }}
