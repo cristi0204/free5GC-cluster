@@ -121,7 +121,7 @@ indexTemplate:
               "index.lifecycle.name": "mda-logs-policy"
             },
             "mappings": {
-             elasticsearch "enabled": true
+              "enabled": true
             }
           }
         }'
