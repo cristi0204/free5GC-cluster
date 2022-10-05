@@ -869,7 +869,7 @@ sidecar:
       # allow updating provisioned dashboards from the UI
       allowUiUpdates: false
       # allow Grafana to replicate dashboard structure from filesystem
-      foldersFromFilesStructure: true
+      foldersFromFilesStructure: false
     # Additional dashboard sidecar volume mounts
     extraMounts: []
     # Sets the size limit of the dashboard sidecar emptyDir volume
