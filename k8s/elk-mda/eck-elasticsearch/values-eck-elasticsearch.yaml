@@ -2,6 +2,8 @@
 
 version: 8.4.1
 
+licenseType: basic
+
 nodeSets:
 - name: masters
   count: 3
