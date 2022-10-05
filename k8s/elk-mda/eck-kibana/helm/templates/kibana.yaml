@@ -6,7 +6,7 @@ metadata:
   labels:
     {{- include "kibana.labels" . | nindent 4 }}
   annotations:
-    eck.k8s.elastic.co/license: basic
+    eck.k8s.elastic.co/license: enterpise
     {{- if .Values.annotations }}
     {{- toYaml .Values.annotations | indent 4 }}
     {{- end }}
