@@ -1,7 +1,7 @@
 space:
   enabled: true
   spaces:
-    - name:
+    - name: space-sample
       body: |
         {
             "name": "ECK Space sample",
@@ -74,7 +74,7 @@ indexTemplate:
 index:
   enabled: true
   indeces:
-    - name: 
+    - name: index-sample
       dependencies:
           - indexTemplates:
               - indextemplate-sample
