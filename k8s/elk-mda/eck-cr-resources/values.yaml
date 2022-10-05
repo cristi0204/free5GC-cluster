@@ -1,10 +1,23 @@
+space:
+  enabled: true
+  spaces:
+    - name:
+      body: |
+        {
+            "name": "ECK Space sample",
+            "description" : "This space was created using ECK-CR operator",
+            "color": "#aabbcc",
+            "initials": "CR",
+            "disabledFeatures": [],
+            "imageUrl": ""
+        }
 
 indexLifecyclePolicy:
   enabled: true
   policies:
     - name: mda-logs-policy
       body: |
-        '{
+        {
           "policy": {
             "phases": {
               "hot": {
@@ -22,14 +35,14 @@ indexLifecyclePolicy:
               }
             }
           }
-        }'
+        }
 
 indexTemplate:
   enabled: true
   templates:
     - name: mda-logs-tmplt
       body: |
-        '{
+        {
           "index_patterns" : ["mda-logs-*"],
           "priority" : 1,
           "template": {
@@ -42,4 +55,249 @@ indexTemplate:
               "enabled": true
             }
           }
-        }'
+        }
+
+    - name: indextemplate-sample
+      body: |
+        {
+          "index_patterns" : ["index-*"],
+          "priority" : 1,
+          "template": {
+            "settings" : {
+              "number_of_shards" : 2,
+              "number_of_replicas" : 0
+            }
+          }
+        }
+
+
+index:
+  enabled: true
+  indeces:
+    - name: 
+      dependencies:
+          - indexTemplates:
+              - indextemplate-sample
+         #- indices:
+            #  - index-base-sample
+      body: |
+          {
+            "settings": {
+              "number_of_shards": 1,
+              "number_of_replicas": 0
+            },
+            "mappings": {
+                "properties": {
+                  "field1": { "type": "text" }
+                }
+            },
+            "aliases": {
+                "index-sample-alias": {}
+            }
+          }
+
+indexPattern:
+  enabled: true
+  patterns:
+    - name: indexpattern-sample
+      spacename: space-sample 
+      #dependencies:
+      #  - type: index-pattern
+      #    name: indexpattern-base-sample
+      body: |
+        {
+            "attributes": {
+                "title": "index-*",
+                "timeFieldName": "@timestamp"
+            }
+        }
+
+savedSearch:
+  enabled: true
+  searches:
+    - name: savedsearch-sample
+      spacename:  space-sample
+      dependencies:
+        - type: index-pattern
+          name: indexpattern-sample
+      body: |
+          {
+            "attributes": {
+              "columns": [
+                  "_source"
+              ],
+              "description": "",
+              "hits": 0,
+              "kibanaSavedObjectMeta": {
+                  "searchSourceJSON": "{\"highlightAll\":true,\"version\":true,\"query\":{\"query\":\"(message: test)\",\"language\":\"kuery\"},\"filter\":[],\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\"}"
+              },
+              "sort": [],
+              "title": "Message contains test",
+              "version": 1
+            },
+            "references": [
+              {
+                  "id": "indexpattern-sample",
+                  "name": "kibanaSavedObjectMeta.searchSourceJSON.index",
+                  "type": "index-pattern"
+              }
+            ]
+          }
+
+visualization:
+  enabled: true
+  visualizations:
+    - name: visualization-sample
+      spacename:  space-sample
+      dependencies:
+        - type: index-pattern
+          name: indexpattern-sample
+      body: |
+        {
+          "attributes": {
+            "visState": "{\"title\":\"Count visualization\",\"type\":\"metric\",\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"params\":{},\"schema\":\"metric\"}],\"params\":{\"addTooltip\":true,\"addLegend\":false,\"type\":\"metric\",\"metric\":{\"percentageMode\":false,\"useRanges\":false,\"colorSchema\":\"Green to Red\",\"metricColorMode\":\"None\",\"colorsRange\":[{\"from\":0,\"to\":10000}],\"labels\":{\"show\":true},\"invertColors\":false,\"style\":{\"bgFill\":\"#000\",\"bgColor\":false,\"labelColor\":false,\"subText\":\"\",\"fontSize\":60}}}}",
+            "title": "Count visualization",
+            "uiStateJSON": "{}",
+            "description": "",
+            "version": 1,
+            "kibanaSavedObjectMeta": {
+              "searchSourceJSON": "{\"query\":{\"query\":\"\",\"language\":\"kuery\"},\"filter\":[],\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\"}"
+            }
+          },
+          "references": [
+            {
+              "name": "kibanaSavedObjectMeta.searchSourceJSON.index",
+              "type": "index-pattern",
+              "id": "indexpattern-sample"
+            }
+          ]
+        }
+
+lens:
+  enabled: true
+  lenses:
+    - name: visualization-sample
+      spacename:  space-sample
+      dependencies:
+        - type: index-pattern
+          name: indexpattern-sample
+      body: |
+          {
+            "attributes": {
+              "title": "Count of docs 2",
+              "description": "",
+              "visualizationType": "lnsMetric",
+              "state": {
+                "visualization": {
+                  "layerId": "13e00170-fe50-4495-87ff-048934afece1",
+                  "accessor": "6d115d38-e79d-4e91-b5c2-29a69065cbfc",
+                  "layerType": "data"
+                },
+                "query": {
+                  "query": "",
+                  "language": "kuery"
+                },
+                "filters": [],
+                "datasourceStates": {
+                  "indexpattern": {
+                    "layers": {
+                      "13e00170-fe50-4495-87ff-048934afece1": {
+                        "columns": {
+                          "6d115d38-e79d-4e91-b5c2-29a69065cbfc": {
+                            "label": "Count of records",
+                            "dataType": "number",
+                            "operationType": "count",
+                            "isBucketed": false,
+                            "scale": "ratio",
+                            "sourceField": "___records___"
+                          }
+                        },
+                        "columnOrder": [
+                            "6d115d38-e79d-4e91-b5c2-29a69065cbfc"
+                        ],
+                        "incompleteColumns": {}
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "references": [
+              {
+                "type": "index-pattern",
+                "id": "indexpattern-sample",
+                "name": "indexpattern-datasource-current-indexpattern"
+              },
+              {
+                "type": "index-pattern",
+                "id": "indexpattern-sample",
+                "name": "indexpattern-datasource-layer-13e00170-fe50-4495-87ff-048934afece1"
+              }
+            ]
+          }
+
+dashboard:
+  enabled: true
+  dashboards:
+    - name: dashboard-sample
+      spacename:  space-sample
+      dependencies:
+        - type: lens
+          name: lens-sample
+      body: |
+        {
+          "attributes": {
+            "title": "Sample dashboard",
+            "hits": 0,
+            "description": "",
+            "panelsJSON": "[{\"version\":\"8.1.0\",\"type\":\"lens\",\"gridData\":{\"x\":0,\"y\":0,\"w\":24,\"h\":15,\"i\":\"4cfcdf6b-1729-4467-a911-c69be15d58f8\"},\"panelIndex\":\"4cfcdf6b-1729-4467-a911-c69be15d58f8\",\"embeddableConfig\":{\"enhancements\":{}},\"panelRefName\":\"panel_4cfcdf6b-1729-4467-a911-c69be15d58f8\"}]",
+            "optionsJSON": "{\"useMargins\":true,\"syncColors\":false,\"hidePanelTitles\":false}",
+            "version": 1,
+            "timeRestore": false,
+            "kibanaSavedObjectMeta": {
+              "searchSourceJSON": "{\"query\":{\"query\":\"\",\"language\":\"kuery\"},\"filter\":[]}"
+            }
+          },
+          "references": [
+            {
+              "name": "4cfcdf6b-1729-4467-a911-c69be15d58f8:panel_4cfcdf6b-1729-4467-a911-c69be15d58f8",
+              "type": "lens",
+              "id": "lens-sample"
+            }
+          ]
+        }
+
+role:
+  enabled: true
+  roles:
+    - name: elasticsearchrole-sample
+      body: |
+        {
+          "cluster": ["all"],
+          "indices": [
+            {
+              "names": [ "index-sample"],
+              "privileges": ["all"]
+            }
+          ],
+          "metadata" : {
+            "version" : 1
+          }
+        }
+
+user:
+  enabled: true
+  users:
+    - name: elasticsearchuser-sample
+      secretname: elasticsearchuser-secret
+      password: dGVzdGVy
+      body: |
+        {
+          "roles" : [ "kibana_admin", "elasticsearchrole-sample" ],
+          "full_name" : "Manual tester",
+          "email" : "manual.tester@gmail.com",
+          "metadata" : {
+            "intelligence" : 7
+          }
+        }
+

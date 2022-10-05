@@ -116,17 +116,17 @@ elasticsearch:
   # -- Flag to define if the Elasticsearch reconciler is enabled or not
   enabled: true
   # -- Url of Elasticsearch
-  url: https://elastic-eck-elasticsearch-es-http:9200
+  url: https://elk-cluster-es-http:9200
   certificate:
     # -- Name of the Secret containing certificate used for communication with Elasticsearch
-    secretName: elastic-eck-elasticsearch-es-http-certs-public
+    secretName: elk-cluster-es-http-certs-public
     # -- Key in Secret that contain the PEM-encoded certificate
     certificateKey: ca.crt
   authentication:
     # Configuration of secret containing authentication information
     usernamePasswordSecret:
       # -- Name of the Secret containing password for user that is used to manage deployed resources. Should be in the `username: password` format.
-      secretName: elastic-eck-elasticsearch-es-elastic-user
+      secretName: elk-cluster-es-elastic-user
       # -- Username of user that is used to manage deployed resources
       userName: elastic
 
@@ -135,16 +135,16 @@ kibana:
   # -- Flag to define if the Kibana reconciler is enabled or not
   enabled: true
   # -- Url of Kibana
-  url: https://elastic-eck-kibana-kb-http:5601
+  url: https://elk-cluster-kb-http:5601
   certificate:
     # -- Name of the Secret containing certificate used for communication with Kibana
-    secretName: elastic-eck-kibana-kb-http-certs-public
+    secretName: elk-cluster-kb-http-certs-public
     # -- Key in Secret that contain the PEM-encoded certificate
     certificateKey: ca.crt
   authentication:
     # Configuration of secret containing authentication information
     usernamePasswordSecret:
       # -- Name of the Secret containing password for user that is used to manage deployed resources. Should be in the `username: password` format.
-      secretName: elastic-eck-elasticsearch-es-elastic-user
+      secretName: elk-cluster-es-elastic-user
       # -- Username of user that is used to manage deployed resources
     userName: elastic
