@@ -1,1 +1,1 @@
-helm delete eck-cr -n elastic-system
+helm delete eck-cr-resources -n elastic-system
