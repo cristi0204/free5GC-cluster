@@ -176,7 +176,7 @@ visualization:
 lens:
   enabled: true
   lenses:
-    - name: visualization-sample
+    - name: lens-sample
       spacename:  space-sample
       dependencies:
         - type: index-pattern
