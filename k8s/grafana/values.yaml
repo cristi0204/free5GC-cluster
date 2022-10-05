@@ -809,13 +809,13 @@ sidecar:
   securityContext: {}
   # skipTlsVerify Set to true to skip tls verification for kube api calls
   # skipTlsVerify: true
-  enableUniqueFilenames: false
+  enableUniqueFilenames: true
   readinessProbe: {}
   livenessProbe: {}
   # Log level default for all sidecars. Can be one of: DEBUG, INFO, WARN, ERROR, CRITICAL. Defaults to INFO
   # logLevel: INFO
   dashboards:
-    enabled: false
+    enabled: true
     # Additional environment variables for the dashboards sidecar
     env: {}
     # Do not reprocess already processed unchanged resources on k8s API reconnect.
@@ -824,13 +824,13 @@ sidecar:
     # label that the configmaps with dashboards are marked with
     label: grafana_dashboard
     # value of label that the configmaps with dashboards are set to
-    labelValue: ""
+    labelValue: "1"
     # Log level. Can be one of: DEBUG, INFO, WARN, ERROR, CRITICAL.
     # logLevel: INFO
     # folder in the pod that should hold the collected dashboards (unless `defaultFolderName` is set)
     folder: /tmp/dashboards
     # The default folder name, it will create a subfolder under the `folder` and put dashboards in there instead
-    defaultFolderName: null
+    defaultFolderName: ''
     # Namespaces list. If specified, the sidecar will search for config-maps/secrets inside these namespaces.
     # Otherwise the namespace in which the sidecar is running will be used.
     # It's also possible to specify ALL to search in all namespaces.
@@ -861,7 +861,7 @@ sidecar:
       # orgid as configured in grafana
       orgid: 1
       # folder in which the dashboards should be imported in grafana
-      folder: ''
+      folder: 'SideCar'
       # type of the provider
       type: file
       # disableDelete to activate a import-only behaviour
