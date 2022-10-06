@@ -1,1 +1,0 @@
-kubectl apply -f manifest.yaml -n elastic-system
