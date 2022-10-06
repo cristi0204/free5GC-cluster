@@ -1,7 +1,7 @@
 {{- if .Values.indexPattern.enabled -}}
 {{- range .Values.indexPattern.patterns }}
 ---
-apiVersion: es.eck.github.com/v1alpha1
+apiVersion: kibana.eck.github.com/v1alpha1
 kind: IndexPattern
 metadata:
   name: {{ .name }}
