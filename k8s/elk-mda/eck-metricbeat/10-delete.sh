@@ -1,0 +1,1 @@
+kubectl delete -f manifest/metricbeat-kubernetes.yaml -n elastic-system
