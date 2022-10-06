@@ -1,0 +1,21 @@
+{{- if .Values.user.enabled -}}
+{{- range .Values.user.users }}
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ .secretname }}
+type: Opaque
+data:
+  elasticsearchuser-sample: {{ .password }}
+
+---
+apiVersion: es.eck.github.com/v1alpha1
+kind: ElasticsearchUser
+metadata:
+  name: {{ .name }}
+spec:
+  secretName: {{ .secretname }}
+  body: {{ .body | toJson }}
+{{- end }}
+{{- end }}

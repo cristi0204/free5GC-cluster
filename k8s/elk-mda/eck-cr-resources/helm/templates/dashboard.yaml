@@ -1,0 +1,17 @@
+{{- if .Values.dashboard.enabled -}}
+{{- range .Values.dashboard.dashboards }}
+---
+apiVersion: kibana.eck.github.com/v1alpha1
+kind: Dashboard
+metadata:
+  name: {{ .name }}
+spec:
+  space: {{ .spacename }}
+  {{- with .dependencies }}
+  dependencies:
+    {{- toYaml . | nindent 8 }}
+  {{- end }}
+
+  body: {{ .body | toJson }}
+{{- end }}
+{{- end }}

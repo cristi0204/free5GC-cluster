@@ -1,8 +1,8 @@
-{{- if .Values.indexLifecyclePolicy.enabled -}}
-{{- range .Values.indexLifecyclePolicy.policies }}
+{{- if .Values.role.enabled -}}
+{{- range .Values.role.roles }}
 ---
 apiVersion: es.eck.github.com/v1alpha1
-kind: IndexLifecyclePolicy
+kind: ElasticsearchRole
 metadata:
   name: {{ .name }}
 spec:
