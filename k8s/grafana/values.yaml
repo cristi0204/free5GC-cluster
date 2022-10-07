@@ -676,7 +676,7 @@ dashboards:
       file: dashboards/vmagent_rev1.json
     vmalert-dashboard:
       file: dashboards/vmalert_rev1.json
-  vmcluster:
+  #vmcluster:
     victoriametrics-cluster-dashboard:
       file: dashboards/victoriametrics-cluster_rev1.json
     victoriametrics-cluster-per-tenant-statistic-dashboard:
