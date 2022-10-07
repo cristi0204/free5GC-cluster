@@ -1,1 +1,1 @@
-kubectl apply -f filebeat-kubernetes.yaml -n elastic-system
+kubectl apply -f manifest/filebeat-no-discovery.yaml -n elastic-system

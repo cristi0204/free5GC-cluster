@@ -1,13 +1,9 @@
-https://www.elastic.co/guide/en/cloud-on-k8s/current/k8s-beat.html
-https://www.elastic.co/beats/metricbeat
-
+https://www.elastic.co/guide/en/cloud-on-k8s/current/k8s-beat-configuration-examples.html
+https://www.elastic.co/guide/en/beats/metricbeat/current/configuring-howto-metricbeat.html
+https://www.elastic.co/guide/en/beats/metricbeat/current/load-kibana-dashboards.html
 https://www.elastic.co/guide/en/beats/metricbeat/current/running-on-kubernetes.html
 
 
-kubectl create -f metricbeat-kubernetes.yaml -n elastic-system
-kubectl apply -f examples/standard -n elastic-system
-
-
-https://www.elastic.co/guide/en/beats/metricbeat/current/load-kibana-dashboards.html
-
-hosts: ['${ELASTICSEARCH_HOST:elasticsearch}:${ELASTICSEARCH_PORT:9200}']
+Metric beat infrastructure observability 
+https://kibana2.berlindevops.com/app/metrics/inventory
+https://kibana2.berlindevops.com/app/metrics/explorer
