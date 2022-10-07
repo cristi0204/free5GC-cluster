@@ -1,82 +1,286 @@
-# Default values for helm.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
+#This basic values file contains a example for each resource which can be created using this Chart
+space:
+  enabled: true
+  spaces:
+    - name: space-sample
+      body: |
+        {
+            "name": "ECK Space sample",
+            "description" : "This space was created using ECK-CR operator",
+            "color": "#aabbcc",
+            "initials": "CR",
+            "disabledFeatures": [],
+            "imageUrl": ""
+        }
 
-replicaCount: 1
+indexLifecyclePolicy:
+  enabled: true
+  policies:
+    - name: sample-policy
+      body: |
+        {
+          "policy": {
+            "phases": {
+              "hot": {
+                "actions": {
+                  "rollover" : {
+                    "max_age": "1d"
+                  }
+                }
+              },                
+              "delete": {
+                "min_age": "90d",
+                "actions": {
+                  "delete": {}
+                }
+              }
+            }
+          }
+        }
 
-image:
-  repository: nginx
-  pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+indexTemplate:
+  enabled: true
+  templates:
+    - name: indextemplate-sample
+      body: |
+        {
+          "index_patterns" : ["index-*"],
+          "priority" : 1,
+          "template": {
+            "settings" : {
+              "number_of_shards" : 2,
+              "number_of_replicas" : 0
+            }
+          }
+        }
 
-imagePullSecrets: []
-nameOverride: ""
-fullnameOverride: ""
 
-serviceAccount:
-  # Specifies whether a service account should be created
-  create: true
-  # Annotations to add to the service account
-  annotations: {}
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
-  name: ""
+index:
+  enabled: true
+  indeces:
+    - name: index-sample
+      dependencies:
+        indexTemplates:
+          - indextemplate-sample
+        #indices:
+        #  - index-base-sample
+      body: |
+          {
+            "settings": {
+              "number_of_shards": 1,
+              "number_of_replicas": 0
+            },
+            "mappings": {
+                "properties": {
+                  "field1": { "type": "text" }
+                }
+            },
+            "aliases": {
+                "index-sample-alias": {}
+            }
+          }
 
-podAnnotations: {}
+indexPattern:
+  enabled: true
+  patterns:
+    - name: indexpattern-sample
+      spacename: space-sample 
+      #dependencies:
+      #  - type: index-pattern
+      #    name: indexpattern-base-sample
+      body: |
+        {
+            "attributes": {
+                "title": "index-*",
+                "timeFieldName": "@timestamp"
+            }
+        }
 
-podSecurityContext: {}
-  # fsGroup: 2000
+savedSearch:
+  enabled: true
+  searches:
+    - name: savedsearch-sample
+      spacename:  space-sample
+      dependencies:
+        - type: index-pattern
+          name: indexpattern-sample
+      body: |
+          {
+            "attributes": {
+              "columns": [
+                  "_source"
+              ],
+              "description": "",
+              "hits": 0,
+              "kibanaSavedObjectMeta": {
+                  "searchSourceJSON": "{\"highlightAll\":true,\"version\":true,\"query\":{\"query\":\"(message: test)\",\"language\":\"kuery\"},\"filter\":[],\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\"}"
+              },
+              "sort": [],
+              "title": "Message contains test",
+              "version": 1
+            },
+            "references": [
+              {
+                  "id": "indexpattern-sample",
+                  "name": "kibanaSavedObjectMeta.searchSourceJSON.index",
+                  "type": "index-pattern"
+              }
+            ]
+          }
 
-securityContext: {}
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
+visualization:
+  enabled: true
+  visualizations:
+    - name: visualization-sample
+      spacename:  space-sample
+      dependencies:
+        - type: index-pattern
+          name: indexpattern-sample
+      body: |
+        {
+          "attributes": {
+            "visState": "{\"title\":\"Count visualization\",\"type\":\"metric\",\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"params\":{},\"schema\":\"metric\"}],\"params\":{\"addTooltip\":true,\"addLegend\":false,\"type\":\"metric\",\"metric\":{\"percentageMode\":false,\"useRanges\":false,\"colorSchema\":\"Green to Red\",\"metricColorMode\":\"None\",\"colorsRange\":[{\"from\":0,\"to\":10000}],\"labels\":{\"show\":true},\"invertColors\":false,\"style\":{\"bgFill\":\"#000\",\"bgColor\":false,\"labelColor\":false,\"subText\":\"\",\"fontSize\":60}}}}",
+            "title": "Count visualization",
+            "uiStateJSON": "{}",
+            "description": "",
+            "version": 1,
+            "kibanaSavedObjectMeta": {
+              "searchSourceJSON": "{\"query\":{\"query\":\"\",\"language\":\"kuery\"},\"filter\":[],\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\"}"
+            }
+          },
+          "references": [
+            {
+              "name": "kibanaSavedObjectMeta.searchSourceJSON.index",
+              "type": "index-pattern",
+              "id": "indexpattern-sample"
+            }
+          ]
+        }
 
-service:
-  type: ClusterIP
-  port: 80
+lens:
+  enabled: true
+  lenses:
+    - name: lens-sample
+      spacename:  space-sample
+      dependencies:
+        - type: index-pattern
+          name: indexpattern-sample
+      body: |
+          {
+            "attributes": {
+              "title": "Count of docs 2",
+              "description": "",
+              "visualizationType": "lnsMetric",
+              "state": {
+                "visualization": {
+                  "layerId": "13e00170-fe50-4495-87ff-048934afece1",
+                  "accessor": "6d115d38-e79d-4e91-b5c2-29a69065cbfc",
+                  "layerType": "data"
+                },
+                "query": {
+                  "query": "",
+                  "language": "kuery"
+                },
+                "filters": [],
+                "datasourceStates": {
+                  "indexpattern": {
+                    "layers": {
+                      "13e00170-fe50-4495-87ff-048934afece1": {
+                        "columns": {
+                          "6d115d38-e79d-4e91-b5c2-29a69065cbfc": {
+                            "label": "Count of records",
+                            "dataType": "number",
+                            "operationType": "count",
+                            "isBucketed": false,
+                            "scale": "ratio",
+                            "sourceField": "___records___"
+                          }
+                        },
+                        "columnOrder": [
+                            "6d115d38-e79d-4e91-b5c2-29a69065cbfc"
+                        ],
+                        "incompleteColumns": {}
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "references": [
+              {
+                "type": "index-pattern",
+                "id": "indexpattern-sample",
+                "name": "indexpattern-datasource-current-indexpattern"
+              },
+              {
+                "type": "index-pattern",
+                "id": "indexpattern-sample",
+                "name": "indexpattern-datasource-layer-13e00170-fe50-4495-87ff-048934afece1"
+              }
+            ]
+          }
 
-ingress:
-  enabled: false
-  className: ""
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-  hosts:
-    - host: chart-example.local
-      paths:
-        - path: /
-          pathType: ImplementationSpecific
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
+dashboard:
+  enabled: true
+  dashboards:
+    - name: dashboard-sample
+      spacename:  space-sample
+      dependencies:
+        - type: lens
+          name: lens-sample
+      body: |
+        {
+          "attributes": {
+            "title": "Sample dashboard",
+            "hits": 0,
+            "description": "",
+            "panelsJSON": "[{\"version\":\"8.1.0\",\"type\":\"lens\",\"gridData\":{\"x\":0,\"y\":0,\"w\":24,\"h\":15,\"i\":\"4cfcdf6b-1729-4467-a911-c69be15d58f8\"},\"panelIndex\":\"4cfcdf6b-1729-4467-a911-c69be15d58f8\",\"embeddableConfig\":{\"enhancements\":{}},\"panelRefName\":\"panel_4cfcdf6b-1729-4467-a911-c69be15d58f8\"}]",
+            "optionsJSON": "{\"useMargins\":true,\"syncColors\":false,\"hidePanelTitles\":false}",
+            "version": 1,
+            "timeRestore": false,
+            "kibanaSavedObjectMeta": {
+              "searchSourceJSON": "{\"query\":{\"query\":\"\",\"language\":\"kuery\"},\"filter\":[]}"
+            }
+          },
+          "references": [
+            {
+              "name": "4cfcdf6b-1729-4467-a911-c69be15d58f8:panel_4cfcdf6b-1729-4467-a911-c69be15d58f8",
+              "type": "lens",
+              "id": "lens-sample"
+            }
+          ]
+        }
 
-resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
+role:
+  enabled: true
+  roles:
+    - name: elasticsearchrole-sample
+      body: |
+        {
+          "cluster": ["all"],
+          "indices": [
+            {
+              "names": [ "index-sample"],
+              "privileges": ["all"]
+            }
+          ],
+          "metadata" : {
+            "version" : 1
+          }
+        }
 
-autoscaling:
-  enabled: false
-  minReplicas: 1
-  maxReplicas: 100
-  targetCPUUtilizationPercentage: 80
-  # targetMemoryUtilizationPercentage: 80
-
-nodeSelector: {}
-
-tolerations: []
-
-affinity: {}
+user:
+  enabled: true
+  users:
+    - name: elasticsearchuser-sample
+      secretname: elasticsearchuser-secret
+      password: dGVzdGVy
+      body: |
+        {
+          "roles" : [ "kibana_admin", "elasticsearchrole-sample" ],
+          "full_name" : "Manual tester",
+          "email" : "manual.tester@gmail.com",
+          "metadata" : {
+            "intelligence" : 7
+          }
+        }

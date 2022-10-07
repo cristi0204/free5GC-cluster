@@ -76,10 +76,10 @@ index:
   indeces:
     - name: index-sample
       dependencies:
-          - indexTemplates:
-              - indextemplate-sample
-         #- indices:
-            #  - index-base-sample
+        indexTemplates:
+          - indextemplate-sample
+        #indices:
+        #  - index-base-sample
       body: |
           {
             "settings": {
