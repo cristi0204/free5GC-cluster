@@ -11,7 +11,8 @@ image:
 
 podAnnotations: {}
 
-podLabels: {}
+podLabels:
+  log-label: true
 
 imagePullSecrets: []
 
