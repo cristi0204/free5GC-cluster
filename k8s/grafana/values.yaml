@@ -638,7 +638,6 @@ dashboardProviders:
       type: file
       disableDeletion: true
       editable: true
-      sizeLimit: 1000000
       options:
         path: /var/lib/grafana/dashboards/vmcluser
     - name: 'vmcomponents'
@@ -647,7 +646,6 @@ dashboardProviders:
       type: file
       disableDeletion: true
       editable: true
-      sizeLimit: 1000000
       options:
         path: /var/lib/grafana/dashboards/vmcomponents
 
@@ -815,7 +813,7 @@ sidecar:
   # Log level default for all sidecars. Can be one of: DEBUG, INFO, WARN, ERROR, CRITICAL. Defaults to INFO
   # logLevel: INFO
   dashboards:
-    enabled: true
+    enabled: false
     # Additional environment variables for the dashboards sidecar
     env: {}
     # Do not reprocess already processed unchanged resources on k8s API reconnect.
@@ -875,7 +873,7 @@ sidecar:
     # Sets the size limit of the dashboard sidecar emptyDir volume
     sizeLimit: {}
   datasources:
-    enabled: true
+    enabled: false
     # Additional environment variables for the datasourcessidecar
     env: {}
     # Do not reprocess already processed unchanged resources on k8s API reconnect.
