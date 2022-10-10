@@ -639,7 +639,7 @@ dashboardProviders:
       disableDeletion: true
       editable: true
       options:
-        path: /var/lib/grafana/dashboards/vmcluser
+        path: /var/lib/grafana/dashboards/vmcluster
     - name: 'vmcomponents'
       orgId: 1
       folder: 'VictoriaMetrics'
