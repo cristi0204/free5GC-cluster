@@ -1,1 +1,1 @@
-kubectl apply -f metricbeat-kubernetes.yaml -n elastic-system
+kubectl apply -f manifest/metricbeat.yaml -n elastic-system
