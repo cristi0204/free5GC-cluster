@@ -223,6 +223,8 @@ controller:
   extraEnv: []
     # - name: FOO
     #   value: "bar"
+    - name: ARGO_EXECUTOR_PLUGINS
+      value: "true"
 
   # -- Extra arguments to be added to the controller
   extraArgs: []
