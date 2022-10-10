@@ -1,0 +1,1 @@
+kubectl apply -f manifest/filebeat-no-discovery.yaml -n elastic-system

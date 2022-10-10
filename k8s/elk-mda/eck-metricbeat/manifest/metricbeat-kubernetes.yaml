@@ -77,6 +77,14 @@ data:
       ssl.verification_mode: "none"
       username: ${ELASTICSEARCH_USERNAME}
       password: ${ELASTICSEARCH_PASSWORD}
+
+    setup.dashboards.enabled: true
+    setup.kibana.host: elastic-eck-kibana-kb-http:5601
+    setup.kibana.protocol: https
+    setup.kibana.ssl.enabled: true
+    setup.kibana.ssl.verification_mode: none
+    setup.kibana.username: elastic
+    setup.kibana.password: Y1luy7f0L0hTWcx4R56Cp377      
 ---
 apiVersion: v1
 kind: ConfigMap

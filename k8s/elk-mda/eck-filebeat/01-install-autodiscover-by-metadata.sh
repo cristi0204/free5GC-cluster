@@ -1,0 +1,1 @@
+kubectl apply -f manifest/filebeat-autodiscover-by-metadata.yaml -n elastic-system
