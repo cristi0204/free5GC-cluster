@@ -212,6 +212,16 @@ server:
                 severity: 'warning'
               annotations:
                 dashboard: ''
+        - name: KafkaLagAlert
+          rules:
+            - alert: KafkaLagAlert
+              expr: prometheus_kafka_consumergroup_lag{topic="logs"} > 10
+              for: 0s
+              labels:
+                alertname: 'Lag on kafka topic is too high'
+                severity: 'warning'
+              annotations:
+                dashboard: ''                
 
 serviceMonitor:
   enabled: false
