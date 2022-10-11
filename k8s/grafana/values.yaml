@@ -839,7 +839,7 @@ sidecar:
     resource: both
     # If specified, the sidecar will look for annotation with this name to create folder and put graph here.
     # You can use this parameter together with `provider.foldersFromFilesStructure`to annotate configmaps and create folder structure.
-    folderAnnotation: k8s-sidecar-target-directory
+    folderAnnotation: null
     # Absolute path to shell script to execute after a configmap got reloaded
     script: null
     # watchServerTimeout: request to the server, asking it to cleanly close the connection after that.
