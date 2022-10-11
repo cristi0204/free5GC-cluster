@@ -1,0 +1,101 @@
+
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "rcdb.fullname" . }}
+  labels:
+    {{- include "rcdb.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      # Deployment affects PODs with following labels
+      {{- include "rcdb.selectorLabels" . | nindent 6 }}
+  serviceName: {{ include "rcdb.fullname" . }}-headless
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "rcdb.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "rcdb.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      terminationGracePeriodSeconds: 15
+      containers:
+        - name: {{ include "rcdb.name" . }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+           - name: APPL_ENVIRONMENT_PATH
+             value: "/etc/secret-volume/environment.conf"
+           - name: APPL_POD_IP
+             valueFrom:
+                fieldRef:
+                   fieldPath: status.podIP
+          volumeMounts:
+             # name must match the volume name below
+             - name: {{ include "rcdb.fullname" . }}-data
+               mountPath: /home/platform/db
+             - name: {{ include "rcdb.name" . }}-log
+               mountPath: /home/platform/log
+             - name: {{ include "rcdb.name" . }}-secret-volume
+               mountPath: /etc/secret-volume/
+               readOnly: true
+
+        - name: {{ include "rcdb.name" . }}-monitor
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          #image: alpine:latest
+          #command: ["sh", "-c", " echo \"Fluentbit container ${HOSTNAME}\"; while [ 1 ]; do ls /home/platform/db; sleep 60; done;"]
+          image: fluent/fluent-bit:1.8
+          command: ["/fluent-bit/bin/fluent-bit", "-i", "tail", "-p", "path=/home/platform/log/trace/rpxStCtrl*.log", "-o", "stdout", "-f", 1"]
+         
+          volumeMounts:
+             # name must match the volume name below
+             #- name: {{ include "rcdb.fullname" . }}-data
+             #  mountPath: /home/platform/db
+             - name: {{ include "rcdb.name" . }}-log
+               mountPath: /home/platform/log
+
+      volumes:
+        - name: {{ include "rcdb.name" . }}-secret-volume
+          secret:
+            secretName: {{ include "rcdb.fullname" . }}-secret
+        - name: {{ include "rcdb.name" . }}-log
+          emptyDir: {}
+          
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+  volumeClaimTemplates:
+      - metadata:
+          name: {{ include "rcdb.fullname" . }}-data
+        spec:
+          accessModes: [ "ReadWriteOnce" ]
+          storageClassName: {{ .Values.storageClassName }} 
+          resources:
+             requests:
+                storage: {{ .Values.storageSize }}
+

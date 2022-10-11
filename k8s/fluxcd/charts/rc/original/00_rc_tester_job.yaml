@@ -1,0 +1,32 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: rc-tester
+spec:
+  backoffLimit: 0
+  completions: 1
+  parallelism: 1
+  activeDeadlineSeconds: 900
+  ttlSecondsAfterFinished: 1800
+  template:
+    spec:
+      containers:
+      - name: rc-tester
+        image: localhost:5000/rc-k8s-vfes-tester:v1
+        imagePullPolicy: Always
+        env:
+          - name: APPL_POD_IP
+            valueFrom:
+               fieldRef:
+                  fieldPath: status.podIP
+          - name: RC_ENDPOINT
+            value: "rc-nodeport.gcc-k8s.svc.cluster.local"
+          - name: RC_PORT
+            value: "5060"
+          - name: RCDB_ENDPOINT
+            value: "rcdb-nodeport.gcc-k8s.svc.cluster.local"
+          - name: RCDB_PORT
+            value: "8000"
+          - name: TEST_PERFORMANCE
+            value: "1"
+      restartPolicy: Never

@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ecc-nodeport
+spec:
+  type: NodePort
+  ports:
+    - nodePort: 30160
+      targetPort: 5060
+      port: 5060
+      name: ecc-sip-tcp
+      protocol: TCP
+    - nodePort: 30160
+      targetPort: 5060
+      port: 5060
+      name: ecc-sip-udp
+      protocol: UDP
+  selector:
+    # Deployment affects PODs with following labels
+    app: gcc
+    tier: ecc

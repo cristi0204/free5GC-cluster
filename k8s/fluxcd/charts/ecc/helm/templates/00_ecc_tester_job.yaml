@@ -1,0 +1,32 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: ecc-tester
+spec:
+  backoffLimit: 0
+  completions: 1
+  parallelism: 1
+  activeDeadlineSeconds: 900
+  ttlSecondsAfterFinished: 1800
+  template:
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+      - name: {{ include "ecc.name" . }}-tester
+        image: "{{ .Values.imageTester.repository }}:{{ .Values.imageTester.tag | default .Chart.AppVersion }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        env:
+          - name: APPL_POD_IP
+            valueFrom:
+               fieldRef:
+                  fieldPath: status.podIP
+          - name: ECC_ENDPOINT
+            value: "{{ include "ecc.fullname" . }}-nodeport.{{ .Release.Namespace }}.svc.cluster.local"
+          - name: ECC_PORT
+            value: "{{ .Values.service.targetPort }}"
+          - name: TEST_PERFORMANCE
+            value: "1"
+      restartPolicy: Never

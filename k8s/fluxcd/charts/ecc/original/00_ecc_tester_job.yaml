@@ -1,0 +1,28 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: ecc-tester
+spec:
+  backoffLimit: 0
+  completions: 1
+  parallelism: 1
+  activeDeadlineSeconds: 900
+  ttlSecondsAfterFinished: 1800
+  template:
+    spec:
+      containers:
+      - name: rcc-tester
+        image: localhost:5000/ecc-tester:v1
+        imagePullPolicy: Always
+        env:
+          - name: APPL_POD_IP
+            valueFrom:
+               fieldRef:
+                  fieldPath: status.podIP
+          - name: ECC_ENDPOINT
+            value: "ecc-nodeport.gcc-k8s.svc.cluster.local"
+          - name: ECC_PORT
+            value: "5060"
+          - name: TEST_PERFORMANCE
+            value: "1"
+      restartPolicy: Never

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "rcdb.fullname" . }}-nodeport
+spec:
+  type: NodePort
+  ports:
+    - nodePort: {{ .Values.service.nodePort }}
+      targetPort: {{ .Values.service.targetPort }}
+      port: {{ .Values.service.targetPort }}
+      name: {{ include "rcdb.name" . }}
+  selector:
+    # Deployment affects PODs with following labels
+    {{- include "rcdb.selectorLabels" . | nindent 4 }}
+    
