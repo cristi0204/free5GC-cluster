@@ -859,7 +859,7 @@ sidecar:
       # orgid as configured in grafana
       orgid: 1
       # folder in which the dashboards should be imported in grafana
-      folder: 'SideCar'
+      folder: ''
       # type of the provider
       type: file
       # disableDelete to activate a import-only behaviour
@@ -867,7 +867,7 @@ sidecar:
       # allow updating provisioned dashboards from the UI
       allowUiUpdates: false
       # allow Grafana to replicate dashboard structure from filesystem
-      foldersFromFilesStructure: false
+      foldersFromFilesStructure: true
     # Additional dashboard sidecar volume mounts
     extraMounts: []
     # Sets the size limit of the dashboard sidecar emptyDir volume
