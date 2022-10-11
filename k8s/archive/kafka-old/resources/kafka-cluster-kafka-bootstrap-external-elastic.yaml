@@ -5,6 +5,6 @@ metadata:
   namespace: elastic-system
 spec:
   type: ExternalName
-  externalName: kafka-cluster-kafka-bootstrap.kafka.svc.cluster.local
+  externalName: kafka.kafka.svc.cluster.local
   ports:
   - port: 9092

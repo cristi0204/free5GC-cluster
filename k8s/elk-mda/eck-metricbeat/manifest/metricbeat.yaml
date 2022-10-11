@@ -18,35 +18,36 @@ spec:
             enabled: "true"
           node: ${NODE_NAME}
           type: kubernetes
-          namespace: victoriametrics-workload
       modules:
-      - module: system
-        period: 60s
-        metricsets:
-        - cpu
-        - load
-        - memory
-        - network
-        - process
-        - process_summary
-        process:
-          include_top_n:
-            by_cpu: 5
-            by_memory: 5
-        processes:
-        - .*
-      - module: system
-        period: 1m
-        metricsets:
-        - filesystem
-        - fsstat
-        processors:
-        - drop_event:
-            when:
-              regexp:
-                system:
-                  filesystem:
-                    mount_point: ^/(sys|cgroup|proc|dev|etc|host|lib)($|/)
+#      - module: system
+#        period: 60s
+#        metricsets:
+#        - cpu
+#        - load
+#        - memory
+#        - network
+#        - process
+#        - process_summary
+#        process:
+#          include_top_n:
+#            by_cpu: 5
+#            by_memory: 5
+#        processes:
+#        - .*
+#        namespace: "victoriametrics-workload"        
+#      - module: system
+#        period: 1m
+#        metricsets:
+#        - filesystem
+#        - fsstat
+#        processors:
+#        - drop_event:
+#            when:
+#              regexp:
+#                system:
+#                  filesystem:
+#                    mount_point: ^/(sys|cgroup|proc|dev|etc|host|lib)($|/)
+#        namespace: "victoriametrics-workload"                    
       - module: kubernetes
         period: 10s
         node: ${NODE_NAME}
@@ -61,6 +62,19 @@ spec:
         - pod
         - container
         - volume
+        condition.equals.kubernetes.namespace: kafka
+        namespace: kafka
+#      - module: jolokia
+#        period: 10s
+#        hosts: ["localhost"]
+#        namespace: "kafka"        
+#      - module: kafka
+#        period: 10s
+#        hosts: ["kafka.kafka.svc.cluster.local:9092"]
+#        metricsets:
+#        - partition
+#        - consumergroup
+#        namespace: "kafka"        
     output:
       elasticsearch:
         hosts:
