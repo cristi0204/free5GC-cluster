@@ -66,7 +66,7 @@ spec:
 #        namespace: kafka
       - module: jolokia
         period: 10s
-        hosts: ["localhost"]
+        hosts: ["kafka-jmx-metrics"]
         metricsets: ["jmx"]
         jmx.mappings:
         - mbean: 'java.lang:type=Runtime'
@@ -74,7 +74,7 @@ spec:
             - attr: Uptime
               field: uptime
           target:
-              url: "service:jmx:rmi:///jndi/rmi://kafka.kafka.svc.cluster.local:9308/jmxrmi"          
+              url: "service:jmx:rmi:///jndi/rmi://kafka-jmx-metrics.kafka.svc.cluster.local:5556/jmxrmi"          
         - mbean: 'java.lang:type=Memory'
           attributes:
             - attr: HeapMemoryUsage
@@ -82,7 +82,7 @@ spec:
             - attr: NonHeapMemoryUsage
               field: memory.non_heap_usage
           target:
-              url: "service:jmx:rmi:///jndi/rmi://kafka.kafka.svc.cluster.local:9308/jmxrmi"          
+              url: "service:jmx:rmi:///jndi/rmi://kafka-jmx-metrics.kafka.svc.cluster.local:5556/jmxrmi"          
         - mbean: 'java.lang:type=GarbageCollector,name=ConcurrentMarkSweep'
           attributes:
             - attr: CollectionTime
@@ -90,7 +90,7 @@ spec:
             - attr: CollectionCount
               field: gc.cms_collection_count        
           target:
-              url: "service:jmx:rmi:///jndi/rmi://kafka.kafka.svc.cluster.local:9308/jmxrmi"          
+              url: "service:jmx:rmi:///jndi/rmi://kafka-jmx-metrics.kafka.svc.cluster.local:5556/jmxrmi"          
         jmx.application:
         jmx.instance:        
         namespace: "kafka"        
