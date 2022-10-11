@@ -66,8 +66,10 @@ spec:
 #        namespace: kafka
       - module: jolokia
         period: 10s
-        hosts: ["kafka-jmx-metrics"]
+        hosts: ["kafka-jmx-metrics.kafka.svc.cluster.local:5556"]
+        http_method: "POST"
         metricsets: ["jmx"]
+        path: "/jolokia/?ignoreErrors=true&canonicalNaming=false"
         jmx.mappings:
         - mbean: 'java.lang:type=Runtime'
           attributes:
@@ -93,14 +95,14 @@ spec:
               url: "service:jmx:rmi:///jndi/rmi://kafka-jmx-metrics.kafka.svc.cluster.local:5556/jmxrmi"          
         jmx.application:
         jmx.instance:        
-        namespace: "kafka"        
-      - module: kafka
-        period: 10s
-        hosts: ["kafka.kafka.svc.cluster.local:9092"]
-        metricsets:
-        - partition
-        - consumergroup
-        namespace: "kafka"        
+        namespace: "elastic-system"        
+#      - module: kafka
+#        period: 10s
+#        hosts: ["kafka.kafka.svc.cluster.local:9092"]
+#        metricsets:
+#        - partition
+#        - consumergroup
+#        namespace: "kafka"        
     output:
       elasticsearch:
         hosts:
