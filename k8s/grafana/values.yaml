@@ -813,7 +813,7 @@ sidecar:
   # Log level default for all sidecars. Can be one of: DEBUG, INFO, WARN, ERROR, CRITICAL. Defaults to INFO
   # logLevel: INFO
   dashboards:
-    enabled: true
+    enabled: false
     # Additional environment variables for the dashboards sidecar
     env: {}
     # Do not reprocess already processed unchanged resources on k8s API reconnect.
