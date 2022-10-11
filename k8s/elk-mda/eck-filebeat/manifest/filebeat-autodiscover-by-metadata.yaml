@@ -15,14 +15,30 @@ spec:
       type: kubernetes
       hints.default_config.enabled: "false"
       templates:
+      - condition.equals.kubernetes.namespace: grafana
+        config:
+        - paths: ["/var/log/containers/*${data.kubernetes.container.id}.log"]
+          type: container
+      - condition.equals.kubernetes.namespace: kafka
+        config:
+        - paths: ["/var/log/containers/*${data.kubernetes.container.id}.log"]
+          type: container
+      - condition.equals.kubernetes.namespace: elastic-system
+        config:
+        - paths: ["/var/log/containers/*${data.kubernetes.container.id}.log"]
+          type: container
+      - condition.equals.kubernetes.namespace: victoriametrics
+        config:
+        - paths: ["/var/log/containers/*${data.kubernetes.container.id}.log"]
+          type: container
       - condition.equals.kubernetes.namespace: victoriametrics-workload
         config:
         - paths: ["/var/log/containers/*${data.kubernetes.container.id}.log"]
           type: container
-      - condition.equals.kubernetes.labels.log-label: "true"
-        config:
-        - paths: ["/var/log/containers/*${data.kubernetes.container.id}.log"]
-          type: container
+#      - condition.equals.kubernetes.labels.log-label: "true"
+#        config:
+#        - paths: ["/var/log/containers/*${data.kubernetes.container.id}.log"]
+#          type: container
     processors:
     - add_cloud_metadata: {}
     - add_host_metadata: {}
