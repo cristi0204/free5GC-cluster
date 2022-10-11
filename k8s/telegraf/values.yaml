@@ -187,8 +187,7 @@ config:
         monitor_kubernetes_pods: false
         response_timeout: "5s"
         metric_version: 2
-        kubernetes_services: 
-          - "http://kafka-metrics.kafka.svc.cluster.local:9308/metrics"
+        kubernetes_services: "http://kafka-metrics.kafka.svc.cluster.local:9308/metrics"
         insecure_skip_verify: true         
 
 
