@@ -1,0 +1,18 @@
+#
+# All statefulset need a Headless service
+# so that each stateful POD is accesible directly via DNS
+# 
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "rcdb.fullname" . }}-headless
+  labels:
+    {{- include "rcdb.selectorLabels" . | nindent 4 }}
+spec:
+  ports:
+  - port: {{ .Values.service.targetPort }}
+    name: {{ include "rcdb.name" . }}-rest
+  clusterIP: None
+  selector:
+    {{- include "rcdb.selectorLabels" . | nindent 4 }}
+    

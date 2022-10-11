@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: rc-nodeport
+spec:
+  type: NodePort
+  ports:
+    - nodePort: 30060
+      targetPort: 5060
+      port: 5060
+      name: rc-sip-tcp
+      protocol: TCP
+    - nodePort: 30060
+      targetPort: 5060
+      port: 5060
+      name: rc-sip-udp
+      protocol: UDP
+  selector:
+    # Deployment affects PODs with following labels
+    app: gcc
+    tier: rc

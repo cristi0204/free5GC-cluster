@@ -1,0 +1,89 @@
+#
+# All statefulset need a Headless service
+# so that each stateful POD is accesible directly via DNS
+# 
+apiVersion: v1
+kind: Service
+metadata:
+  name: rcdb-headless
+  labels:
+    app: gcc
+    tier: rcdb
+spec:
+  ports:
+  - port: 8000
+    name: rcdb-rest
+  clusterIP: None
+  selector:
+    app: gcc
+    tier: rcdb
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: rcdb
+spec:
+  selector:
+    matchLabels:
+      # Deployment affects PODs with following labels
+      app: gcc
+      tier: rcdb
+  replicas: 1 # In production each instance will be composed by 2 replicas synchronized among themselves 
+  #
+  # Mandatory. Name of headless service
+  #   
+  serviceName: rcdb-headless
+  template:
+    metadata:
+      labels:
+        app: gcc # has to match .spec.template.metadata.labels
+        tier: rcdb
+    spec:
+      #securityContext:
+      #  runAsUser: 2000
+      #  runAsGroup: 2000
+      #  fsGroup: 2000
+      terminationGracePeriodSeconds: 15
+      containers:
+         - name: rcdb
+           image: localhost:5000/rcdb-el8:beta
+           #command: ["sh", "-c", " echo \"Fluentbit container ${HOSTNAME}\"; while [ 1 ]; do ls /home/platform/db; sleep 60; done;"]
+           imagePullPolicy: Always
+           env:
+             - name: APPL_ENVIRONMENT_PATH
+               value: "/etc/secret-volume/environment.conf"
+             - name: APPL_POD_IP
+               valueFrom:
+                  fieldRef:
+                     fieldPath: status.podIP
+           volumeMounts:
+               # name must match the volume name below
+               - name: rcdb-data
+                 mountPath: /home/platform/db
+               - name: rcdb-secret-volume
+                 mountPath: /etc/secret-volume/
+                 readOnly: true
+
+
+
+         - name: rcdb-monitor
+           image: alpine:latest
+           command: ["sh", "-c", " echo \"Fluentbit container ${HOSTNAME}\"; while [ 1 ]; do ls /home/platform/db; sleep 60; done;"]
+           volumeMounts:
+               # name must match the volume name below
+               - name: rcdb-data
+                 mountPath: /home/platform/db
+      volumes:
+        - name: rcdb-secret-volume
+          secret:
+             secretName: rcdb-secret
+  volumeClaimTemplates:
+      - metadata:
+          name: rcdb-data
+        spec:
+          accessModes: [ "ReadWriteOnce" ]
+          #storageClassName: "manual" use default (local-path)
+          resources:
+             requests:
+                storage: 1Gi
+

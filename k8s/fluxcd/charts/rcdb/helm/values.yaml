@@ -1,0 +1,82 @@
+# Default values for registrar-as.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+namespace: "gcc"
+
+nameOverride: ""
+fullnameOverride: ""
+
+# reference the your pull secrets
+imagePullSecrets:
+  - name: harbor-pull
+
+# Set the storage provider 
+storageClassName: ""
+storageSize: "1Gi"
+
+# Ports of the  services
+service:
+  targetPort: 8000
+  nodePort: 30100
+  
+# In production each instance will be composed by 2 replicas synchronized among themselves 
+replicaCount: 1
+
+image:
+  repository: harbor.berlindevops.com/atos/rcdb-el8
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "beta"
+
+podAnnotations: {}
+
+podSecurityContext:
+  runAsUser: 2000
+  runAsGroup: 2000
+  fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 2000
+
+
+nodeSelector: {}
+affinity: {}
+tolerations: []
+
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+
+
+
+
+
+
+

@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "ecc.fullname" . }}-nodeport
+spec:
+  type: NodePort
+  ports:
+    - nodePort: {{ .Values.service.nodePort }}
+      targetPort: {{ .Values.service.targetPort }}
+      port: {{ .Values.service.targetPort }}
+      name: {{ include "ecc.name" . }}-sip-tcp
+      protocol: TCP
+    - nodePort: {{ .Values.service.nodePort }}
+      targetPort: {{ .Values.service.targetPort }}
+      port: {{ .Values.service.targetPort }}
+      name: {{ include "ecc.name" . }}-sip-udp
+      protocol: UDP
+  selector:
+    # Deployment affects PODs with following labels
+    {{- include "ecc.selectorLabels" . | nindent 4 }}
+    

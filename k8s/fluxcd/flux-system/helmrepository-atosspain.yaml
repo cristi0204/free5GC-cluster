@@ -1,0 +1,18 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: atosspain-release
+  namespace: gcc
+spec:
+  chart:
+    spec:
+      chart: ./cluster/charts/ecc/helm
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: GitRepository
+        name: podinfo 
+        namespace: flux-system 
+  interval: 1m0s
+  releaseName: atosspain-release
+

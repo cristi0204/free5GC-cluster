@@ -1,0 +1,76 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: rc-headless
+  labels:
+    app: gcc
+    tier: rc
+spec:
+  ports:
+  - port: 5060
+    name: rc-sip
+  clusterIP: None
+  selector:
+    app: gcc
+    tier: rc
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: rc
+  labels:
+    app: gcc
+    tier: rc
+spec:
+  selector:
+    matchLabels:
+      # Deployment affects PODs with following labels
+      app: gcc
+      tier: rc
+  replicas: 1
+  serviceName: rc-headless
+  template:
+    metadata:
+      #
+      # Must match matchLabels
+      #
+      labels:
+        app: gcc
+        tier: rc
+    spec:
+      restartPolicy: Always
+      containers:
+         - name: rc
+           image: localhost:5000/rc-el8:beta
+           imagePullPolicy: Always
+           env:
+             - name: APPL_ENVIRONMENT_PATH
+               value: "/etc/secret-volume/environment.conf"
+             - name: APPL_POD_IP
+               valueFrom:
+                  fieldRef:
+                     fieldPath: status.podIP
+           volumeMounts:
+               # name must match the volume name below
+               - name: shared-logs
+                 mountPath: /home/platform/log
+
+               - name: rc-secret-volume
+                 mountPath: /etc/secret-volume/
+                 readOnly: true
+
+
+         - name: fluentbit
+           image: alpine:latest
+           command: ["sh", "-c", " echo \"Fluentbit ${HOSTNAME}\"; while [ 1 ]; do ls -al /home/platform/log; sleep 300; done;"]
+           volumeMounts:
+               # name must match the volume name below
+               - name: shared-logs
+                 mountPath: /home/platform/log
+      volumes:
+         - name: shared-logs
+           emptyDir: {}
+         - name: rc-secret-volume
+           secret:
+              secretName: rc-secret
+

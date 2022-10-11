@@ -1,0 +1,52 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  annotations:
+    meta.helm.sh/release-name: atosspain-release
+    meta.helm.sh/release-namespace: gcc
+  generation: 1
+  labels:
+    app.kubernetes.io/managed-by: Helm
+    helm.toolkit.fluxcd.io/name: atosspain-release
+    helm.toolkit.fluxcd.io/namespace: gcc
+  name: ecc-tester
+  namespace: gcc
+spec:
+  activeDeadlineSeconds: 900
+  backoffLimit: 0
+  completionMode: NonIndexed
+  completions: 1
+  parallelism: 1
+  suspend: false
+  template:
+    metadata:
+      labels:
+        job-name: ecc-tester
+    spec:
+      containers:
+      - env:
+        - name: APPL_POD_IP
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: status.podIP
+        - name: ECC_ENDPOINT
+          value: atosspain-release-ecc-nodeport.gcc.svc.cluster.local
+        - name: ECC_PORT
+          value: "5060"
+        - name: TEST_PERFORMANCE
+          value: "1"
+        image: harbor.berlindevops.com/atos/ecc-tester:v1
+        imagePullPolicy: Always
+        name: ecc-tester
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      imagePullSecrets:
+      - name: harbor-pull
+      restartPolicy: Never
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+  ttlSecondsAfterFinished: 1800

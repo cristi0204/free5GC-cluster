@@ -1,0 +1,36 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ include "rc.fullname" . }}-tester
+spec:
+  backoffLimit: 0
+  completions: 1
+  parallelism: 1
+  activeDeadlineSeconds: 900
+  ttlSecondsAfterFinished: 1800
+  template:
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+      - name: {{ include "rc.name" . }}-tester
+        image: "{{ .Values.imageTester.repository }}:{{ .Values.imageTester.tag | default .Chart.AppVersion }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        env:
+          - name: APPL_POD_IP
+            valueFrom:
+               fieldRef:
+                  fieldPath: status.podIP
+          - name: RC_ENDPOINT
+            value: "{{ include "rc.fullname" . }}-nodeport.{{ .Release.Namespace }}.svc.cluster.local"
+          - name: RC_PORT
+            value: "{{ .Values.service.targetPort }}"
+          - name: RCDB_ENDPOINT
+            value: "{{ .Values.rcdbNodeportServiceName }}.{{ .Values.rcdbNamespace }}.svc.cluster.local"
+          - name: RCDB_PORT
+            value: "{{ .Values.rcdbNodeportServicePort }}"
+          - name: TEST_PERFORMANCE
+            value: "1"
+      restartPolicy: Never
