@@ -48,54 +48,54 @@ spec:
 #                  filesystem:
 #                    mount_point: ^/(sys|cgroup|proc|dev|etc|host|lib)($|/)
 #        namespace: "victoriametrics-workload"                    
-#      - module: kubernetes
-#        period: 10s
-#        node: ${NODE_NAME}
-#        hosts:
-#        - https://${NODE_NAME}:10250
-#        bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
-#        ssl:
-#          verification_mode: none
-#        metricsets:
-#        - node
-#        - system
-#        - pod
-#        - container
-#        - volume
-#        condition.equals.kubernetes.namespace: kafka
-#        namespace: kafka
-      - module: jolokia
+      - module: kubernetes
         period: 10s
-        hosts: ["kafka-jmx-metrics.kafka.svc.cluster.local:5556"]
-        http_method: "POST"
-        metricsets: ["jmx"]
-        path: "/jolokia/?ignoreErrors=true&canonicalNaming=false"
-        jmx.mappings:
-        - mbean: 'java.lang:type=Runtime'
-          attributes:
-            - attr: Uptime
-              field: uptime
-          target:
-              url: "service:jmx:rmi:///jndi/rmi://kafka-jmx-metrics.kafka.svc.cluster.local:5556/jmxrmi"          
-        - mbean: 'java.lang:type=Memory'
-          attributes:
-            - attr: HeapMemoryUsage
-              field: memory.heap_usage
-            - attr: NonHeapMemoryUsage
-              field: memory.non_heap_usage
-          target:
-              url: "service:jmx:rmi:///jndi/rmi://kafka-jmx-metrics.kafka.svc.cluster.local:5556/jmxrmi"          
-        - mbean: 'java.lang:type=GarbageCollector,name=ConcurrentMarkSweep'
-          attributes:
-            - attr: CollectionTime
-              field: gc.cms_collection_time
-            - attr: CollectionCount
-              field: gc.cms_collection_count        
-          target:
-              url: "service:jmx:rmi:///jndi/rmi://kafka-jmx-metrics.kafka.svc.cluster.local:5556/jmxrmi"          
-        jmx.application:
-        jmx.instance:        
-        namespace: "elastic-system"        
+        node: ${NODE_NAME}
+        hosts:
+        - https://${NODE_NAME}:10250
+        bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+        ssl:
+          verification_mode: none
+        metricsets:
+        - node
+        - system
+        - pod
+        - container
+        - volume
+        condition.equals.kubernetes.namespace: kafka
+        namespace: kafka
+#      - module: jolokia
+#        period: 10s
+#        hosts: ["kafka-jmx-metrics.kafka.svc.cluster.local:5556"]
+#        http_method: "POST"
+#        metricsets: ["jmx"]
+#        path: "/jolokia/?ignoreErrors=true&canonicalNaming=false"
+#        jmx.mappings:
+#        - mbean: 'java.lang:type=Runtime'
+#          attributes:
+#            - attr: Uptime
+#              field: uptime
+#          target:
+#              url: "service:jmx:rmi:///jndi/rmi://kafka-jmx-metrics.kafka.svc.cluster.local:5556/jmxrmi"          
+#        - mbean: 'java.lang:type=Memory'
+#          attributes:
+#            - attr: HeapMemoryUsage
+#              field: memory.heap_usage
+#            - attr: NonHeapMemoryUsage
+#              field: memory.non_heap_usage
+#          target:
+#              url: "service:jmx:rmi:///jndi/rmi://kafka-jmx-metrics.kafka.svc.cluster.local:5556/jmxrmi"          
+#        - mbean: 'java.lang:type=GarbageCollector,name=ConcurrentMarkSweep'
+#          attributes:
+#            - attr: CollectionTime
+#              field: gc.cms_collection_time
+#            - attr: CollectionCount
+#              field: gc.cms_collection_count        
+#          target:
+#              url: "service:jmx:rmi:///jndi/rmi://kafka-jmx-metrics.kafka.svc.cluster.local:5556/jmxrmi"          
+#        jmx.application:
+#        jmx.instance:        
+#        namespace: "elastic-system"        
 #      - module: kafka
 #        period: 10s
 #        hosts: ["kafka.kafka.svc.cluster.local:9092"]
