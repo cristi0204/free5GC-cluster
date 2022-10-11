@@ -1329,7 +1329,7 @@ metrics:
     ##     readOnlyRootFilesystem: true
     ##
     containerSecurityContext:
-      enabled: true
+      enabled: false
       runAsUser: 1001
       runAsNonRoot: true
     ## @param metrics.jmx.containerPorts.metrics Prometheus JMX exporter metrics container port
