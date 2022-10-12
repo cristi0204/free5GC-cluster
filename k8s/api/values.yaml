@@ -54,7 +54,7 @@ ingress:
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
-    - host: api.berlindevops.com
+    - host: atos-assembly-controller.berlindevops.com
       paths:
         - pathType: Prefix
           path: "/"
@@ -64,10 +64,10 @@ ingress:
               port:
                 number: 5000
 
-  tls:
-    - hosts:
-        - api.berlindevops.com
-      secretName: api-tls
+  # tls:
+  #   - hosts:
+  #       - api.berlindevops.com
+  #     secretName: api-tls
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
