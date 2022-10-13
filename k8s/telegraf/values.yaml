@@ -197,6 +197,11 @@ config:
           - "tags.server"
           - "tags.resource"
           - "tags.event"
+        json_string_fields:
+          - "tags.address"
+          - "tags.server"
+          - "tags.resource"
+          - "tags.event"
         json_time_key: "timestamp"
         json_time_format: "unix_ms"        
 #     - prometheus:
