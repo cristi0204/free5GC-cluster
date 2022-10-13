@@ -192,12 +192,11 @@ config:
           - "metricscanonical"
         data_format: "json"
         json_name_key: "name"
-        json_query: "tags"
         tag_keys:
-          - "address"
-          - "host"
-          - "resource"
-          - "event"
+          - "tags.address"
+          - "tags.server"
+          - "tags.resource"
+          - "tags.event"
         json_time_key: "timestamp"
         json_time_format: "unix_ms"        
 #     - prometheus:
