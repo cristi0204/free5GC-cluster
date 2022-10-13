@@ -193,10 +193,10 @@ config:
         data_format: "json"
         json_name_key: "name"
         tag_keys:
-          - "tags.address"
-          - "tags.host"
-          - "tags.resource"
-          - "tags.event"
+          - "address"
+          - "server"
+          - "resource"
+          - "event"
         json_time_key: "timestamp"
         json_time_format: "unix_ms"        
 #     - prometheus:
