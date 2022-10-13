@@ -6,6 +6,9 @@ Example message:
   {"measurement":"usage","resource":"memory","value":81}
   {"measurement":"usage","resource":"storage","value":86}
 
+Telegraf json format:
+  {"fields":{"value":94},"name":"usage","tags":{"host":"telegraf-polling-service","resource":"cpu"},"timestamp":1665653414}
+
 Kafka producer invocation:
   ./invoke-kafka-metrics-producer.sh
 
