@@ -195,9 +195,8 @@ config:
           measurement_name_path: "name"
           timestamp_path: "timestamp"
           timestamp_format: "unix_ms"
-          timestamp_tiemzone: "UTC"          
+          timestamp_timezone: "UTC"          
           object:
-            disable_prepend_keys: false
             tags: 
               - "tags.address"
               - "tags.host"
