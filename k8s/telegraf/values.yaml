@@ -192,6 +192,7 @@ config:
           - "metricscanonical"
         data_format: "json"
         json_name_key: "name"
+        json_query: "tags"
         tag_keys:
           - "address"
           - "host"
