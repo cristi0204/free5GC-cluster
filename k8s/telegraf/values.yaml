@@ -195,7 +195,9 @@ config:
           measurement_name_path: "name"
           timestamp_path: "timestamp"
           timestamp_format: "unix_ms"
-          timestamp_timezone: "UTC"          
+          timestamp_timezone: "UTC"
+          field:
+            path: "fields.cpu-usage"
           object:
             disable_prepend_keys: true
             path: "tags"
