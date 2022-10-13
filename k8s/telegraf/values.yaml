@@ -198,11 +198,7 @@ config:
           timestamp_tiemzone: "UTC"          
           object:
             disable_prepend_keys: true
-            tags:
-              - "tags.address"
-              - "tags.host"
-              - "tags.resource"
-              - "tags.event"            
+            tags: ["tags.address", "tags.host", "tags.resource", "tags.event"]
 #          timestamp_path: "timestamp"
 #          timestamp_format: "unix_ms"
 #          timestamp_tiemzone: "UTC"
