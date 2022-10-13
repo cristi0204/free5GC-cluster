@@ -1,0 +1,13 @@
+{
+    "fields": {
+        "kafka_consumergroup_members": 1
+    },
+    "name": "prometheus",
+    "tags": {
+        "address": "10.43.72.74",
+        "consumergroup": "telegraf_metrics_consumers",
+        "host": "telegraf-polling-service",
+        "url": "http://kafka-metrics.kafka.svc.cluster.local:9308/metrics"
+    },
+    "timestamp": 1665652800868
+}
