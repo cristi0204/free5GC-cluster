@@ -185,13 +185,27 @@ config:
         tag_keys:
           - "resource"
         #insecure_skip_verify: true
-     - prometheus:
-        monitor_kubernetes_pods: false
-        response_timeout: "5s"
-        metric_version: 2
-        kubernetes_services: 
-          - "http://kafka-metrics.kafka.svc.cluster.local:9308/metrics"
-        insecure_skip_verify: true         
+     - kafka_consumer:
+        brokers:
+          - "kafka.kafka.svc.cluster.local:9092"
+        topics: 
+          - "metricscanonical"
+        data_format: "json"
+        json_name_key: "name"
+        tag_keys:
+          - "tags.address"
+          - "tags.host"
+          - "tags.resource"
+          - "tags.event"
+        json_time_key: "timestamp"
+        json_time_format: "unix_ms"        
+#     - prometheus:
+#        monitor_kubernetes_pods: false
+#        response_timeout: "5s"
+#        metric_version: 2
+#        kubernetes_services: 
+#          - "http://kafka-metrics.kafka.svc.cluster.local:9308/metrics"
+#        insecure_skip_verify: true         
 
 
 metrics:
