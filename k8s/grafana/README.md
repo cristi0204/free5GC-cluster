@@ -5,7 +5,7 @@ helm template --dry-run --debug grafana-mda -n grafana-mda -f values.yaml helm/
 
 
 
-##Automatic Import of Dashboard using sidecar config 
+## Automatic Import of Dashboard using sidecar config 
 
 (source: How to add Grafana datasources, dashboards and users via cli using sidecar and configmaps? · Issue #336 · prometheus-community/helm-charts)
 
@@ -66,7 +66,7 @@ data:
       "gnetId": 16399
     }
 ```
-###Add Custom dashboards
+### Add Custom dashboards
 Create configmap for custom dashboards By using cli with yaml
 If you want to use cli, you should add annotations.
 
