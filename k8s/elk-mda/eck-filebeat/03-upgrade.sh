@@ -1,0 +1,1 @@
+helm upgrade --install --debug --namespace elastic-system elastic-filebeat ./helm -f values.yaml

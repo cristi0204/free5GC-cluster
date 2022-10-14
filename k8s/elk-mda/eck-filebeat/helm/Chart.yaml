@@ -1,0 +1,8 @@
+apiVersion: v2
+name: eck-filebeat
+description: A Helm chart to deploy Filebeat managed by the ECK Operator.
+kubeVersion: ">= 1.20.0-0"
+type: application
+version: 0.1.0
+sources:
+icon: https://helm.elastic.co/icons/kibana.png
