@@ -1,0 +1,11 @@
+{{- if .Values.configmap.enabled -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: filebeat-config
+  namespace: {{ .Release.Namespace }}
+  labels:
+    k8s-app: filebeat
+data:
+  filebeat.yml:  {{ toYaml .Values.configmap.filebeatYaml | nindent 4 }}
+{{- end }}

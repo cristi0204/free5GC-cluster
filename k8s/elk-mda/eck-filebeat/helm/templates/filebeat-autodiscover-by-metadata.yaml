@@ -1,7 +1,8 @@
-
+{{- if .Values.autodiscover.enabled -}}
 apiVersion: beat.k8s.elastic.co/v1beta1
 kind: Beat
 metadata:
-  name: {{ include "filebeat.fullname" . }}
+  name: filebeat
 spec:
-  {{- toYaml .Values.spec | nindent 2 }}
+  {{- toYaml .Values.autodiscover.spec | nindent 2 }}
+{{- end }}
