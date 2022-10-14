@@ -1,0 +1,855 @@
+{
+	"status": "success",
+	"isPartial": false,
+	"data": {
+		"resultType": "vector",
+		"result": [
+			{
+				"metric": {
+					"__name__": "prometheus_go_cgo_go_to_c_calls_calls_total"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_gc_cycles_automatic_gc_cycles_total"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_gc_cycles_forced_gc_cycles_total"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_gc_cycles_total_gc_cycles_total"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_gc_duration_seconds"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_gc_duration_seconds_count"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_gc_duration_seconds_sum"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_gc_heap_allocs_by_size_bytes_total_bucket"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_gc_heap_allocs_by_size_bytes_total_count"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_gc_heap_allocs_by_size_bytes_total_sum"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_gc_heap_allocs_bytes_total"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_gc_heap_allocs_objects_total"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_gc_heap_frees_by_size_bytes_total_bucket"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_gc_heap_frees_by_size_bytes_total_count"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_gc_heap_frees_by_size_bytes_total_sum"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_gc_heap_frees_bytes_total"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_gc_heap_frees_objects_total"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_gc_heap_goal_bytes"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_gc_heap_objects_objects"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_gc_heap_tiny_allocs_objects_total"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_gc_limiter_last_enabled_gc_cycle"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_gc_pauses_seconds_total_bucket"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_gc_pauses_seconds_total_count"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_gc_stack_starting_size_bytes"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_goroutines"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_info"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_memory_classes_heap_free_bytes"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_memory_classes_heap_objects_bytes"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_memory_classes_heap_released_bytes"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_memory_classes_heap_stacks_bytes"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_memory_classes_heap_unused_bytes"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_memory_classes_metadata_mcache_free_bytes"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_memory_classes_metadata_mcache_inuse_bytes"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_memory_classes_metadata_mspan_free_bytes"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_memory_classes_metadata_mspan_inuse_bytes"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_memory_classes_metadata_other_bytes"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_memory_classes_os_stacks_bytes"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_memory_classes_other_bytes"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_memory_classes_profiling_buckets_bytes"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_memory_classes_total_bytes"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_memstats_alloc_bytes"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_memstats_alloc_bytes_total"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_memstats_buck_hash_sys_bytes"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_memstats_frees_total"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_memstats_gc_cpu_fraction"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_memstats_gc_sys_bytes"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_memstats_heap_alloc_bytes"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_memstats_heap_idle_bytes"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_memstats_heap_inuse_bytes"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_memstats_heap_objects"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_memstats_heap_released_bytes"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_memstats_heap_sys_bytes"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_memstats_last_gc_time_seconds"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_memstats_lookups_total"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_memstats_mallocs_total"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_memstats_mcache_inuse_bytes"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_memstats_mcache_sys_bytes"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_memstats_mspan_inuse_bytes"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_memstats_mspan_sys_bytes"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_memstats_next_gc_bytes"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_memstats_other_sys_bytes"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_memstats_stack_inuse_bytes"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_memstats_stack_sys_bytes"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_memstats_sys_bytes"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_sched_gomaxprocs_threads"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_sched_goroutines_goroutines"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_sched_latencies_seconds_bucket"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_sched_latencies_seconds_count"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_go_threads"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_kafka_broker_info"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_kafka_brokers"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_kafka_consumergroup_current_offset"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_kafka_consumergroup_current_offset_sum"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_kafka_consumergroup_lag"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_kafka_consumergroup_lag_sum"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_kafka_consumergroup_members"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_kafka_exporter_build_info"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_kafka_topic_partition_current_offset"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_kafka_topic_partition_in_sync_replica"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_kafka_topic_partition_leader"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_kafka_topic_partition_leader_is_preferred"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_kafka_topic_partition_oldest_offset"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_kafka_topic_partition_replicas"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_kafka_topic_partition_under_replicated_partition"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_kafka_topic_partitions"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_process_cpu_seconds_total"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_process_max_fds"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_process_open_fds"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_process_resident_memory_bytes"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_process_start_time_seconds"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_process_virtual_memory_bytes"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_process_virtual_memory_max_bytes"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_promhttp_metric_handler_requests_in_flight"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			},
+			{
+				"metric": {
+					"__name__": "prometheus_promhttp_metric_handler_requests_total"
+				},
+				"value": [
+					1665491749,
+					"1"
+				]
+			}
+		]
+	}
+}

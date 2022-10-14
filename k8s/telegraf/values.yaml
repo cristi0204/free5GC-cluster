@@ -190,15 +190,22 @@ config:
           - "kafka.kafka.svc.cluster.local:9092"
         topics: 
           - "metricscanonical"
-        data_format: "json"
-        json_name_key: "name"
-        tag_keys:
-          - "address"
-          - "server"
-          - "resource"
-          - "event"
-        json_time_key: "timestamp"
-        json_time_format: "unix_ms"        
+        data_format: "json_v2"          
+        json_v2:
+          measurement_name_path: "name"
+          timestamp_path: "timestamp"
+          timestamp_format: "unix_ms"
+          timestamp_timezone: "UTC"
+          field:
+            path: "fields.cpu-usage"
+          object:
+            disable_prepend_keys: true
+            path: "tags"
+            tags: 
+              - "address"
+              - "server"
+              - "resource"
+              - "event"
 #     - prometheus:
 #        monitor_kubernetes_pods: false
 #        response_timeout: "5s"
