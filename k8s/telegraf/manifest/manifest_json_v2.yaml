@@ -1,0 +1,129 @@
+apiVersion: v1
+data:
+  telegraf.conf: |2
+
+    [agent]
+      collection_jitter = "0s"
+      debug = true
+      flush_interval = "10s"
+      flush_jitter = "0s"
+      hostname = "$HOSTNAME"
+      interval = "300s"
+      logfile = ""
+      metric_batch_size = 1000
+      metric_buffer_limit = 10000
+      omit_hostname = false
+      precision = ""
+      quiet = false
+      round_interval = true
+    [[processors.enum]]
+       [[processors.enum.mapping]]
+        dest = "status_code"
+        field = "status"
+        [processors.enum.mapping.value_mappings]
+            critical = 3
+            healthy = 1
+            problem = 2
+
+
+    [[outputs.influxdb_v2]]
+      content_encoding = "identity"
+      urls = [
+        "http://victoria-metrics-cluster-vminsert.victoriametrics.svc.cluster.local:8480/insert/0/influx"
+      ]
+
+    [[outputs.health]]
+      service_address = "http://:8888"
+      namepass = ["internal_write"]
+      [[outputs.health.compares]]
+        field = "buffer_size"
+        lt = 5000.0
+      [[outputs.health.contains]]
+        field = "buffer_size"
+    [[inputs.kafka_consumer]]
+      brokers = [
+        "kafka.kafka.svc.cluster.local:9092"
+      ]
+      data_format = "json"
+      json_name_key = "measurement"
+      tag_keys = [
+        "resource"
+      ]
+      topics = [
+        "metrics"
+      ]
+    [[inputs.kafka_consumer]]
+      brokers = [
+        "kafka.kafka.svc.cluster.local:9092"
+      ]
+      data_format = "json_v2"
+      topics = [
+        "metricscanonical"
+      ]
+      [[inputs.kafka_consumer.json_v2]]
+        measurement_name_path = "name"
+        timestamp_format = "unix_ms"
+        timestamp_path = "timestamp"
+        timestamp_timezone = "UTC"
+          [[inputs.kafka_consumer.json_v2.field]]
+            path = "fields.cpu-usage"
+          [[inputs.kafka_consumer.json_v2.object]]
+            disable_prepend_keys = "true"
+            path = "tags"
+            tags = ["address", "server", "resource", "event"]
+kind: ConfigMap
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","data":{"telegraf.conf":"\n[agent]\n  collection_jitter = \"0s\"\n  debug = true\n  flush_interval = \"10s\"\n  flush_jitter = \"0s\"\n  hostname = \"$HOSTNAME\"\n  interval = \"300s\"\n  logfile = \"\"\n  metric_batch_size = 1000\n  metric_buffer_limit = 10000\n  omit_hostname = false\n  precision = \"\"\n  quiet = false\n  round_interval = true\n[[processors.enum]]\n   [[processors.enum.mapping]]\n    dest = \"status_code\"\n    field = \"status\"\n    [processors.enum.mapping.value_mappings]\n        critical = 3\n        healthy = 1\n        problem = 2\n\n\n[[outputs.influxdb_v2]]\n  content_encoding = \"identity\"\n  urls = [\n    \"http://victoria-metrics-cluster-vminsert.victoriametrics.svc.cluster.local:8480/insert/0/influx\"\n  ]\n\n[[outputs.health]]\n  service_address = \"http://:8888\"\n  namepass = [\"internal_write\"]\n  [[outputs.health.compares]]\n    field = \"buffer_size\"\n    lt = 5000.0\n  [[outputs.health.contains]]\n    field = \"buffer_size\"\n[[inputs.kafka_consumer]]\n  brokers = [\n    \"kafka.kafka.svc.cluster.local:9092\"\n  ]\n  data_format = \"json\"\n  json_name_key = \"measurement\"\n  tag_keys = [\n    \"resource\"\n  ]\n  topics = [\n    \"metrics\"\n  ]\n[[inputs.kafka_consumer]]\n  brokers = [\n    \"kafka.kafka.svc.cluster.local:9092\"\n  ]\n  data_format = \"json_v2\"\n  topics = [\n    \"metricscanonical\"\n  ]\n  [inputs.kafka_consumer.json_v2]\n    measurement_name_path = \"name\"\n    timestamp_format = \"unix_ms\"\n    timestamp_path = \"timestamp\"\n    timestamp_timezone = \"UTC\"\n      [inputs.kafka_consumer.json_v2.field]\n        path = \"fields.cpu-usage\"\n      [inputs.kafka_consumer.json_v2.object]\n        disable_prepend_keys = \"true\"\n        path = \"tags\"\n        tags = \"[address server resource event]\"\n"},"kind":"ConfigMap","metadata":{"annotations":{},"labels":{"app.kubernetes.io/instance":"telegraf","app.kubernetes.io/managed-by":"Helm","app.kubernetes.io/name":"telegraf","argocd.argoproj.io/instance":"telegraf","helm.sh/chart":"telegraf-1.8.19"},"name":"telegraf","namespace":"victoriametrics-workload"}}
+    meta.helm.sh/release-name: telegraf
+    meta.helm.sh/release-namespace: victoriametrics-workload
+  creationTimestamp: "2022-09-13T10:08:10Z"
+  labels:
+    app.kubernetes.io/instance: telegraf
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: telegraf
+    argocd.argoproj.io/instance: telegraf
+    helm.sh/chart: telegraf-1.8.19
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          f:kubectl.kubernetes.io/last-applied-configuration: {}
+        f:labels:
+          f:argocd.argoproj.io/instance: {}
+    manager: argocd-application-controller
+    operation: Update
+    time: "2022-10-13T18:47:46Z"
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:data: {}
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:meta.helm.sh/release-name: {}
+          f:meta.helm.sh/release-namespace: {}
+        f:labels:
+          .: {}
+          f:app.kubernetes.io/instance: {}
+          f:app.kubernetes.io/managed-by: {}
+          f:app.kubernetes.io/name: {}
+          f:helm.sh/chart: {}
+    manager: helm
+    operation: Update
+    time: "2022-10-13T19:04:36Z"
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:data:
+        f:telegraf.conf: {}
+    manager: rancher
+    operation: Update
+    time: "2022-10-13T19:05:28Z"
+  name: telegraf
+  namespace: victoriametrics-workload
+  resourceVersion: "88746224"
+  uid: affabb92-d96f-47c8-9268-b0d87a76d497
