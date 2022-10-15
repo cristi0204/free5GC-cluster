@@ -1,0 +1,1 @@
+helm delete elastic-filebeat -n elastic-system
