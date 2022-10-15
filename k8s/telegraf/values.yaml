@@ -196,28 +196,48 @@ config:
           timestamp_path: "timestamp"
           timestamp_format: "unix_ms"
           timestamp_timezone: "UTC"
-          field:
-            path: "fields.cpu-usage"          
+# OK 1          
+#          field:
+#            path: "fields.cpu-usage"
+#          object:
+#            path: "tags"
+#            disable_prepend_keys: true
+#            tags:
+#              - "address" 
+#              - "server"
+#              - "resource"
+#              - "event"
+# OK 2
+#          object:
+#            path: "@this"
+#            disable_prepend_keys: true
+#            included_keys:
+#              - "fields_cpu-usage"
+#            tags:
+#              - "tags_address" 
+#              - "tags_server"
+#              - "tags_resource"
+#              - "tags_event"
+# OK 3
           object:
-            path: "tags"
+            path: "@this"
             disable_prepend_keys: true
+            excluded_keys:
+              - "fields_cpu-desc"
             tags:
-              - "address" 
-              - "server"
-              - "resource"
-              - "event"
-              
-#          timestamp_path: "timestamp"
-#          timestamp_format: "unix_ms"
-#          timestamp_tiemzone: "UTC"
-    - prometheus:
-        monitor_kubernetes_pods: false
-        response_timeout: "5s"
-        metric_version: 2
-        kubernetes_services: 
-          - "http://kafka-metrics.kafka.svc.cluster.local:9308/metrics"
-        insecure_skip_verify: true         
+              - "tags_address" 
+              - "tags_server"
+              - "tags_resource"
+              - "tags_event"
 
+
+#     - prometheus:
+#        monitor_kubernetes_pods: false
+#        response_timeout: "5s"
+#        metric_version: 2
+#        kubernetes_services: 
+#          - "http://kafka-metrics.kafka.svc.cluster.local:9308/metrics"
+#        insecure_skip_verify: true         
 
 metrics:
   health:

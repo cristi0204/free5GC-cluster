@@ -29,4 +29,4 @@ Data can be read with the following command:
 curl -G 'http://localhost:8481/select/0/prometheus/api/v1/export' -d 'match={__name__=~"usage_value.*",resource="cpu",host="telegraf-polling-service"}'
 
 Telegraf message format
-{"fields":{"cpu-usage":99},"name":"bluebox-system","tags":{"address":"1.2.3.4","server":"bluebox-server","resource":"CPU","event":"CPU overload"},"timestamp":1665688141000}
+{"fields":{"cpu-usage":91, "mem-usage":91, "cpu-desc":"description"},"name":"bluebox-system","tags":{"address":"1.2.3.4","server":"bluebox-server","resource":"CPU","event":"CPU overload"},"timestamp":1665861982998}

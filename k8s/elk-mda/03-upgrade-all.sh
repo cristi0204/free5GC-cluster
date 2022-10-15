@@ -4,3 +4,4 @@
 ./logstash/03-upgrade.sh
 ./eck-cr-operator/03-upgrade.sh
 ./eck-cr-resources/03-upgrade.sh
+./eck-filebeat/03-upgrade.sh
