@@ -734,9 +734,33 @@ aggregator:
         @type stdout
       </match>
 
-      # Send the logs to the standard output
-      <match **>
-        @type stdout
+      # Send the logs to kafka output
+      <match pattern>
+        @type kafka2
+
+        # list of seed brokers
+        brokers kafka-cluster-kafka-bootstrap-external-elastic:9092
+        use_event_time true
+
+        # buffer settings
+        <buffer logs>
+          @type file
+          path /var/log/td-agent/buffer/td
+          flush_interval 3s
+        </buffer>
+
+        # data type settings
+        <format>
+          @type json
+        </format>
+
+        # topic settings
+        topic_key logs
+        default_topic messages
+
+        # producer settings
+        required_acks -1
+        compression_codec gzip
       </match>
     metrics.conf: |
       # Prometheus Exporter Plugin
@@ -1255,7 +1279,7 @@ aggregator:
 metrics:
   ## @param metrics.enabled Enable the export of Prometheus metrics
   ##
-  enabled: false
+  enabled: true
   ## Prometheus Exporter service parameters
   ##
   service:
