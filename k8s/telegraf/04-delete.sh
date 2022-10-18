@@ -1,1 +1,1 @@
-helm delete telegraf -n victoriametrics-workload
+helm delete telegraf -n mda-self-monitoring

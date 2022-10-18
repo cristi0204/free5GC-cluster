@@ -1471,19 +1471,19 @@ provisioning:
         max.message.bytes: 64000
         flush.messages: 1
     - name: metrics
-      partitions: 5
+      partitions: 10
       replicationFactor: 2
       config:
         max.message.bytes: 64000
         flush.messages: 1
     - name: logstraps
-      partitions: 5
+      partitions: 10
       replicationFactor: 2
       config:
         max.message.bytes: 64000
         flush.messages: 1        
     - name: metricscanonical
-      partitions: 5
+      partitions: 10
       replicationFactor: 2
       config:
         max.message.bytes: 64000
