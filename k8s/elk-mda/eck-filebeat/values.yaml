@@ -133,7 +133,7 @@ configmap:
                   output.kafka:
                     # initial brokers for reading cluster metadata
                     #hosts: ["kafka1:9092", "kafka2:9092", "kafka3:9092"]
-                    hostd: [${KAFKA_HOST}]
+                    hosts: [${KAFKA_HOST}]
 
                     # message topic selection + partitioning
                     #this configuration uses a custom field, fields.log_topic, to set the topic for each event
