@@ -157,7 +157,6 @@ config:
         brokers:
           - "kafka.kafka.svc.cluster.local:9092"
         topic: "metricscanonical"
-        consumer_group: "telegraf_self_monitoring"
         data_format: "json"
         json_timestamp_units: "1ms"
 
