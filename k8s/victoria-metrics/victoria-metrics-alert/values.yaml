@@ -202,9 +202,9 @@ server:
   config:
     alerts:
       groups: 
-        - name: ResourceAlert
+        - name: CpuOverloadAlert
           rules:
-            - alert: CPU
+            - alert: CpuOverloadAlert
               expr: usage_value{resource="cpu"} > 77
               for: 0s
               labels:
@@ -215,7 +215,7 @@ server:
         - name: KafkaLagAlert
           rules:
             - alert: KafkaLagAlert
-              expr: prometheus_kafka_consumergroup_lag{topic="logs"} > 10
+              expr: prometheus_kafka_consumergroup_lag{topic="metricscanonical"} > 200
               for: 0s
               labels:
                 alertname: 'Lag on kafka topic is too high'
