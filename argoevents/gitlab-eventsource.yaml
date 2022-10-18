@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: EventSource
+metadata:
+  name: gitlab-webhook
+spec:
+  service:
+    ports:
+      - port: 12000
+        targetPort: 12000
+  gitlab:
+    example:
+      projects:
+        - "atosnet/cluster"
+        - "30675305"
+      webhook:
+        endpoint: /push
+        port: "12000"
+        method: POST
+        url: http://webhook-gitlab.berlindevops.com
+      events:
+        - PushEvents
+      accessToken:
+        key: token
+        name: gitlab-access
+      enableSSLVerification: false
+      gitlabBaseURL: https://gitlab.com
+      deleteHookOnFinish: true
