@@ -123,12 +123,28 @@ configmap:
                   cloud.id: ${ELASTIC_CLOUD_ID}
                   cloud.auth: ${ELASTIC_CLOUD_AUTH}
 
-                  output.elasticsearch:
-                    hosts: ['${ELASTICSEARCH_HOST:elasticsearch}:${ELASTICSEARCH_PORT:9200}']
-                    protocol: https
-                    ssl.verification_mode: "none"      
-                    username: ${ELASTICSEARCH_USERNAME}
-                    password: ${ELASTICSEARCH_PASSWORD}
+                  #output.elasticsearch:
+                  #  hosts: ['${ELASTICSEARCH_HOST:elasticsearch}:${ELASTICSEARCH_PORT:9200}']
+                  #  protocol: https
+                  #  ssl.verification_mode: "none"      
+                  #  username: ${ELASTICSEARCH_USERNAME}
+                  #  password: ${ELASTICSEARCH_PASSWORD}
+
+                  output.kafka:
+                    # initial brokers for reading cluster metadata
+                    #hosts: ["kafka1:9092", "kafka2:9092", "kafka3:9092"]
+                    hostd: [${KAFKA_HOST}]
+
+                    # message topic selection + partitioning
+                    #this configuration uses a custom field, fields.log_topic, to set the topic for each event
+                    #topic: '%{[fields.log_topic]}'
+                    topic: ${KAFKA_TOPIC}
+                    partition.round_robin:
+                      reachable_only: false
+
+                    required_acks: 1
+                    compression: none
+                    max_message_bytes: 1000000
 
 
 
@@ -158,6 +174,10 @@ daemonset:
             "-e",
           ]
           env:
+          - name: KAFKA_HOST
+            value: kafka-cluster-kafka-bootstrap-external-elastic:9092
+          - name: KAFKA_TOPIC
+            value: logs
           - name: ELASTICSEARCH_HOST
             value: elastic-eck-elasticsearch-es-http
           - name: ELASTICSEARCH_PORT
