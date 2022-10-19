@@ -1467,27 +1467,27 @@ provisioning:
     - name: logs
       partitions: 20
       replicationFactor: 2
-      config:
-        max.message.bytes: 10485880
-        flush.messages: 1
+#      config:
+#        max.message.bytes: 10485880
+#        flush.messages: 1
     - name: metrics
       partitions: 10
       replicationFactor: 2
-      config:
-        max.message.bytes: 10485880
-        flush.messages: 1
+#      config:
+#        max.message.bytes: 10485880
+#        flush.messages: 1
     - name: logstraps
       partitions: 10
       replicationFactor: 2
-      config:
-        max.message.bytes: 10485880
-        flush.messages: 1        
+#      config:
+#        max.message.bytes: 10485880
+#        flush.messages: 1        
     - name: metricscanonical
       partitions: 10
       replicationFactor: 2
-      config:
-        max.message.bytes: 10485880
-        flush.messages: 1        
+#      config:
+#        max.message.bytes: 10485880
+#        flush.messages: 1        
 
   ## @param provisioning.tolerations Tolerations for pod assignment
   ## Ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
