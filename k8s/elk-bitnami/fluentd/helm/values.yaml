@@ -743,11 +743,11 @@ aggregator:
         use_event_time true
 
         # buffer settings
-        #<buffer logs>
-        #  @type file
-        #  path /var/log/fluentd/buffer/td
-        #  flush_interval 3s
-        #</buffer>
+        <buffer logs>
+          @type file
+          path /var/log/td-agent/buffer/td
+          flush_interval 3s
+        </buffer>
 
         # data type settings
         <format>
