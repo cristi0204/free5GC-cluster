@@ -3,7 +3,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: filebeat-config
-  namespace: elastic-system
+  namespace: elastic-tests
   labels:
     k8s-app: filebeat
 data:
@@ -18,24 +18,25 @@ data:
             matchers:
             - logs_path:
                 logs_path: "/var/log/containers/"
-    setup.dashboards.enabled: true
-    setup.kibana.host: elastic-eck-kibana-kb-http:5601
-    setup.kibana.protocol: https
-    setup.kibana.ssl.enabled: true
-    setup.kibana.ssl.verification_mode: none
-    setup.kibana.username: elastic
-    setup.kibana.password: Y1luy7f0L0hTWcx4R56Cp377
+    
+    #setup.dashboards.enabled: true
+    #setup.kibana.host: elastic-eck-kibana-kb-http:5601
+    #setup.kibana.protocol: https
+    #setup.kibana.ssl.enabled: true
+    #setup.kibana.ssl.verification_mode: none
+    #setup.kibana.username: elastic
+    #setup.kibana.password: MYC2v8fw66j92VA8EG16HZl7
 
     # To enable hints based autodiscover, remove `filebeat.inputs` configuration and uncomment this:
-    #filebeat.autodiscover:
-    #  providers:
-    #    - type: kubernetes
-    #      node: ${NODE_NAME}
-    #      hints.enabled: true
-    #      hints.default_config:
-    #        type: container
-    #        paths:
-    #          - /var/log/containers/*${data.kubernetes.container.id}.log
+    filebeat.autodiscover:
+      providers:
+        - type: kubernetes
+          node: ${NODE_NAME}
+          hints.enabled: true
+          hints.default_config:
+            type: container
+            paths:
+              - /var/log/containers/*${data.kubernetes.container.id}.log
 
     processors:
       - add_cloud_metadata:
@@ -44,18 +45,31 @@ data:
     cloud.id: ${ELASTIC_CLOUD_ID}
     cloud.auth: ${ELASTIC_CLOUD_AUTH}
 
-    output.elasticsearch:
-      hosts: ['${ELASTICSEARCH_HOST:elasticsearch}:${ELASTICSEARCH_PORT:9200}']
-      protocol: https
-      ssl.verification_mode: "none"      
-      username: ${ELASTICSEARCH_USERNAME}
-      password: ${ELASTICSEARCH_PASSWORD}
+    output.kafka:
+      enabled: true
+      hosts: ["kafka.kafka.svc.cluster.local:9092"]
+      topic: "logs"
+      codec.json:
+        pretty: false
+      partition.round_robin:
+      reachable_only: false
+      required_acks: 1
+      max_message_bytes: 1000000
+      close_inactive: 50m        
+
+#    output.elasticsearch:
+#      hosts: ['${ELASTICSEARCH_HOST:elasticsearch}:${ELASTICSEARCH_PORT:9200}']
+#      protocol: https
+#      ssl.verification_mode: "none" 
+#      username: ${ELASTICSEARCH_USERNAME}
+#      password: ${ELASTICSEARCH_PASSWORD}
+
 ---
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: filebeat
-  namespace: elastic-system
+  namespace: elastic-tests
   labels:
     k8s-app: filebeat
 spec:
@@ -80,13 +94,14 @@ spec:
         ]
         env:
         - name: ELASTICSEARCH_HOST
-          value: elastic-eck-elasticsearch-es-http
+          #value: elastic-eck-elasticsearch-es-http
+          value: elk-cluster-es-http-external
         - name: ELASTICSEARCH_PORT
           value: "9200"
         - name: ELASTICSEARCH_USERNAME
           value: elastic
         - name: ELASTICSEARCH_PASSWORD
-          value: Y1luy7f0L0hTWcx4R56Cp377
+          value: MYC2v8fw66j92VA8EG16HZl7
         - name: ELASTIC_CLOUD_ID
           value:
         - name: ELASTIC_CLOUD_AUTH
@@ -143,7 +158,7 @@ metadata:
 subjects:
 - kind: ServiceAccount
   name: filebeat
-  namespace: elastic-system
+  namespace: elastic-tests
 roleRef:
   kind: ClusterRole
   name: filebeat
@@ -153,11 +168,11 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: filebeat
-  namespace: elastic-system
+  namespace: elastic-tests
 subjects:
   - kind: ServiceAccount
     name: filebeat
-    namespace: elastic-system
+    namespace: elastic-tests
 roleRef:
   kind: Role
   name: filebeat
@@ -167,11 +182,11 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: filebeat-kubeadm-config
-  namespace: elastic-system
+  namespace: elastic-tests
 subjects:
   - kind: ServiceAccount
     name: filebeat
-    namespace: elastic-system
+    namespace: elastic-tests
 roleRef:
   kind: Role
   name: filebeat-kubeadm-config
@@ -207,7 +222,7 @@ kind: Role
 metadata:
   name: filebeat
   # should be the namespace where filebeat is running
-  namespace: elastic-system
+  namespace: elastic-tests
   labels:
     k8s-app: filebeat
 rules:
@@ -221,7 +236,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: filebeat-kubeadm-config
-  namespace: elastic-system
+  namespace: elastic-tests
   labels:
     k8s-app: filebeat
 rules:
@@ -236,7 +251,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: filebeat
-  namespace: elastic-system
+  namespace: elastic-tests
   labels:
     k8s-app: filebeat
 ---
