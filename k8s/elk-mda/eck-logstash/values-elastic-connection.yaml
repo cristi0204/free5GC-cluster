@@ -11,7 +11,7 @@ logstashPipeline:
     input {
       kafka {
         codec => json
-        bootstrap_servers => "kafka-cluster-kafka-bootstrap-external-elastic:9092"
+        bootstrap_servers => "kafka.kafka.svc.cluster.local:9092"
         topics => ["logs"]
       }
     }
