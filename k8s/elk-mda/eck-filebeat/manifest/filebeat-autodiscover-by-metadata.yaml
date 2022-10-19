@@ -10,6 +10,11 @@ spec:
 #  kibanaRef:
 #    name: kibana
   config:
+    filebeat.outputs:
+    - type: kafka
+      hosts:
+      - kafka.kafka.svc.cluster.local:9092
+      topic: logs
     filebeat.autodiscover.providers:
     - node: ${NODE_NAME}
       type: kubernetes
