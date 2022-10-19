@@ -50,7 +50,7 @@ nodeSets:
       - ReadWriteOnce
       resources:
         requests:
-          storage: 10Gi
+          storage: 100Gi
       # Adjust to your storage class name
       #
       # storageClassName: local-storage
@@ -100,7 +100,7 @@ nodeSets:
       - ReadWriteOnce
       resources:
         requests:
-          storage: 20Gi
+          storage: 100Gi
       # Adjust to your storage class name
       #
       # storageClassName: local-storage
