@@ -395,7 +395,7 @@ forwarder:
     httpGet:
       path: /fluentd.healthcheck?json=%7B%22ping%22%3A+%22pong%22%7D
       port: http
-    initialDelaySeconds: 60
+    initialDelaySeconds: 90
     periodSeconds: 10
     timeoutSeconds: 5
     failureThreshold: 6
