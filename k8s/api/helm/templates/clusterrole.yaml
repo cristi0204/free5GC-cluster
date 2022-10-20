@@ -1,0 +1,27 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ include "api.fullname" . }}-role-cluster
+rules:
+  # Framework: posting the events about the handlers progress/errors.
+  - apiGroups: [""]
+    resources: [events]
+    verbs: [create]
+
+  # Application: 
+  - apiGroups: [batch, extensions]
+    resources: ["jobs","jobss/status"]
+    verbs: ["list", "watch", "get", "create", "patch"]
+
+  - apiGroups: [""]
+    resources: [ "pods","pods/status", "namespaces"]
+    verbs: ["get", "watch", "list", "patch"]
+
+  - apiGroups: [""]
+    resources: [ "namespaces"]
+    verbs: ["get", "watch", "list", "patch"]
+  
+  - apiGroups: [core.atos.net]
+    resources: ["microtasks","atosservices","serviceactions","microtasks/status","atosservices/status","serviceactions/status", "actionruns", "actionruns/status"]
+    verbs: ['*']
+  
