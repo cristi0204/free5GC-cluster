@@ -14,7 +14,11 @@ rules:
     verbs: ["list", "watch", "get", "create", "patch"]
 
   - apiGroups: [""]
-    resources: [ "pods","pods/status", "namespaces"]
+    resources: [ "pods","pods/status"]
+    verbs: ["get", "watch", "list", "patch"]
+
+  - apiGroups: [""]
+    resources: [ "namespaces"]
     verbs: ["get", "watch", "list", "patch"]
   
   - apiGroups: [core.atos.net]

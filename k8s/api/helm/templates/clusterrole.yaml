@@ -16,6 +16,10 @@ rules:
   - apiGroups: [""]
     resources: [ "pods","pods/status", "namespaces"]
     verbs: ["get", "watch", "list", "patch"]
+
+  - apiGroups: [""]
+    resources: [ "namespaces"]
+    verbs: ["get", "watch", "list", "patch"]
   
   - apiGroups: [core.atos.net]
     resources: ["microtasks","atosservices","serviceactions","microtasks/status","atosservices/status","serviceactions/status", "actionruns", "actionruns/status"]
