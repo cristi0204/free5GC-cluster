@@ -735,7 +735,7 @@ aggregator:
       </match>
 
       # Send the logs to kafka output
-      <match pattern>
+      <match **>
         @type kafka2
 
         # list of seed brokers
@@ -759,7 +759,7 @@ aggregator:
         default_topic messages
 
         # producer settings
-        required_acks -1
+        required_acks 1
         compression_codec gzip
       </match>
     metrics.conf: |

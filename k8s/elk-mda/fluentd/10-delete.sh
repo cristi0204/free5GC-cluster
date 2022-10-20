@@ -1,0 +1,1 @@
+helm delete fluentd -n elastic-system
