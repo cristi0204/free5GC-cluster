@@ -228,7 +228,7 @@ metrics:
     additionalLabels:
       release: prometheus-operator
     namespace: ""
-    namespaceSelector: {}
+    namespaceSelector: {"grafana", "victoriametrics-workload", "victoriametrics", "kafka", "alerta", "cmak"}
     ## metric relabel configs to apply to samples before ingestion.
     ##
     metricRelabelings: []
@@ -287,7 +287,8 @@ dashboards:
 
 ## Fluentd list of plugins to install
 ##
-plugins: []
+plugins: 
+  - fluent-plugin-kafka
 # - fluent-plugin-out-http
 
 ## Add fluentd config files from K8s configMaps
@@ -387,11 +388,11 @@ fileConfigs:
         use_event_time true
 
         # buffer settings
-        #<buffer logs>
-        #  @type file
-        #  path /var/log/fluentd/buffer/td
-        #  flush_interval 3s
-        #</buffer>
+        <buffer logs>
+          @type file
+          path /var/log/fluentd/buffer/td
+          flush_interval 3s
+        </buffer>
 
         # data type settings
         <format>
@@ -400,7 +401,7 @@ fileConfigs:
 
         # topic settings
         topic_key logs
-        default_topic messages
+        default_topic logs
 
         # producer settings
         required_acks 1
