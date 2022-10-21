@@ -13,7 +13,7 @@ cmak:
     jmxSsl: false
     pollConsumers: true
     filterConsumers: true
-    logkafkaEnabled: true
+    logkafkaEnabled: false
     activeOffsetCacheEnabled: true
     displaySizeEnabled: true
     tuning:
