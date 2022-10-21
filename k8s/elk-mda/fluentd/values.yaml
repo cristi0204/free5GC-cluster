@@ -287,7 +287,8 @@ dashboards:
 
 ## Fluentd list of plugins to install
 ##
-plugins: []
+plugins: 
+  - fluent-plugin-kafka 
 # - fluent-plugin-out-http
 
 ## Add fluentd config files from K8s configMaps
@@ -333,6 +334,36 @@ fileConfigs:
       <match kubernetes.var.log.containers.fluentd**>
         @type relabel
         @label @FLUENT_LOG
+      </match>
+
+      <match kubernetes.var.log.containers.**grafana**>
+        @type null
+        @id grafana
+      </match>
+
+      <match kubernetes.var.log.containers.**victoriametrics-workload**>
+        @type null
+        @id victoriametrics-workload
+      </match>
+
+      <match kubernetes.var.log.containers.**victoriametrics**>
+        @type null
+        @id victoriametrics
+      </match>
+
+      <match kubernetes.var.log.containers.**kafka**>
+        @type null
+        @id kafka
+      </match>
+
+      <match kubernetes.var.log.containers.**alerta**>
+        @type null
+        @id alerta
+      </match>
+
+      <match kubernetes.var.log.containers.**cmak**>
+        @type null
+        @id cmak
       </match>
 
       # <match kubernetes.var.log.containers.**_kube-system_**>
@@ -399,8 +430,8 @@ fileConfigs:
         </format>
 
         # topic settings
-        topic_key logs
-        default_topic messages
+        # topic_key logs
+        default_topic logs
 
         # producer settings
         required_acks 1
