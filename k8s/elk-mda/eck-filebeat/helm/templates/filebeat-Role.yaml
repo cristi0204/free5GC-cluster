@@ -5,7 +5,7 @@ metadata:
   name: filebeat-kubeadm-config
   namespace: {{ .Release.Namespace }}
   labels:
-    k8s-app: filebeat
+    k8s-app: {{ .Release.Name }}
 rules:
   - apiGroups: [""]
     resources:
@@ -21,7 +21,7 @@ metadata:
   # should be the namespace where filebeat is running
   namespace: {{ .Release.Namespace }}
   labels:
-    k8s-app: filebeat
+    k8s-app: {{ .Release.Name }}
 rules:
   - apiGroups:
       - coordination.k8s.io

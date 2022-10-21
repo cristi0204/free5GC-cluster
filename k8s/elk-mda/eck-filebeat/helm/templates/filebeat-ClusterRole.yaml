@@ -4,7 +4,7 @@ kind: ClusterRole
 metadata:
   name: filebeat
   labels:
-    k8s-app: filebeat
+    k8s-app: {{ .Release.Name }}
 rules:
 - apiGroups: [""] # "" indicates the core API group
   resources:

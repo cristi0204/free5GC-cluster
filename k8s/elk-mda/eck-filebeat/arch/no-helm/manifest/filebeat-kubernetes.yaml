@@ -25,7 +25,7 @@ data:
     #setup.kibana.ssl.enabled: true
     #setup.kibana.ssl.verification_mode: none
     #setup.kibana.username: elastic
-    #setup.kibana.password: MYC2v8fw66j92VA8EG16HZl7
+    #setup.kibana.password: S5p3XP1HXL1dURK6L58Z58y6
 
     # To enable hints based autodiscover, remove `filebeat.inputs` configuration and uncomment this:
     filebeat.autodiscover:
@@ -38,11 +38,35 @@ data:
             paths:
               - /var/log/containers/*${data.kubernetes.container.id}.log
           templates:
+          - condition.equals.kubernetes.namespace: grafana
+            config:
+            - paths: ["/var/log/containers/*${data.kubernetes.container.id}.log"]
+              type: container          
           - condition.equals.kubernetes.namespace: victoriametrics-workload
             config:
             - paths: ["/var/log/containers/*${data.kubernetes.container.id}.log"]
               type: container              
-
+          - condition.equals.kubernetes.namespace: victoriametrics
+            config:
+            - paths: ["/var/log/containers/*${data.kubernetes.container.id}.log"]
+              type: container
+          - condition.equals.kubernetes.namespace: kafka
+            config:
+            - paths: ["/var/log/containers/*${data.kubernetes.container.id}.log"]
+              type: container
+          - condition.equals.kubernetes.namespace: alerta
+            config:
+            - paths: ["/var/log/containers/*${data.kubernetes.container.id}.log"]
+              type: container
+          - condition.equals.kubernetes.namespace: cmak
+            config:
+            - paths: ["/var/log/containers/*${data.kubernetes.container.id}.log"]
+              type: container
+          - condition.equals.kubernetes.namespace: elastic-system
+            config:
+            - paths: ["/var/log/containers/*${data.kubernetes.container.id}.log"]
+              type: container
+              
     processors:
       - add_cloud_metadata:
       - add_host_metadata:
@@ -106,7 +130,7 @@ spec:
         - name: ELASTICSEARCH_USERNAME
           value: elastic
         - name: ELASTICSEARCH_PASSWORD
-          value: MYC2v8fw66j92VA8EG16HZl7
+          value: S5p3XP1HXL1dURK6L58Z58y6
         - name: ELASTIC_CLOUD_ID
           value:
         - name: ELASTIC_CLOUD_AUTH
