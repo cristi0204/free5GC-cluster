@@ -366,10 +366,15 @@ fileConfigs:
         @id cmak
       </match>
 
-      # <match kubernetes.var.log.containers.**_kube-system_**>
-      #   @type null
-      #   @id ignore_kube_system_logs
-      # </match>
+      <match kubernetes.var.log.containers.**_elastic_**>
+        @type null
+        @id ignore_elastic_logs
+      </match>
+
+      <match kubernetes.var.log.containers.**_kube-system_**>
+        @type null
+        @id ignore_kube_system_logs
+      </match>
 
       <filter kubernetes.**>
         @type kubernetes_metadata
