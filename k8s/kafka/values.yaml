@@ -720,7 +720,8 @@ service:
   headless:
     ## @param service.headless.annotations Annotations for the headless service.
     ##
-    annotations: {}
+    annotations:
+      service.alpha.kubernetes.io/tolerate-unready-endpoints: "true"
     ## @param service.headless.labels Labels for the headless service.
     ##
     labels: {}
