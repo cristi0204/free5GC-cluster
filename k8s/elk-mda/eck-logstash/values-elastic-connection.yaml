@@ -10,7 +10,6 @@ logstashConfig:
   log4j2.properties: |
     logger.elasticsearchoutput.name = logstash.outputs.elasticsearch
     logger.elasticsearchoutput.level = error
-    logger.logstash.outputs.elasticsearch = error
 
 logstashPipeline:
   uptime.conf: |
