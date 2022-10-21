@@ -1,7 +1,7 @@
 persistence:
   enabled: true
 
-replicas: 1
+replicas: 3
 
 logstashConfig:
   logstash.yml: |
