@@ -32,11 +32,16 @@ data:
       providers:
         - type: kubernetes
           node: ${NODE_NAME}
-          hints.enabled: true
+          hints.enabled: false
           hints.default_config:
             type: container
             paths:
               - /var/log/containers/*${data.kubernetes.container.id}.log
+          templates:
+          - condition.equals.kubernetes.namespace: victoriametrics-workload
+            config:
+            - paths: ["/var/log/containers/*${data.kubernetes.container.id}.log"]
+              type: container              
 
     processors:
       - add_cloud_metadata:

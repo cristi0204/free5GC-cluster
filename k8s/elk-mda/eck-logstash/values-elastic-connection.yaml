@@ -1,10 +1,15 @@
 persistence:
   enabled: true
 
+replicas: 1
+
 logstashConfig:
   logstash.yml: |
     http.host: 0.0.0.0
     xpack.monitoring.enabled: false
+  log4j2.properties: |
+    logger.elasticsearchoutput.name = logstash.outputs.elasticsearch
+    logger.elasticsearchoutput.level = error 
 
 logstashPipeline:
   uptime.conf: |
@@ -25,6 +30,11 @@ logstashPipeline:
         ssl_certificate_verification => false
         cacert => '/usr/share/logstash/config/certs/ca.crt'
       }
+      stdout {
+        codec => rubydebug {
+          metadata => false # This makes the logs to appear in console
+        }
+      }      
     }
 
 #cacert => '/usr/share/logstash/config/certs'
