@@ -915,7 +915,7 @@ persistence:
     - ReadWriteOnce
   ## @param persistence.size PVC Storage Request for Kafka data volume
   ##
-  size: 50Gi
+  size: 100Gi
   ## @param persistence.annotations Annotations for the PVC
   ##
   annotations: {}
@@ -952,7 +952,7 @@ logPersistence:
     - ReadWriteOnce
   ## @param logPersistence.size PVC Storage Request for Kafka logs volume
   ##
-  size: 50Gi
+  size: 100Gi
   ## @param logPersistence.annotations Annotations for the PVC
   ##
   annotations: {}
@@ -1718,7 +1718,7 @@ zookeeper:
     storageClass: ""
     accessModes:
       - ReadWriteOnce
-    size: 50Gi
+    size: 100Gi
 
 ## External Zookeeper Configuration
 ## All of these values are only used if `zookeeper.enabled=false`
