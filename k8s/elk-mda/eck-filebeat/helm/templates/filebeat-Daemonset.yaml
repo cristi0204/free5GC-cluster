@@ -3,10 +3,10 @@
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
-  name: filebeat
+  name: {{ .Release.Name }}
   namespace: {{ .Release.Namespace }}
   labels:
-    k8s-app: filebeat
+    k8s-app: {{ .Release.Name }}
 spec:
   {{- toYaml .Values.daemonset.spec | nindent 2 }}
 

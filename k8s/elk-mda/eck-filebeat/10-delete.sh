@@ -1,1 +1,1 @@
-kubectl delete -f manifest/filebeat-kubernetes.yaml -n elastic-system
+helm delete elastic-eck-filebeat -n elastic-workload

@@ -5,7 +5,7 @@ metadata:
   name: filebeat-config
   namespace: {{ .Release.Namespace }}
   labels:
-    k8s-app: filebeat
+    k8s-app: {{ .Release.Name }}
 data:
   filebeat.yml:  {{ toYaml .Values.configmap.filebeatYaml | nindent 4 }}
 {{- end }}

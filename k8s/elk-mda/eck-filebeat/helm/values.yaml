@@ -1,8 +1,5 @@
-
 autodiscover:
-
   enabled: true
-
   spec:
     type: filebeat
     version: 8.4.3
