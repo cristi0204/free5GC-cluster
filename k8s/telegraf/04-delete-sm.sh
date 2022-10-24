@@ -1,1 +1,1 @@
-helm delete telegraf -n self-monitoring-mda
+helm delete telegraf -n telegraf-sm
