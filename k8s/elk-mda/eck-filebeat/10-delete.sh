@@ -1,1 +1,1 @@
-helm delete elastic-eck-filebeat -n elastic-workload
+helm delete elastic-filebeat-sm -n elastic-filebeat-sm

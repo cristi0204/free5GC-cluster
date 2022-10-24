@@ -1,1 +1,1 @@
-helm delete fluentd -n fluentd-sm
+helm delete fluentd-sm -n fluentd-sm

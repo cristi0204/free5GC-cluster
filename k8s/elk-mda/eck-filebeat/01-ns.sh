@@ -1,1 +1,1 @@
-kubectl create ns elastic-workload
+kubectl create ns elastic-filebeat-sm

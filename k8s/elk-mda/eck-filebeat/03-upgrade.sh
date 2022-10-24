@@ -1,1 +1,1 @@
-helm upgrade --install --debug --namespace elastic-workload elastic-eck-filebeat ./helm -f values.yaml
+helm upgrade --install --debug --namespace elastic-filebeat-sm elastic-filebeat-sm ./helm -f values.yaml
