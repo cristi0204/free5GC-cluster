@@ -212,10 +212,20 @@ server:
                 severity: 'warning'
               annotations:
                 dashboard: ''
-        - name: KafkaLagAlert
+        - name: KafkaLagAlertForMetrics
           rules:
             - alert: KafkaLagAlert
-              expr: prometheus_kafka_consumergroup_lag{topic="metricscanonical"} > 200
+              expr: prometheus_kafka_consumergroup_lag{topic="metrics"} > 200
+              for: 0s
+              labels:
+                alertname: 'Lag on kafka topic is too high'
+                severity: 'warning'
+              annotations:
+                dashboard: ''                
+        - name: KafkaLagAlertForLogs
+          rules:
+            - alert: KafkaLagAlert
+              expr: prometheus_kafka_consumergroup_lag{topic="logs"} > 200
               for: 0s
               labels:
                 alertname: 'Lag on kafka topic is too high'

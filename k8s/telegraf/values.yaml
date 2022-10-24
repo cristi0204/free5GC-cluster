@@ -173,7 +173,7 @@ config:
         brokers:
           - "kafka.kafka.svc.cluster.local:9092"
         topics: 
-          - "metricscanonical"
+          - "metrics"
         data_format: "json_v2"          
         json_v2:
           measurement_name_path: "name"
