@@ -158,6 +158,7 @@ config:
           - "http://victoria-metrics-cluster-vminsert.victoriametrics.svc.cluster.local:8480/insert/0/influx"
         content_encoding: "identity"
             #database: "metrics"
+# Useful outputs for debuging reason
 #    - file:
 #        files:
 #          - "/tmp/metrics.out"
@@ -172,23 +173,6 @@ config:
         brokers:
           - "kafka.kafka.svc.cluster.local:9092"
         topics: 
-          - "metrics"
-        ##version: “2.0.0”
-        ##sasl_username: “(username)”
-        ##sasl_password: “(password)”
-        ##consumer_group: "test"
-        ##offset: "oldest"
-        ##max_message_len: 1000000
-        #data_format: "influx"
-        data_format: "json"
-        json_name_key: "measurement"
-        tag_keys:
-          - "resource"
-        #insecure_skip_verify: true
-    - kafka_consumer:
-        brokers:
-          - "kafka.kafka.svc.cluster.local:9092"
-        topics: 
           - "metricscanonical"
         data_format: "json_v2"          
         json_v2:
@@ -196,7 +180,23 @@ config:
           timestamp_path: "timestamp"
           timestamp_format: "unix_ms"
           timestamp_timezone: "UTC"
-# OK 1          
+# OK 1
+          object:
+            path: "@this"
+            disable_prepend_keys: true
+            excluded_keys:
+              - "fields_x"
+            tags:
+              - "tags_address" 
+              - "tags_host"
+              - "tags_url"
+              - "tags_version"
+              - "tags_topic"
+              - "tags_partition"
+              - "tags_consumergroup"
+              - "tags_quantile"
+              - "tags_le"
+# OK 2          
 #          field:
 #            path: "fields.cpu-usage"
 #          object:
@@ -207,7 +207,7 @@ config:
 #              - "server"
 #              - "resource"
 #              - "event"
-# OK 2
+# OK 3
 #          object:
 #            path: "@this"
 #            disable_prepend_keys: true
@@ -218,18 +218,25 @@ config:
 #              - "tags_server"
 #              - "tags_resource"
 #              - "tags_event"
-# OK 3
-          object:
-            path: "@this"
-            disable_prepend_keys: true
-            excluded_keys:
-              - "fields_cpu-desc"
-            tags:
-              - "tags_address" 
-              - "tags_server"
-              - "tags_resource"
-              - "tags_event"
 
+# json output format
+#    - kafka_consumer:
+#        brokers:
+#          - "kafka.kafka.svc.cluster.local:9092"
+#        topics: 
+#          - "metrics"
+#        ##version: “2.0.0”
+#        ##sasl_username: “(username)”
+#        ##sasl_password: “(password)”
+#        ##consumer_group: "test"
+#        ##offset: "oldest"
+#        ##max_message_len: 1000000
+#        #data_format: "influx"
+#        data_format: "json"
+#        json_name_key: "measurement"
+#        tag_keys:
+#          - "resource"
+#        #insecure_skip_verify: true
 
 #     - prometheus:
 #        monitor_kubernetes_pods: false

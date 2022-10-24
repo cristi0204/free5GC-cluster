@@ -346,6 +346,11 @@ fileConfigs:
         @id ignore_kube-system_logs
       </match>
 
+      <match kubernetes.var.log.containers.**-sm**>
+        @type null
+        @id ignore_-self-monitoring_logs
+      </match>      
+
       <filter kubernetes.**>
         @type kubernetes_metadata
         @id filter_kube_metadata
