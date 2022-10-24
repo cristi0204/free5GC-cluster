@@ -1,1 +1,1 @@
-helm delete telegraf -n telegraf-sm
+helm delete telegraf-sm -n telegraf-sm

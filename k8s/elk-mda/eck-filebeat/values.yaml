@@ -161,4 +161,4 @@ daemonset:
           hostPath:
             # When filebeat runs as non-root user, this directory needs to be writable by group (g+w).
             path: /var/lib/filebeat-data
-            type: DirectoryOrCreate
+            type: DirectoryOrCreateufferOverflowError error="buffer space has too many data" location="/fluentd/vendor/bundle/ruby/

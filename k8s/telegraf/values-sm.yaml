@@ -130,7 +130,7 @@ serviceAccount:
 ## ref: https://docs.influxdata.com/telegraf/v1.1/administration/configuration/
 config:
   agent:
-    interval: "60s"
+    interval: "300s"
     round_interval: true
     metric_batch_size: 1000
     metric_buffer_limit: 10000
