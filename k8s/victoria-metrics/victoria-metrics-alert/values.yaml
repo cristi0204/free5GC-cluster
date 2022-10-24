@@ -212,26 +212,46 @@ server:
                 severity: 'warning'
               annotations:
                 dashboard: ''
-        - name: KafkaLagAlertForMetrics
-          rules:
-            - alert: KafkaLagAlert
-              expr: prometheus_kafka_consumergroup_lag{topic="metrics"} > 200
-              for: 0s
+        #- name: KafkaLagAlertForMetrics
+        #  rules:
+        #    - alert: KafkaLagAlertForMetrics
+        #      expr: prometheus_kafka_consumergroup_lag{topic="metrics"} > 200
+        #      for: 0s
+        #      labels:
+        #        alertname: 'Lag on kafka topic is too high'
+        #        severity: 'warning'
+        #      annotations:
+        #        dashboard: ''                
+        #- name: KafkaLagAlertForLogs
+        #  rules:
+        #    - alert: KafkaLagAlertForLogs
+        #      expr: prometheus_kafka_consumergroup_lag{topic="logs"} > 200
+        #      for: 0s
+        #      labels:
+        #        alertname: 'Lag on kafka topic is too high'
+        #        severity: 'warning'
+        #      annotations:
+        #        dashboard: ''                
+        #- name: KafkaLagAlertForLogsSum
+        #  rules:
+        #    - alert: KafkaLagAlertForLogsSum
+        #      expr: prometheus_kafka_consumergroup_lag{topic="logs"} > 200
+        #      for: 0s
+        #      labels:
+        #        alertname: 'Lag on kafka topic is too high'
+        #        severity: 'warning'
+        #      annotations:
+        #        dashboard: ''   
+        - name: KafkaConsumersGroupLag
+          rules:                     
+            - alert: KafkaConsumersGroupLag
+              expr: sum(prometheus_kafka_consumergroup_lag) by (consumergroup) > 200
+              for: 1m
               labels:
-                alertname: 'Lag on kafka topic is too high'
-                severity: 'warning'
+                severity: critical
               annotations:
-                dashboard: ''                
-        - name: KafkaLagAlertForLogs
-          rules:
-            - alert: KafkaLagAlert
-              expr: prometheus_kafka_consumergroup_lag{topic="logs"} > 200
-              for: 0s
-              labels:
-                alertname: 'Lag on kafka topic is too high'
-                severity: 'warning'
-              annotations:
-                dashboard: ''                
+                summary: Kafka consumers group (instance {{ $labels.instance }})
+                description: "Kafka consumers group\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
 serviceMonitor:
   enabled: false

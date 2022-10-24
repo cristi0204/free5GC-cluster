@@ -130,7 +130,7 @@ serviceAccount:
 ## ref: https://docs.influxdata.com/telegraf/v1.1/administration/configuration/
 config:
   agent:
-    interval: "300s"
+    interval: "30s"
     round_interval: true
     metric_batch_size: 1000
     metric_buffer_limit: 10000
@@ -192,10 +192,11 @@ config:
               - "tags_url"
               - "tags_version"
               - "tags_topic"
-              - "tags_partition"
               - "tags_consumergroup"
               - "tags_quantile"
               - "tags_le"
+#              - "tags_partition"
+
 # OK 2          
 #          field:
 #            path: "fields.cpu-usage"
