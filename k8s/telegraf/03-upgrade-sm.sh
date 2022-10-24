@@ -1,0 +1,2 @@
+#helm upgrade --install --debug --namespace victoriametrics-workload --values=values.yaml telegraf helm/
+helm upgrade --install --debug --namespace self-monitoring-mda --values=values-sm.yaml telegraf helm/ --set tplVersion=2

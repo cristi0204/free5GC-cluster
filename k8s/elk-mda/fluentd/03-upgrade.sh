@@ -1,1 +1,0 @@
-helm upgrade --install --debug --namespace elastic-system fluentd ./helm -f values.yaml
