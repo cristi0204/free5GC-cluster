@@ -156,7 +156,7 @@ config:
     - kafka:
         brokers:
           - "kafka.kafka.svc.cluster.local:9092"
-        topic: "metricscanonical"
+        topic: "metrics"
         data_format: "json"
         json_timestamp_units: "1ms"
 
