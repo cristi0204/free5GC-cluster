@@ -246,16 +246,16 @@ dashboard:
           name: lens-sample
       filepath: dashboards/sample-dashboard.json
 
-    - name: "MDA-Fluentd-Lens-for-kubernetes.container_name"
+    - name: "mda-fluentd-lens-for-kubernetes-container-name"
       spacename:  default
       filepah: dashboards/MDA-Fluentd-Lens-container_name.json
 
 
-    - name: "MDA-Fluentd-Lens-for-kubernetes.pod_name"
+    - name: "mda-fluentd-lens-for-kubernetes-pod-name"
       spacename:  default
       filepah: dashboards/MDA-Fluentd-lens-pod_name.json
 
-    - name: "MDA-Filebeat-Lens-for-kubernetes.container.name"
+    - name: "mda-filebeat-lens-for-kubernetes-container-name"
       spacename:  default
       filepah: dashboards/MDA-Filebeat-Lens-container_name.json
 
