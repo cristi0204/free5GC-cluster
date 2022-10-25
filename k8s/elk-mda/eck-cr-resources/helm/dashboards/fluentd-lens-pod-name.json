@@ -1,0 +1,27 @@
+{
+	"attributes": {
+		"description": "",
+		"hits": 0,
+		"kibanaSavedObjectMeta": {
+			"searchSourceJSON": "{\"query\":{\"query\":\"\",\"language\":\"kuery\"},\"filter\":[]}"
+		},
+		"optionsJSON": "{\"useMargins\":true,\"syncColors\":false,\"syncTooltips\":false,\"hidePanelTitles\":false}",
+		"panelsJSON": "[{\"version\":\"8.4.1\",\"type\":\"lens\",\"gridData\":{\"x\":0,\"y\":0,\"w\":48,\"h\":20,\"i\":\"d8193d92-bf58-4bcb-be54-e3b5445e85d7\"},\"panelIndex\":\"d8193d92-bf58-4bcb-be54-e3b5445e85d7\",\"embeddableConfig\":{\"attributes\":{\"title\":\"[MDA][Fluentd]Lens for kubernetes.pod_name.keyword\",\"description\":\"\",\"visualizationType\":\"lnsPie\",\"type\":\"lens\",\"references\":[{\"type\":\"index-pattern\",\"id\":\"a4d07e64-1c19-407c-a281-96eeb9def3cd\",\"name\":\"indexpattern-datasource-layer-layer1\"}],\"state\":{\"visualization\":{\"shape\":\"donut\",\"layers\":[{\"layerId\":\"layer1\",\"groups\":[\"col1\"],\"metric\":\"col2\",\"numberDisplay\":\"percent\",\"categoryDisplay\":\"default\",\"legendDisplay\":\"default\",\"nestedLegend\":false,\"layerType\":\"data\"}]},\"query\":{\"language\":\"kuery\",\"query\":\"\"},\"filters\":[],\"datasourceStates\":{\"indexpattern\":{\"layers\":{\"layer1\":{\"columnOrder\":[\"col1\",\"col2\"],\"columns\":{\"col1\":{\"label\":\"Top values\",\"dataType\":\"string\",\"isBucketed\":true,\"operationType\":\"terms\",\"params\":{\"orderBy\":{\"type\":\"column\",\"columnId\":\"col2\"},\"size\":10,\"orderDirection\":\"desc\"},\"sourceField\":\"kubernetes.pod_name.keyword\"},\"col2\":{\"label\":\"Count\",\"dataType\":\"number\",\"isBucketed\":false,\"sourceField\":\"___records___\",\"operationType\":\"count\"}}}}}}}},\"enhancements\":{}}}]",
+		"timeRestore": false,
+		"title": "[MDA][Fluentd]Lens for kubernetes.pod_name",
+		"version": 1
+	},
+	"coreMigrationVersion": "8.4.1",
+	"id": "b3b6ffe0-5241-11ed-b78a-c7d840dd7e4e",
+	"migrationVersion": {
+		"dashboard": "8.4.0"
+	},
+	"references": [{
+		"id": "a4d07e64-1c19-407c-a281-96eeb9def3cd",
+		"name": "d8193d92-bf58-4bcb-be54-e3b5445e85d7:indexpattern-datasource-layer-layer1",
+		"type": "index-pattern"
+	}],
+	"type": "dashboard",
+	"updated_at": "2022-10-22T19:42:45.995Z",
+	"version": "Wzg5MDIsMV0="
+}
