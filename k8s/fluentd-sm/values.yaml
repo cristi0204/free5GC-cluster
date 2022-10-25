@@ -348,7 +348,7 @@ fileConfigs:
 
       <match kubernetes.var.log.containers.**-sm**>
         @type null
-        @id ignore_-self-monitoring_logs
+        @id ignore_self-monitoring_logs
       </match>      
 
       <filter kubernetes.**>
