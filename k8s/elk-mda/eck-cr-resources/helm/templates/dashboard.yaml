@@ -9,9 +9,10 @@ spec:
   space: {{ .spacename }}
   {{- with .dependencies }}
   dependencies:
-    {{- toYaml . | nindent 8 }}
+    {{- toYaml . | nindent 8 }}s
   {{- end }}
 
-  body: {{ .body | toJson }}
+  body: |-
+    {{- $.Files.Get (printf "%s" .filepath ) | nindent 6 -}}
 {{- end }}
 {{- end }}
