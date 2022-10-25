@@ -248,16 +248,16 @@ dashboard:
 
     - name: "mda-fluentd-lens-for-kubernetes-container-name"
       spacename:  default
-      filepah: dashboards/fluentd-lens-container-name.json
+      filepath: dashboards/fluentd-lens-container-name.json
 
 
     - name: "mda-fluentd-lens-for-kubernetes-pod-name"
       spacename:  default
-      filepah: dashboards/fluentd-lens-pod-name.json
+      filepath: dashboards/fluentd-lens-pod-name.json
 
     - name: "mda-filebeat-lens-for-kubernetes-container-name"
       spacename:  default
-      filepah: dashboards/filebeat-lens-container-name.json
+      filepath: dashboards/filebeat-lens-container-name.json
 
 
 role:
