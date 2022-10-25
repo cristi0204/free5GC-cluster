@@ -253,7 +253,7 @@ dashboard:
 
     - name: "MDA-Fluentd-Lens-for-kubernetes.pod_name"
       spacename:  default
-      filepah: dashboards/MDA-Fluentd-lens-pod_name
+      filepah: dashboards/MDA-Fluentd-lens-pod_name.json
 
     - name: "MDA-Filebeat-Lens-for-kubernetes.container.name"
       spacename:  default
