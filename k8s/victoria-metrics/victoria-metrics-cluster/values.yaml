@@ -25,7 +25,10 @@ vminsert:
       prometheus.io/port: "8480"
 
 vmstorage:
-
+  # -- Enable deployment of vmstorage component. StatefulSet is used
+  enabled: true
+  # -- vmstorage container name
+  name: vmstorage
   image:
     # -- Image repository
     repository: victoriametrics/vmstorage
@@ -33,7 +36,21 @@ vmstorage:
     tag: v1.80.0-cluster
     # -- Image pull policy
     pullPolicy: IfNotPresent
-    
+  # -- Name of Priority Class
+  priorityClassName: ""
+  # -- Overrides the full name of vmstorage component
+  fullnameOverride:
+  automountServiceAccountToken: true
+  # -- Additional environment variables (ex.: secret tokens, flags) https://github.com/VictoriaMetrics/VictoriaMetrics#environment-variables
+  env: []
+  # -- Data retention period. Supported values 1w, 1d, number without measurement means month, e.g. 2 = 2month
+  retentionPeriod: 2d
+  # Additional vmstorage container arguments. Extra command line arguments for vmstorage component
+  extraArgs:
+    envflag.enable: "true"
+    envflag.prefix: VM_
+    loggerFormat: json
+
   podAnnotations:
       prometheus.io/scrape: "true"
       prometheus.io/port: "8482"
