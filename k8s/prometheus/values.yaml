@@ -922,10 +922,10 @@ prometheus:
   probeNamespaceSelector: {}
   ## @param prometheus.retention Metrics retention days
   ##
-  retention: 10d
+  #retention: 10d
   ## @param prometheus.retentionSize Maximum size of metrics
   ##
-  retentionSize: ""
+  retentionSize: 14G
   ## @param prometheus.disableCompaction Disable the compaction of the Prometheus TSDB
   ## See https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/api.md#prometheusspec
   ## ref: https://prometheus.io/docs/prometheus/latest/storage/#compaction
