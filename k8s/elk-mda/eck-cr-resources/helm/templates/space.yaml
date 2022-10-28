@@ -6,6 +6,7 @@ kind: Space
 metadata:
   name: {{ .name }}
 spec:
-  body: {{ .body | toJson }}
+  body: |-
+    {{- $.Files.Get (printf "%s" .filepath ) | nindent 6 -}}
 {{- end }}
 {{- end }}

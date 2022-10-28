@@ -16,6 +16,7 @@ metadata:
   name: {{ .name }}
 spec:
   secretName: {{ .secretname }}
-  body: {{ .body | toJson }}
+  body: |-
+    {{- $.Files.Get (printf "%s" .filepath ) | nindent 6 -}}
 {{- end }}
 {{- end }}

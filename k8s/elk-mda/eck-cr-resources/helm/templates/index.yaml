@@ -10,6 +10,7 @@ spec:
   dependencies:
     {{- toYaml . | nindent 8 }}
   {{- end }}
-  body: {{ .body | toJson }}
+  body: |-
+    {{- $.Files.Get (printf "%s" .filepath ) | nindent 6 -}}
 {{- end }}
 {{- end }}
