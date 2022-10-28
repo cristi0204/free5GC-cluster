@@ -1,0 +1,19 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: kafka-external
+  namespace: kafka
+  labels:
+    app.kubernetes.io/component: kafka
+    app.kubernetes.io/instance: kafka
+    app.kubernetes.io/name: kafka
+spec:
+  type: ExternalName
+  #type: NodePort
+  externalName: kafka.kafka.svc.cluster.local
+  ports:
+  - port: 9092
+  selector:
+    app.kubernetes.io/component: kafka
+    app.kubernetes.io/instance: kafka
+    app.kubernetes.io/name: kafka  
