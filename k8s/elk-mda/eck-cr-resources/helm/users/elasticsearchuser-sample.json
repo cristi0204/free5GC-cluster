@@ -1,0 +1,8 @@
+{
+    "roles" : [ "kibana_admin", "elasticsearchrole-sample" ],
+    "full_name" : "Manual tester",
+    "email" : "manual.tester@gmail.com",
+    "metadata" : {
+      "intelligence" : 7
+    }
+  }

@@ -1,0 +1,12 @@
+{
+    "cluster": ["all"],
+    "indices": [
+      {
+        "names": [ "index-sample"],
+        "privileges": ["all"]
+      }
+    ],
+    "metadata" : {
+      "version" : 1
+    }
+}
