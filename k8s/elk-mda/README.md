@@ -1,24 +1,45 @@
+MDA component (elastic-system namespace)
+Kibana access: https://kibana.berlindevops.com/
+
 These Scripts can be used to deploy an elasticsearch-cluster.
 
-You can edit the values file for the operator/elasticsearch and kibana seperatly:
+A. Helm charts for Elastic Cloud for Kubernetes (version 2.4)
+1. eck-operator
+https://github.com/elastic/cloud-on-k8s/tree/2.4/deploy/eck-operator
 
-    values-eck-elasticsearch.yaml
-    values-eck-operator.yaml
-    values-eck-kibana.yaml
+2. eck-elasticsearch
+https://github.com/elastic/cloud-on-k8s/tree/2.4/deploy/eck-elasticsearch
 
-NOTE: values-eck-operator.yaml contains values for indexLifecyclePolicy and indexTemplate
+3. eck-kibana
+https://github.com/elastic/cloud-on-k8s/tree/2.4/deploy/eck-kibana
+
+Component 1,2,3 can be also installed using combined helm charts
+https://github.com/elastic/cloud-on-k8s/tree/2.4/deploy/eck-stack
+
+B. Helm charts from elastic, offically taged up to version 7.*.
+Helm charts currently updated to the version 8.4.1 but without repository tagging.
+4. eck-logstash
+https://github.com/elastic/helm-charts/tree/main/logstash
+
+C. Helm charts prepared by Atos, based on 
+https://raw.githubusercontent.com/elastic/beats/8.4/deploy/kubernetes/filebeat-kubernetes.yaml
+https://www.elastic.co/guide/en/beats/filebeat/current/running-on-kubernetes.html
+5. eck-filebeat
+
+D. Helm chart to install operator for creating custom resources in ELK stack 
+6. eck-cr-operator
+https://github.com/xco-sk/eck-custom-resources/tree/v0.4.0
+
+7. eck-cr-resources
+
+E. Metricbeat currently not used in the project. Helm charts not prepared.
+8. eck-metricbeat
+
+NOTE: eck-cr-resources/values.yaml contains values for indexLifecyclePolicy and indexTemplate
       These two are costume templates (idx-logs-policy.yaml/idx-logs-tmplt.yaml),
       which are used to configure IndexLifecyclePolicy and IndexTemplate for the elastic system.
 
-The Scripts can be used to install/upgrade/delete the whole elastic-stack:
-
-    03-upgrade-all.sh
-    10-delete-all.sh
-
-But they can also deployed/deleted seperatly (Scripts 11-\*.sh - 33-\*.sh).
-
 Note: The operator has to be deployed before elasticsearch and elasticsearch before kibana!
-
 
 cr operator (to create policies, templates ...) installed in version 0.4
 https://github.com/xco-sk/eck-custom-resources/tree/v0.4.0

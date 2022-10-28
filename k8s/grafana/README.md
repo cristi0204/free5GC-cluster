@@ -1,3 +1,7 @@
+MDA component (grafana namespace)
+Grafana access: https://grafana.berlindevops.com/
+
+
 https://github.com/grafana/helm-charts/tree/grafana-6.38.6/charts/grafana
 
 To test:

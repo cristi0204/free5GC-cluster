@@ -1,3 +1,10 @@
+MDA component.
+Available 2 instances:
+1. Gathers metrics from Kafka and stores in Victoriametrics (victoriametric-workload namespace)
+2. Can gather metrics from blue boxes (e.g. via data exporters) and store in Kafka. Currently used for Kafka self-monitoring (telegraf-sm namespace)
+
+Helm chart limition to generate proper config file of telegraf for json_v2 format.
+
 config.yaml template can't properly prepare telegraf.conf file for json_v2 format (data_format: "json_v2").
 Configuration of this format requires two square brackets in some places (see the comments below).
 So the generated file, stored in the config map should be corrected manualy.

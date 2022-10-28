@@ -13,6 +13,9 @@ indexLifecyclePolicy:
 indexTemplate:
   enabled: true
   templates:
+    - name: mda-logs-tmplt
+      filepath: indexTemplates/mda-logs-tmplt.json
+
     - name: indextemplate-sample
       filepath: indexTemplates/indextemplate-sample.json
 
