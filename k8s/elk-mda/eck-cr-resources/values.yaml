@@ -7,8 +7,8 @@ space:
 indexLifecyclePolicy:
   enabled: true
   policies:
-    - name: sample-policy
-      filepath: indexLifecyclePolicy/sample-policy.json
+    - name: mda-logs-policy
+      filepath: indexLifecyclePolicy/mda-logs-policy.json
 
 indexTemplate:
   enabled: true
