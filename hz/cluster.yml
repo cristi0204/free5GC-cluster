@@ -47,20 +47,20 @@ nodes:
     #ssh_cert_path: ""
     #labels: {}
     #taints: []
-  - address: 10.200.1.104
-    port: "22"
-    internal_address: ""
-    role:
-    - worker
-    hostname_override: ""
-    user: root
-    docker_socket: /var/run/docker.sock
-    ssh_key: ""
-    ssh_key_path: ~/.ssh/id_rsa_aos_hz_rke
-    ssh_cert: ""
-    ssh_cert_path: ""
-    labels: {}
-    taints: []
+    #- address: 10.200.1.104
+    #port: "22"
+    #internal_address: ""
+    #role:
+    #- worker
+    #hostname_override: ""
+    #user: root
+    #docker_socket: /var/run/docker.sock
+    #ssh_key: ""
+    #ssh_key_path: ~/.ssh/id_rsa_aos_hz_rke
+    #ssh_cert: ""
+    #ssh_cert_path: ""
+    #labels: {}
+    #taints: []
   - address: 10.200.1.105
     port: "22"
     internal_address: ""
@@ -77,20 +77,20 @@ nodes:
     ssh_cert_path: ""
     labels: {}
     taints: []
-  - address: 10.200.1.106
-    port: "22"
-    internal_address: ""
-    role:
-    - worker
-    hostname_override: ""
-    user: root
-    docker_socket: /var/run/docker.sock
-    ssh_key: ""
-    ssh_key_path: ~/.ssh/id_rsa_aos_hz_rke
-    ssh_cert: ""
-    ssh_cert_path: ""
-    labels: {}
-    taints: []
+    #- address: 10.200.1.106
+    #port: "22"
+    #internal_address: ""
+    #role:
+    #- worker
+    #hostname_override: ""
+    #user: root
+    #docker_socket: /var/run/docker.sock
+    #ssh_key: ""
+    #ssh_key_path: ~/.ssh/id_rsa_aos_hz_rke
+    #ssh_cert: ""
+    #ssh_cert_path: ""
+    #labels: {}
+    #taints: []
 services:
   etcd:
     image: ""
