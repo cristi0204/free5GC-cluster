@@ -302,114 +302,73 @@ configMapConfigs:
 fileConfigs:
   01_sources.conf: |-
     ## logs from podman
+    #<source>
+    #  @type tail
+    #  @id in_tail_container_logs
+    #  @label @KUBERNETES
+    #  path /var/log/containers/*.log
+    #  pos_file /var/log/fluentd-containers.log.pos
+    #  tag kubernetes.*
+    #  read_from_head true
+    #  <parse>
+    #    @type multi_format
+    #    <pattern>
+    #      format json
+    #      time_key time
+    #      time_type string
+    #      time_format "%Y-%m-%dT%H:%M:%S.%NZ"
+    #      keep_time_key false
+    #    </pattern>
+    #    <pattern>
+    #      format regexp
+    #      expression /^(?<time>.+) (?<stream>stdout|stderr)( (.))? (?<log>.*)$/
+    #      time_format '%Y-%m-%dT%H:%M:%S.%NZ'
+    #      keep_time_key false
+    #    </pattern>
+    #  </parse>
+    #  emit_unmatched_lines true
+    #</source>
+    #<source>
+    #  @type syslog
+    #  port 5140
+    #  bind 0.0.0.0
+    #  tag syslog.events
+    #  <transport tcp>
+    #  </transport>
+    #</source>    
     <source>
-      @type tail
-      @id in_tail_container_logs
-      @label @KUBERNETES
-      path /var/log/containers/*.log
-      pos_file /var/log/fluentd-containers.log.pos
-      tag kubernetes.*
-      read_from_head true
+      @type tcp
+      port 5170
+      bind 0.0.0.0
+      tag tcp.events
       <parse>
-        @type multi_format
-        <pattern>
-          format json
-          time_key time
-          time_type string
-          time_format "%Y-%m-%dT%H:%M:%S.%NZ"
-          keep_time_key false
-        </pattern>
-        <pattern>
-          format regexp
-          expression /^(?<time>.+) (?<stream>stdout|stderr)( (.))? (?<log>.*)$/
-          time_format '%Y-%m-%dT%H:%M:%S.%NZ'
-          keep_time_key false
-        </pattern>
+        @type grok
+        <grok>
+          pattern %{TIMESTAMP_ISO8601:datetime}.\[%{WORD:loglevel}\]\[%{WORD:function}\]\[%{WORD:module}\]%{GREEDYDATA:message}
+        </grok>        
+        <grok>
+          pattern \[%{TIMESTAMP_ISO8601}.%{WORD:milisec}\].\[%{WORD:module}\].\[%{WORD:loglevel}\]%{GREEDYDATA:message}
+        </grok>        
       </parse>
-      emit_unmatched_lines true
+      #@KUBERNETES
     </source>
 
   02_filters.conf: |-
-    <label @KUBERNETES>
-      <match kubernetes.var.log.containers.**fluentd**>
-        @type null
-        @id ignore_fluentd_logs
-      </match>
-
-      <match kubernetes.var.log.containers.**elastic-system**>
-        @type null
-        @id ignore_elastic-system_logs
-      </match>
-
-      <match kubernetes.var.log.containers.**_kube-system_**>
-        @type null
-        @id ignore_kube-system_logs
-      </match>
-
-      <match kubernetes.var.log.containers.**-sm**>
-        @type null
-        @id ignore_self-monitoring_logs
-      </match>      
-
-      <filter kubernetes.**>
-        @type kubernetes_metadata
-        @id filter_kube_metadata
-        skip_labels false
-        skip_container_metadata false
-        skip_namespace_metadata true
-        skip_master_url true
-      </filter>
-
-      #<filter kubernetes.**>
-      #  @type grep
-      #  <or>
-      #    <exclude>
-      #      key $.kubernetes.container_name
-      #      pattern ^elastic$ | ^fluentd$
-      #    </exclude>
-      #  </or>
-      #</filter>
-
-      <match kubernetes.var.log.containers.**grafana**>
-        @type relabel
-        @label @DISPATCH
-      </match>
-
-      <match kubernetes.var.log.containers.**victoriametrics**>
-        @type relabel
-        @label @DISPATCH
-      </match>
-
-      <match kubernetes.var.log.containers.**victoriametrics-workload**>
-        @type relabel
-        @label @DISPATCH
-      </match>
-
-      <match kubernetes.var.log.containers.**kafka**>
-        @type relabel
-        @label @DISPATCH
-      </match>
-
-      <match kubernetes.var.log.containers.**cmak**>
-        @type relabel
-        @label @DISPATCH
-      </match>
-      
-      <match kubernetes.var.log.containers.**telegraf**>
-        @type relabel
-        @label @DISPATCH
-      </match>
-
-      <match kubernetes.var.log.containers.**alerta**>
-        @type relabel
-        @label @DISPATCH
-      </match>
-
-      <match kubernetes.var.log.containers.**file-share**>
-        @type relabel
-        @label @DISPATCH
-      </match>      
-    </label>
+    <match tcp.events>
+      @type relabel
+      @label @DISPATCH
+    </match>      
+    #<match tcp.events>
+    #  @type relabel
+    #  @label @DISPATCH
+    #</match>      
+    #<label @KUBERNETES>
+    #
+    #  <match tcp.events>
+    #    @type relabel
+    #    @label @DISPATCH
+    #  </match>      
+    #</label>
 
   03_dispatch.conf: |-
     <label @DISPATCH>

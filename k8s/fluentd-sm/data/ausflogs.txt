@@ -1,0 +1,73 @@
+2022-10-19T11:26:59Z [INFO][AUSF][CFG] config version [1.0.2]
+2022-10-19T11:26:59Z [INFO][AUSF][Init] AUSF Log level is set to [info] level
+2022-10-19T11:26:59Z [INFO][AUSF][App] ausf
+2022-10-19T11:26:59Z [INFO][AUSF][App] AUSF version:
+        free5GC version: v3.2.0
+        build time:      2022-08-15T14:13:56Z
+        commit hash:     ee6a571a
+        commit time:     2022-05-02T15:25:07Z
+        go version:      go1.14.4 linux/amd64
+2022-10-19T11:26:59Z [INFO][AUSF][Init] Server started
+2022-10-19T11:26:59Z [INFO][AUSF][Init] ausfconfig Info: Version[1.0.2] Description[AUSF initial local configuration]
+ausf context =  &{{{0 0} {<nil>} map[] 0} {{0 0} {<nil>} map[] 0} 3fa9db26-477d-4502-9033-1e7c0decbc0a ausfGroup001 80 ausf-nausf 0.0.0.0 http://ausf-nausf:80 http http://nrf-nnrf:8000 map[nausf-auth:{3fa9db26-477d-4502-9033-1e7c0decbc0a nausf-auth 0xc0001e8be0 http REGISTERED   0xc0001e8bc0  [] <nil> [] [] <nil> 0 0 0 <nil> <nil> }] [{208 93} {123 45}]  0xc0000aedc0 false}
+2022-10-19T11:58:52Z [INFO][AUSF][UeAuthPost] HandleUeAuthPostRequest
+2022-10-19T11:58:52Z [INFO][AUSF][UeAuthPost] Serving network authorized
+2022-10-19T11:58:52Z [INFO][AUSF][UeAuthPost] 403 Forbidden
+2022-10-19T11:58:52Z [INFO][AUSF][GIN] | 500 |      10.42.0.97 | POST    | /nausf-auth/v1/ue-authentications |
+2022-10-19T11:59:17Z [INFO][AUSF][UeAuthPost] HandleUeAuthPostRequest
+2022-10-19T11:59:17Z [INFO][AUSF][UeAuthPost] Serving network authorized
+2022-10-19T11:59:17Z [INFO][AUSF][UeAuthPost] 403 Forbidden
+2022-10-19T11:59:17Z [INFO][AUSF][GIN] | 500 |      10.42.0.97 | POST    | /nausf-auth/v1/ue-authentications |
+2022-10-19T11:59:42Z [INFO][AUSF][UeAuthPost] HandleUeAuthPostRequest
+2022-10-19T11:59:42Z [INFO][AUSF][UeAuthPost] Serving network authorized
+2022-10-19T11:59:42Z [INFO][AUSF][UeAuthPost] 403 Forbidden
+2022-10-19T11:59:42Z [INFO][AUSF][GIN] | 500 |      10.42.0.97 | POST    | /nausf-auth/v1/ue-authentications |
+2022-10-19T12:00:07Z [INFO][AUSF][UeAuthPost] HandleUeAuthPostRequest
+2022-10-19T12:00:07Z [INFO][AUSF][UeAuthPost] Serving network authorized
+2022-10-19T12:00:07Z [INFO][AUSF][UeAuthPost] 403 Forbidden
+2022-10-19T12:00:07Z [INFO][AUSF][GIN] | 500 |      10.42.0.97 | POST    | /nausf-auth/v1/ue-authentications |
+2022-10-19T12:00:32Z [INFO][AUSF][UeAuthPost] HandleUeAuthPostRequest
+2022-10-19T12:00:32Z [INFO][AUSF][UeAuthPost] Serving network authorized
+2022-10-19T12:00:32Z [INFO][AUSF][UeAuthPost] 403 Forbidden
+2022-10-19T12:00:32Z [INFO][AUSF][GIN] | 500 |      10.42.0.97 | POST    | /nausf-auth/v1/ue-authentications |
+2022-10-19T12:12:48Z [INFO][AUSF][UeAuthPost] HandleUeAuthPostRequest
+2022-10-19T12:12:48Z [INFO][AUSF][UeAuthPost] Serving network authorized
+2022-10-19T12:12:48Z [INFO][AUSF][UeAuthPost] 403 Forbidden
+2022-10-19T12:12:48Z [INFO][AUSF][GIN] | 500 |      10.42.0.97 | POST    | /nausf-auth/v1/ue-authentications |
+2022-10-19T12:13:13Z [INFO][AUSF][UeAuthPost] HandleUeAuthPostRequest
+2022-10-19T12:13:13Z [INFO][AUSF][UeAuthPost] Serving network authorized
+2022-10-19T12:13:13Z [INFO][AUSF][UeAuthPost] 403 Forbidden
+2022-10-19T12:13:13Z [INFO][AUSF][GIN] | 500 |      10.42.0.97 | POST    | /nausf-auth/v1/ue-authentications |
+2022-10-19T12:13:38Z [INFO][AUSF][UeAuthPost] HandleUeAuthPostRequest
+2022-10-19T12:13:38Z [INFO][AUSF][UeAuthPost] Serving network authorized
+2022-10-19T12:13:38Z [INFO][AUSF][UeAuthPost] 403 Forbidden
+2022-10-19T12:13:38Z [INFO][AUSF][GIN] | 500 |      10.42.0.97 | POST    | /nausf-auth/v1/ue-authentications |
+2022-10-19T12:14:03Z [INFO][AUSF][UeAuthPost] HandleUeAuthPostRequest
+2022-10-19T12:14:03Z [INFO][AUSF][UeAuthPost] Serving network authorized
+2022-10-19T12:14:03Z [INFO][AUSF][UeAuthPost] 403 Forbidden
+2022-10-19T12:14:03Z [INFO][AUSF][GIN] | 500 |      10.42.0.97 | POST    | /nausf-auth/v1/ue-authentications |
+2022-10-19T12:14:28Z [INFO][AUSF][UeAuthPost] HandleUeAuthPostRequest
+2022-10-19T12:14:28Z [INFO][AUSF][UeAuthPost] Serving network authorized
+2022-10-19T12:14:28Z [INFO][AUSF][UeAuthPost] 403 Forbidden
+2022-10-19T12:14:28Z [INFO][AUSF][GIN] | 500 |      10.42.0.97 | POST    | /nausf-auth/v1/ue-authentications |
+2022-10-19T12:26:44Z [INFO][AUSF][UeAuthPost] HandleUeAuthPostRequest
+2022-10-19T12:26:44Z [INFO][AUSF][UeAuthPost] Serving network authorized
+2022-10-19T12:26:44Z [INFO][AUSF][UeAuthPost] Add SuciSupiPair (suci-0-208-93-0000-0-0-0000000003, imsi-208930000000003) to map.
+2022-10-19T12:26:44Z [INFO][AUSF][UeAuthPost] Use 5G AKA auth method
+2022-10-19T12:26:44Z [INFO][AUSF][5gAkaAuth] XresStar = 3231623537356635663133316433643331343761333834373561373561343862
+2022-10-19T12:26:44Z [INFO][AUSF][GIN] | 201 |      10.42.0.97 | POST    | /nausf-auth/v1/ue-authentications |
+2022-10-19T12:26:44Z [INFO][AUSF][UeAuthPost] HandleUeAuthPostRequest
+2022-10-19T12:26:44Z [INFO][AUSF][UeAuthPost] Serving network authorized
+2022-10-19T12:26:44Z [WARN][AUSF][UeAuthPost] Auts:  a4461a2074ef70abbb06b31be750
+2022-10-19T12:26:44Z [WARN][AUSF][UeAuthPost] imsi-208930000000003
+2022-10-19T12:26:44Z [WARN][AUSF][UeAuthPost] b12ca1d96c45d7f425b1a12b076d176d
+2022-10-19T12:26:44Z [WARN][AUSF][UeAuthPost] Rand:  b12ca1d96c45d7f425b1a12b076d176d
+2022-10-19T12:26:44Z [INFO][AUSF][UeAuthPost] Add SuciSupiPair (suci-0-208-93-0000-0-0-0000000003, imsi-208930000000003) to map.
+2022-10-19T12:26:44Z [INFO][AUSF][UeAuthPost] Use 5G AKA auth method
+2022-10-19T12:26:44Z [INFO][AUSF][5gAkaAuth] XresStar = 6363386535373632373438303237666435363365653633396235613433663763
+2022-10-19T12:26:44Z [INFO][AUSF][GIN] | 201 |      10.42.0.97 | POST    | /nausf-auth/v1/ue-authentications |
+2022-10-19T12:26:44Z [INFO][AUSF][5gAkaAuth] Auth5gAkaComfirmRequest
+2022-10-19T12:26:44Z [INFO][AUSF][5gAkaAuth] res*: 6363386535373632373438303237666435363365653633396235613433663763
+Xres*: 6363386535373632373438303237666435363365653633396235613433663763
+2022-10-19T12:26:44Z [INFO][AUSF][5gAkaAuth] 5G AKA confirmation succeeded
+2022-10-19T12:26:44Z [INFO][AUSF][GIN] | 200 |      10.42.0.97 | PUT     | /nausf-auth/v1/ue-authentications/suci-0-208-93-0000-0-0-0000000003/5g-aka-confirmation |

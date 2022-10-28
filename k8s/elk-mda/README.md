@@ -1,3 +1,6 @@
+MDA component (elastic-system namespace)
+Kibana access: https://kibana.berlindevops.com/
+
 These Scripts can be used to deploy an elasticsearch-cluster.
 
 A. Helm charts for Elastic Cloud for Kubernetes (version 2.4)

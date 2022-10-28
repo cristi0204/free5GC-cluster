@@ -1,0 +1,157 @@
+2022-10-19T11:27:00Z [INFO][AMF][CFG] config version [1.0.3]
+2022-10-19T11:27:00Z [INFO][AMF][Init] AMF Log level is set to [info] level
+2022-10-19T11:27:00Z [INFO][LIB][NAS] set log level : info
+2022-10-19T11:27:00Z [INFO][LIB][NAS] set report call : false
+2022-10-19T11:27:00Z [INFO][LIB][NGAP] set log level : info
+2022-10-19T11:27:00Z [INFO][LIB][NGAP] set report call : false
+2022-10-19T11:27:00Z [INFO][LIB][FSM] set log level : info
+2022-10-19T11:27:00Z [INFO][LIB][FSM] set report call : false
+2022-10-19T11:27:00Z [INFO][LIB][Aper] set log level : info
+2022-10-19T11:27:00Z [INFO][LIB][Aper] set report call : false
+2022-10-19T11:27:00Z [INFO][AMF][App] amf
+2022-10-19T11:27:00Z [INFO][AMF][App] AMF version:
+        free5GC version: v3.2.0
+        build time:      2022-08-15T14:13:37Z
+        commit hash:     a3bd5358
+        commit time:     2022-05-01T14:58:26Z
+        go version:      go1.14.4 linux/amd64
+2022-10-19T11:27:00Z [INFO][AMF][Init] Server started
+2022-10-19T11:27:00Z [INFO][AMF][Util] amfconfig Info: Version[1.0.3] Description[AMF initial local configuration]
+2022-10-19T11:27:00Z [INFO][AMF][NGAP] Listen on 10.100.50.249:38412
+2022-10-19T11:58:47Z [INFO][AMF][NGAP] [AMF] SCTP Accept from: 10.100.50.250:55565
+2022-10-19T11:58:47Z [INFO][AMF][NGAP] Create a new NG connection for: 10.100.50.250:55565
+2022-10-19T11:58:47Z [INFO][AMF][NGAP][10.100.50.250:55565] Handle NG Setup request
+2022-10-19T11:58:47Z [INFO][AMF][NGAP][10.100.50.250:55565] Send NG-Setup response
+2022-10-19T11:58:52Z [INFO][AMF][NGAP][10.100.50.250:55565] Handle Initial UE Message
+2022-10-19T11:58:52Z [INFO][LIB][FSM] Handle event[Gmm Message], transition from [Deregistered] to [Deregistered]
+2022-10-19T11:58:52Z [INFO][AMF][GMM][AMF_UE_NGAP_ID:1] Handle Registration Request
+2022-10-19T11:58:52Z [INFO][LIB][FSM] Handle event[Start Authentication], transition from [Deregistered] to [Authentication]
+2022-10-19T11:58:52Z [INFO][AMF][GMM][AMF_UE_NGAP_ID:1] Authentication procedure
+2022-10-19T11:58:52Z [ERRO][AMF][GMM][AMF_UE_NGAP_ID:1] Nausf_UEAU Authenticate Request Failed: &{Type: Title: Status:500 Detail: Instance: Cause:AV_GENERATION_PROBLEM InvalidParams:[]}
+2022-10-19T11:59:17Z [INFO][AMF][NGAP][10.100.50.250:55565] Handle Initial UE Message
+2022-10-19T11:59:17Z [INFO][LIB][FSM] Handle event[Gmm Message], transition from [Deregistered] to [Deregistered]
+2022-10-19T11:59:17Z [INFO][AMF][GMM][AMF_UE_NGAP_ID:2] Handle Registration Request
+2022-10-19T11:59:17Z [INFO][LIB][FSM] Handle event[Start Authentication], transition from [Deregistered] to [Authentication]
+2022-10-19T11:59:17Z [INFO][AMF][GMM][AMF_UE_NGAP_ID:2] Authentication procedure
+2022-10-19T11:59:17Z [ERRO][AMF][GMM][AMF_UE_NGAP_ID:2] Nausf_UEAU Authenticate Request Failed: &{Type: Title: Status:500 Detail: Instance: Cause:AV_GENERATION_PROBLEM InvalidParams:[]}
+2022-10-19T11:59:42Z [INFO][AMF][NGAP][10.100.50.250:55565] Handle Initial UE Message
+2022-10-19T11:59:42Z [INFO][LIB][FSM] Handle event[Gmm Message], transition from [Deregistered] to [Deregistered]
+2022-10-19T11:59:42Z [INFO][AMF][GMM][AMF_UE_NGAP_ID:3] Handle Registration Request
+2022-10-19T11:59:42Z [INFO][LIB][FSM] Handle event[Start Authentication], transition from [Deregistered] to [Authentication]
+2022-10-19T11:59:42Z [INFO][AMF][GMM][AMF_UE_NGAP_ID:3] Authentication procedure
+2022-10-19T11:59:42Z [ERRO][AMF][GMM][AMF_UE_NGAP_ID:3] Nausf_UEAU Authenticate Request Failed: &{Type: Title: Status:500 Detail: Instance: Cause:AV_GENERATION_PROBLEM InvalidParams:[]}
+2022-10-19T11:59:54Z [INFO][AMF][Producer] [OAM] Handle Registered UE Context
+2022-10-19T11:59:54Z [INFO][AMF][GIN] | 200 |      10.42.0.95 | GET     | /namf-oam/v1/registered-ue-context |
+2022-10-19T11:59:57Z [INFO][AMF][Producer] [OAM] Handle Registered UE Context
+2022-10-19T11:59:57Z [INFO][AMF][GIN] | 200 |      10.42.0.95 | GET     | /namf-oam/v1/registered-ue-context |
+2022-10-19T12:00:07Z [INFO][AMF][NGAP][10.100.50.250:55565] Handle Initial UE Message
+2022-10-19T12:00:07Z [INFO][LIB][FSM] Handle event[Gmm Message], transition from [Deregistered] to [Deregistered]
+2022-10-19T12:00:07Z [INFO][AMF][GMM][AMF_UE_NGAP_ID:4] Handle Registration Request
+2022-10-19T12:00:07Z [INFO][LIB][FSM] Handle event[Start Authentication], transition from [Deregistered] to [Authentication]
+2022-10-19T12:00:07Z [INFO][AMF][GMM][AMF_UE_NGAP_ID:4] Authentication procedure
+2022-10-19T12:00:07Z [ERRO][AMF][GMM][AMF_UE_NGAP_ID:4] Nausf_UEAU Authenticate Request Failed: &{Type: Title: Status:500 Detail: Instance: Cause:AV_GENERATION_PROBLEM InvalidParams:[]}
+2022-10-19T12:00:12Z [INFO][AMF][Producer] [OAM] Handle Registered UE Context
+2022-10-19T12:00:12Z [INFO][AMF][GIN] | 200 |      10.42.0.95 | GET     | /namf-oam/v1/registered-ue-context |
+2022-10-19T12:00:32Z [INFO][AMF][NGAP][10.100.50.250:55565] Handle Initial UE Message
+2022-10-19T12:00:32Z [INFO][LIB][FSM] Handle event[Gmm Message], transition from [Deregistered] to [Deregistered]
+2022-10-19T12:00:32Z [INFO][AMF][GMM][AMF_UE_NGAP_ID:5] Handle Registration Request
+2022-10-19T12:00:32Z [INFO][LIB][FSM] Handle event[Start Authentication], transition from [Deregistered] to [Authentication]
+2022-10-19T12:00:32Z [INFO][AMF][GMM][AMF_UE_NGAP_ID:5] Authentication procedure
+2022-10-19T12:00:32Z [ERRO][AMF][GMM][AMF_UE_NGAP_ID:5] Nausf_UEAU Authenticate Request Failed: &{Type: Title: Status:500 Detail: Instance: Cause:AV_GENERATION_PROBLEM InvalidParams:[]}
+2022-10-19T12:12:48Z [INFO][AMF][NGAP][10.100.50.250:55565] Handle Initial UE Message
+2022-10-19T12:12:48Z [INFO][LIB][FSM] Handle event[Gmm Message], transition from [Deregistered] to [Deregistered]
+2022-10-19T12:12:48Z [INFO][AMF][GMM][AMF_UE_NGAP_ID:6] Handle Registration Request
+2022-10-19T12:12:48Z [INFO][LIB][FSM] Handle event[Start Authentication], transition from [Deregistered] to [Authentication]
+2022-10-19T12:12:48Z [INFO][AMF][GMM][AMF_UE_NGAP_ID:6] Authentication procedure
+2022-10-19T12:12:48Z [ERRO][AMF][GMM][AMF_UE_NGAP_ID:6] Nausf_UEAU Authenticate Request Failed: &{Type: Title: Status:500 Detail: Instance: Cause:AV_GENERATION_PROBLEM InvalidParams:[]}
+2022-10-19T12:13:13Z [INFO][AMF][NGAP][10.100.50.250:55565] Handle Initial UE Message
+2022-10-19T12:13:13Z [INFO][LIB][FSM] Handle event[Gmm Message], transition from [Deregistered] to [Deregistered]
+2022-10-19T12:13:13Z [INFO][AMF][GMM][AMF_UE_NGAP_ID:7] Handle Registration Request
+2022-10-19T12:13:13Z [INFO][LIB][FSM] Handle event[Start Authentication], transition from [Deregistered] to [Authentication]
+2022-10-19T12:13:13Z [INFO][AMF][GMM][AMF_UE_NGAP_ID:7] Authentication procedure
+2022-10-19T12:13:13Z [ERRO][AMF][GMM][AMF_UE_NGAP_ID:7] Nausf_UEAU Authenticate Request Failed: &{Type: Title: Status:500 Detail: Instance: Cause:AV_GENERATION_PROBLEM InvalidParams:[]}
+2022-10-19T12:13:38Z [INFO][AMF][NGAP][10.100.50.250:55565] Handle Initial UE Message
+2022-10-19T12:13:38Z [INFO][LIB][FSM] Handle event[Gmm Message], transition from [Deregistered] to [Deregistered]
+2022-10-19T12:13:38Z [INFO][AMF][GMM][AMF_UE_NGAP_ID:8] Handle Registration Request
+2022-10-19T12:13:38Z [INFO][LIB][FSM] Handle event[Start Authentication], transition from [Deregistered] to [Authentication]
+2022-10-19T12:13:38Z [INFO][AMF][GMM][AMF_UE_NGAP_ID:8] Authentication procedure
+2022-10-19T12:13:38Z [ERRO][AMF][GMM][AMF_UE_NGAP_ID:8] Nausf_UEAU Authenticate Request Failed: &{Type: Title: Status:500 Detail: Instance: Cause:AV_GENERATION_PROBLEM InvalidParams:[]}
+2022-10-19T12:14:03Z [INFO][AMF][NGAP][10.100.50.250:55565] Handle Initial UE Message
+2022-10-19T12:14:03Z [INFO][LIB][FSM] Handle event[Gmm Message], transition from [Deregistered] to [Deregistered]
+2022-10-19T12:14:03Z [INFO][AMF][GMM][AMF_UE_NGAP_ID:9] Handle Registration Request
+2022-10-19T12:14:03Z [INFO][LIB][FSM] Handle event[Start Authentication], transition from [Deregistered] to [Authentication]
+2022-10-19T12:14:03Z [INFO][AMF][GMM][AMF_UE_NGAP_ID:9] Authentication procedure
+2022-10-19T12:14:03Z [ERRO][AMF][GMM][AMF_UE_NGAP_ID:9] Nausf_UEAU Authenticate Request Failed: &{Type: Title: Status:500 Detail: Instance: Cause:AV_GENERATION_PROBLEM InvalidParams:[]}
+2022-10-19T12:14:28Z [INFO][AMF][NGAP][10.100.50.250:55565] Handle Initial UE Message
+2022-10-19T12:14:28Z [INFO][LIB][FSM] Handle event[Gmm Message], transition from [Deregistered] to [Deregistered]
+2022-10-19T12:14:28Z [INFO][AMF][GMM][AMF_UE_NGAP_ID:10] Handle Registration Request
+2022-10-19T12:14:28Z [INFO][LIB][FSM] Handle event[Start Authentication], transition from [Deregistered] to [Authentication]
+2022-10-19T12:14:28Z [INFO][AMF][GMM][AMF_UE_NGAP_ID:10] Authentication procedure
+2022-10-19T12:14:28Z [ERRO][AMF][GMM][AMF_UE_NGAP_ID:10] Nausf_UEAU Authenticate Request Failed: &{Type: Title: Status:500 Detail: Instance: Cause:AV_GENERATION_PROBLEM InvalidParams:[]}
+2022-10-19T12:14:43Z [INFO][AMF][Producer] [OAM] Handle Registered UE Context
+2022-10-19T12:14:43Z [INFO][AMF][GIN] | 200 |      10.42.0.95 | GET     | /namf-oam/v1/registered-ue-context |
+2022-10-19T12:22:08Z [INFO][AMF][Producer] [OAM] Handle Registered UE Context
+2022-10-19T12:22:08Z [INFO][AMF][GIN] | 200 |      10.42.0.95 | GET     | /namf-oam/v1/registered-ue-context |
+2022-10-19T12:22:19Z [INFO][AMF][Producer] [OAM] Handle Registered UE Context
+2022-10-19T12:22:19Z [INFO][AMF][GIN] | 200 |      10.42.0.95 | GET     | /namf-oam/v1/registered-ue-context |
+2022-10-19T12:22:31Z [INFO][AMF][Producer] [OAM] Handle Registered UE Context
+2022-10-19T12:22:31Z [INFO][AMF][GIN] | 200 |      10.42.0.95 | GET     | /namf-oam/v1/registered-ue-context |
+2022-10-19T12:24:31Z [INFO][AMF][Producer] [OAM] Handle Registered UE Context
+2022-10-19T12:24:31Z [INFO][AMF][GIN] | 200 |      10.42.0.95 | GET     | /namf-oam/v1/registered-ue-context |
+2022-10-19T12:26:44Z [INFO][AMF][NGAP][10.100.50.250:55565] Handle Initial UE Message
+2022-10-19T12:26:44Z [INFO][LIB][FSM] Handle event[Gmm Message], transition from [Deregistered] to [Deregistered]
+2022-10-19T12:26:44Z [INFO][AMF][GMM][AMF_UE_NGAP_ID:11] Handle Registration Request
+2022-10-19T12:26:44Z [INFO][LIB][FSM] Handle event[Start Authentication], transition from [Deregistered] to [Authentication]
+2022-10-19T12:26:44Z [INFO][AMF][GMM][AMF_UE_NGAP_ID:11] Authentication procedure
+2022-10-19T12:26:44Z [INFO][AMF][GMM][AMF_UE_NGAP_ID:11] Send Authentication Request
+2022-10-19T12:26:44Z [INFO][AMF][NGAP][10.100.50.250:55565][AMF_UE_NGAP_ID:11] Send Downlink Nas Transport
+2022-10-19T12:26:44Z [INFO][AMF][NGAP][10.100.50.250:55565][AMF_UE_NGAP_ID:11] Uplink NAS Transport (RAN UE NGAP ID: 11)
+2022-10-19T12:26:44Z [INFO][LIB][FSM] Handle event[Gmm Message], transition from [Authentication] to [Authentication]
+2022-10-19T12:26:44Z [INFO][AMF][GMM][AMF_UE_NGAP_ID:11] Handle Authentication Failure
+2022-10-19T12:26:44Z [WARN][AMF][GMM][AMF_UE_NGAP_ID:11] Authentication Failure 5GMM Cause: Synch Failure
+2022-10-19T12:26:44Z [INFO][AMF][GMM][AMF_UE_NGAP_ID:11] Send Authentication Request
+2022-10-19T12:26:44Z [INFO][AMF][NGAP][10.100.50.250:55565][AMF_UE_NGAP_ID:11] Send Downlink Nas Transport
+2022-10-19T12:26:44Z [INFO][AMF][NGAP][10.100.50.250:55565][AMF_UE_NGAP_ID:11] Uplink NAS Transport (RAN UE NGAP ID: 11)
+2022-10-19T12:26:44Z [INFO][LIB][FSM] Handle event[Gmm Message], transition from [Authentication] to [Authentication]
+2022-10-19T12:26:44Z [INFO][AMF][GMM][AMF_UE_NGAP_ID:11] Handle Authentication Response
+2022-10-19T12:26:44Z [INFO][LIB][FSM] Handle event[Authentication Success], transition from [Authentication] to [SecurityMode]
+2022-10-19T12:26:44Z [INFO][AMF][GMM][AMF_UE_NGAP_ID:11][SUPI:imsi-208930000000003] Send Security Mode Command
+2022-10-19T12:26:44Z [INFO][AMF][NGAP][10.100.50.250:55565][AMF_UE_NGAP_ID:11] Send Downlink Nas Transport
+2022-10-19T12:26:44Z [INFO][AMF][NGAP][10.100.50.250:55565][AMF_UE_NGAP_ID:11] Uplink NAS Transport (RAN UE NGAP ID: 11)
+2022-10-19T12:26:44Z [INFO][LIB][FSM] Handle event[Gmm Message], transition from [SecurityMode] to [SecurityMode]
+2022-10-19T12:26:44Z [INFO][AMF][GMM][AMF_UE_NGAP_ID:11][SUPI:imsi-208930000000003] Handle Security Mode Complete
+2022-10-19T12:26:44Z [INFO][LIB][FSM] Handle event[SecurityMode Success], transition from [SecurityMode] to [ContextSetup]
+2022-10-19T12:26:44Z [INFO][AMF][GMM][AMF_UE_NGAP_ID:11][SUPI:imsi-208930000000003] Handle InitialRegistration
+2022-10-19T12:26:44Z [INFO][AMF][GMM][AMF_UE_NGAP_ID:11][SUPI:imsi-208930000000003] RequestedNssai - ServingSnssai: &{Sst:1 Sd:010203}, HomeSnssai: <nil>
+2022-10-19T12:26:45Z [INFO][AMF][GMM][AMF_UE_NGAP_ID:11][SUPI:imsi-208930000000003] Send Registration Accept
+2022-10-19T12:26:45Z [INFO][AMF][NGAP][10.100.50.250:55565][AMF_UE_NGAP_ID:11] Send Initial Context Setup Request
+2022-10-19T12:26:45Z [INFO][AMF][NGAP][10.100.50.250:55565][AMF_UE_NGAP_ID:11] Handle Initial Context Setup Response
+2022-10-19T12:26:45Z [INFO][AMF][NGAP][10.100.50.250:55565][AMF_UE_NGAP_ID:11] Uplink NAS Transport (RAN UE NGAP ID: 11)
+2022-10-19T12:26:45Z [INFO][LIB][FSM] Handle event[Gmm Message], transition from [ContextSetup] to [ContextSetup]
+2022-10-19T12:26:45Z [INFO][AMF][GMM][AMF_UE_NGAP_ID:11][SUPI:imsi-208930000000003] Handle Registration Complete
+2022-10-19T12:26:45Z [INFO][LIB][FSM] Handle event[ContextSetup Success], transition from [ContextSetup] to [Registered]
+2022-10-19T12:26:45Z [INFO][AMF][NGAP][10.100.50.250:55565][AMF_UE_NGAP_ID:11] Uplink NAS Transport (RAN UE NGAP ID: 11)
+2022-10-19T12:26:45Z [INFO][LIB][FSM] Handle event[Gmm Message], transition from [Registered] to [Registered]
+2022-10-19T12:26:45Z [INFO][AMF][GMM][AMF_UE_NGAP_ID:11][SUPI:imsi-208930000000003] Handle UL NAS Transport
+2022-10-19T12:26:45Z [INFO][AMF][GMM][AMF_UE_NGAP_ID:11][SUPI:imsi-208930000000003] Transport 5GSM Message to SMF
+2022-10-19T12:26:45Z [INFO][AMF][GMM][AMF_UE_NGAP_ID:11][SUPI:imsi-208930000000003] Select SMF [snssai: {Sst:1 Sd:010203}, dnn: internet]
+2022-10-19T12:26:46Z [INFO][AMF][GMM][AMF_UE_NGAP_ID:11][SUPI:imsi-208930000000003] create smContext[pduSessionID: 1] Success
+2022-10-19T12:26:46Z [INFO][AMF][Producer] Handle N1N2 Message Transfer Request
+2022-10-19T12:26:46Z [INFO][AMF][NGAP][10.100.50.250:55565][AMF_UE_NGAP_ID:11] Send PDU Session Resource Setup Request
+2022-10-19T12:26:46Z [INFO][AMF][GIN] | 200 |      10.42.0.96 | POST    | /namf-comm/v1/ue-contexts/imsi-208930000000003/n1-n2-messages |
+2022-10-19T12:26:46Z [INFO][AMF][NGAP][10.100.50.250:55565][AMF_UE_NGAP_ID:11] Handle PDU Session Resource Setup Response
+2022-10-19T12:33:38Z [INFO][AMF][Producer] [OAM] Handle Registered UE Context
+2022-10-19T12:33:38Z [INFO][AMF][GIN] | 200 |      10.42.0.95 | GET     | /namf-oam/v1/registered-ue-context |
+2022-10-19T12:33:41Z [INFO][AMF][Producer] [OAM] Handle Registered UE Context
+2022-10-19T12:33:41Z [INFO][AMF][GIN] | 200 |      10.42.0.95 | GET     | /namf-oam/v1/registered-ue-context/imsi-208930000000003 |
+2022-10-19T12:59:58Z [INFO][AMF][Producer] [OAM] Handle Registered UE Context
+2022-10-19T12:59:58Z [INFO][AMF][GIN] | 200 |      10.42.0.95 | GET     | /namf-oam/v1/registered-ue-context |
+2022-10-19T13:00:17Z [INFO][AMF][Producer] [OAM] Handle Registered UE Context
+2022-10-19T13:00:17Z [INFO][AMF][GIN] | 200 |      10.42.0.95 | GET     | /namf-oam/v1/registered-ue-context |
+2022-10-19T13:00:41Z [INFO][AMF][Producer] [OAM] Handle Registered UE Context
+2022-10-19T13:00:41Z [INFO][AMF][GIN] | 200 |      10.42.0.95 | GET     | /namf-oam/v1/registered-ue-context/imsi-208930000000003 |
+2022-10-20T10:48:46Z [INFO][AMF][NGAP] Handle SCTP Notification[addr: <nil>]
+2022-10-20T10:48:46Z [INFO][AMF][NGAP][10.100.50.250:55565] SCTP_ASSOC_CHANGE notification
+2022-10-20T10:48:46Z [INFO][AMF][NGAP][10.100.50.250:55565] SCTP state is SCTP_COMM_LOST, close the connection
+2022-10-20T10:48:46Z [INFO][AMF][NGAP][10.100.50.250:55565] Remove RAN Context[ID: <PlmnID: {Mcc:208 Mnc:93}, GNbID: 00000001>]
+2022-10-20T10:48:46Z [ERRO][AMF][NGAP] Handle connection[addr: <nil>] error: connection timed out

@@ -1,0 +1,1 @@
+helm upgrade --install --debug --namespace file-share fluentd-fs ./helm -f values-logs-via-tcp.yaml
