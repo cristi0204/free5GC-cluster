@@ -1,0 +1,14 @@
+{
+    "index_patterns" : ["mda-logs-*"],
+    "priority" : 1,
+    "template": {
+      "settings" : {
+        "number_of_shards" : 2,
+        "number_of_replicas" : 1,
+        "index.lifecycle.name": "mda-logs-policy"
+      },
+      "mappings": {
+        "enabled": true
+      }
+    }
+  }
