@@ -1,0 +1,52 @@
+2022-10-19T11:27:06Z [INFO][SMF][CFG] SMF config version [1.0.2]
+2022-10-19T11:27:06Z [INFO][SMF][CFG] UE-Routing config version [1.0.1]
+2022-10-19T11:27:06Z [INFO][SMF][Init] SMF Log level is set to [info] level
+2022-10-19T11:27:06Z [INFO][LIB][NAS] set log level : info
+2022-10-19T11:27:06Z [INFO][LIB][NAS] set report call : false
+2022-10-19T11:27:06Z [INFO][LIB][NGAP] set log level : info
+2022-10-19T11:27:06Z [INFO][LIB][NGAP] set report call : false
+2022-10-19T11:27:06Z [INFO][LIB][Aper] set log level : info
+2022-10-19T11:27:06Z [INFO][LIB][Aper] set report call : false
+2022-10-19T11:27:06Z [INFO][LIB][PFCP] set log level : info
+2022-10-19T11:27:06Z [INFO][LIB][PFCP] set report call : false
+2022-10-19T11:27:06Z [INFO][SMF][App] smf
+2022-10-19T11:27:06Z [INFO][SMF][App] SMF version:
+        free5GC version: v3.2.0
+        build time:      2022-08-15T14:14:15Z
+        commit hash:     de70bf6c
+        commit time:     2022-06-28T04:52:40Z
+        go version:      go1.14.4 linux/amd64
+2022-10-19T11:27:06Z [INFO][SMF][CTX] smfconfig Info: Version[1.0.2] Description[SMF initial local configuration]
+2022-10-19T11:27:06Z [INFO][SMF][CTX] Endpoints: [10.100.50.233]
+2022-10-19T11:27:06Z [INFO][SMF][Init] Server started
+2022-10-19T11:27:07Z [INFO][SMF][Init] SMF Registration to NRF {a77f0790-fe7e-434f-b05a-cc245de4a4de SMF REGISTERED 0 0xc00000ca80 0xc00000cac0 [] []   [smf-nsmf] [] <nil> [] [] <nil> 0 0 0 area1 <nil> <nil> <nil> <nil> 0xc00012ea40 <nil> <nil> <nil> <nil> <nil> map[] <nil> false 0xc00000c900 false false []}
+2022-10-19T11:27:07Z [INFO][SMF][PFCP] Listen on 10.100.50.244:8805
+2022-10-19T11:27:07Z [INFO][SMF][App] Sending PFCP Association Request to UPF[10.100.50.241]
+2022-10-19T11:27:07Z [INFO][LIB][PFCP] Remove Request Transaction [1]
+2022-10-19T11:27:07Z [INFO][SMF][App] Received PFCP Association Setup Accepted Response from UPF[10.100.50.241]
+2022-10-19T12:26:46Z [INFO][SMF][PduSess] Receive Create SM Context Request
+2022-10-19T12:26:46Z [INFO][SMF][PduSess] In HandlePDUSessionSMContextCreate
+2022-10-19T12:26:46Z [INFO][SMF][PduSess] Send NF Discovery Serving UDM Successfully
+2022-10-19T12:26:46Z [INFO][SMF][CTX] Allocated UE IP address: 10.1.0.1
+2022-10-19T12:26:46Z [INFO][SMF][CTX] Selected UPF: UPF
+2022-10-19T12:26:46Z [INFO][SMF][PduSess] UE[imsi-208930000000003] PDUSessionID[1] IP[10.1.0.1]
+2022-10-19T12:26:46Z [INFO][SMF][GSM] In HandlePDUSessionEstablishmentRequest
+2022-10-19T12:26:46Z [INFO][NAS][Convert] ProtocolOrContainerList:  [0xc0005790e0 0xc000579120]
+2022-10-19T12:26:46Z [INFO][SMF][GSM] Protocol Configuration Options
+2022-10-19T12:26:46Z [INFO][SMF][GSM] &{[0xc0005790e0 0xc000579120]}
+2022-10-19T12:26:46Z [INFO][SMF][GSM] Didn't Implement container type IPAddressAllocationViaNASSignallingUL
+2022-10-19T12:26:46Z [INFO][SMF][PduSess] PCF Selection for SMContext SUPI[imsi-208930000000003] PDUSessionID[1]
+2022-10-19T12:26:46Z [INFO][SMF][PduSess] SUPI[imsi-208930000000003] has no pre-config route
+2022-10-19T12:26:46Z [INFO][SMF][Consumer] SendNFDiscoveryServingAMF ok
+2022-10-19T12:26:46Z [INFO][SMF][PduSess] Sending PFCP Session Establishment Request
+2022-10-19T12:26:46Z [INFO][SMF][GIN] | 201 |      10.42.0.97 | POST    | /nsmf-pdusession/v1/sm-contexts |
+2022-10-19T12:26:46Z [INFO][LIB][PFCP] Remove Request Transaction [2]
+2022-10-19T12:26:46Z [INFO][SMF][PduSess] Received PFCP Session Establishment Accepted Response
+2022-10-19T12:26:46Z [INFO][SMF][PduSess] Receive Update SM Context Request
+2022-10-19T12:26:46Z [INFO][SMF][PduSess] In HandlePDUSessionSMContextUpdate
+2022-10-19T12:26:46Z [INFO][SMF][PduSess] Sending PFCP Session Modification Request to AN UPF
+2022-10-19T12:26:46Z [INFO][LIB][PFCP] Remove Request Transaction [3]
+2022-10-19T12:26:46Z [INFO][SMF][PduSess] Received PFCP Session Modification Accepted Response from AN UPF
+2022-10-19T12:26:46Z [INFO][SMF][GIN] | 200 |      10.42.0.97 | POST    | /nsmf-pdusession/v1/sm-contexts/urn:uuid:b6c23434-bb21-473b-b403-c20742c6de6b/modify |
+2022-10-19T12:33:41Z [INFO][SMF][GIN] | 200 |      10.42.0.95 | GET     | /nsmf-oam/v1/ue-pdu-session-info/urn:uuid:b6c23434-bb21-473b-b403-c20742c6de6b |
+2022-10-19T13:00:42Z [INFO][SMF][GIN] | 200 |      10.42.0.95 | GET     | /nsmf-oam/v1/ue-pdu-session-info/urn:uuid:b6c23434-bb21-473b-b403-c20742c6de6b |

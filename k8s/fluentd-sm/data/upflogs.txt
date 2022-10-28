@@ -1,0 +1,54 @@
+2022-10-19T11:26:44Z [INFO][UPF][Main] UPF version:
+        free5GC version: v3.2.0
+        build time:      2022-08-15T14:14:32Z
+        commit hash:     4972fffb
+        commit time:     2022-06-29T05:46:33Z
+        go version:      go1.14.4 linux/amd64
+2022-10-19T11:26:44Z [INFO][UPF][Cfg] Read config from [/free5gc/config//upfcfg.yaml]
+2022-10-19T11:26:44Z [INFO][UPF][Cfg] ==================================================
+2022-10-19T11:26:44Z [INFO][UPF][Cfg] (*factory.Config)(0xc00007b540)({
+        Version: (string) (len=5) "1.0.3",
+        Description: (string) (len=31) "UPF initial local configuration",
+        Pfcp: (*factory.Pfcp)(0xc000531380)({
+                Addr: (string) (len=13) "10.100.50.241",
+                NodeID: (string) (len=13) "10.100.50.241",
+                RetransTimeout: (time.Duration) 1s,
+                MaxRetrans: (uint8) 3
+        }),
+        Gtpu: (*factory.Gtpu)(0xc000531530)({
+                Forwarder: (string) (len=5) "gtp5g",
+                IfList: ([]factory.IfInfo) (len=1 cap=1) {
+                        (factory.IfInfo) {
+                                Addr: (string) (len=13) "10.100.50.233",
+                                Type: (string) (len=2) "N3",
+                                Name: (string) "",
+                                IfName: (string) ""
+                        }
+                }
+        }),
+        DnnList: ([]factory.DnnList) (len=1 cap=1) {
+                (factory.DnnList) {
+                        Dnn: (string) (len=8) "internet",
+                        Cidr: (string) (len=11) "10.1.0.0/17",
+                        NatIfName: (string) (len=2) "n6"
+                }
+        },
+        Logger: (*factory.Logger)(0xc000532bc0)({
+                Enable: (bool) true,
+                Level: (string) (len=4) "info",
+                ReportCaller: (bool) false
+        })
+})
+2022-10-19T11:26:44Z [INFO][UPF][Cfg] ==================================================
+2022-10-19T11:26:44Z [INFO][UPF][Main] Log level is set to [info] level
+2022-10-19T11:26:44Z [INFO][UPF][Main] starting Gtpu Forwarder [gtp5g]
+2022-10-19T11:26:44Z [INFO][UPF][Main] GTP Address: "10.100.50.233:2152"
+2022-10-19T11:26:44Z [INFO][UPF][Buff] buff server started
+2022-10-19T11:26:44Z [INFO][UPF][Pfcp][10.100.50.241:8805] starting pfcp server
+2022-10-19T11:26:44Z [INFO][UPF][Pfcp][10.100.50.241:8805] pfcp server started
+2022-10-19T11:26:44Z [INFO][UPF][Main] UPF started
+2022-10-19T11:27:07Z [INFO][UPF][Pfcp][10.100.50.241:8805] handleAssociationSetupRequest
+2022-10-19T11:27:07Z [INFO][UPF][Pfcp][10.100.50.241:8805][rNodeID:10.100.50.244] New node
+2022-10-19T12:26:46Z [INFO][UPF][Pfcp][10.100.50.241:8805] handleSessionEstablishmentRequest
+2022-10-19T12:26:46Z [INFO][UPF][Pfcp][10.100.50.241:8805][rNodeID:10.100.50.244][SEID:L(0x1),R(0x1)] New session
+2022-10-19T12:26:46Z [INFO][UPF][Pfcp][10.100.50.241:8805] handleSessionModificationRequest
