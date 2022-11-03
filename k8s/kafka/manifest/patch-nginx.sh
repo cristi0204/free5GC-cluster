@@ -1,0 +1,1 @@
+kubectl patch deployment ingress-nginx-controller-admission --patch "$(cat ingress-nginx-controller-patch.yaml)" -n ingress-nginx
