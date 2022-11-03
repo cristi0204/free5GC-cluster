@@ -220,7 +220,7 @@ controller:
     timeoutSeconds: 30
 
   # -- Extra environment variables to provide to the controller container
-  extraEnv: []
+  extraEnv: 
     # - name: FOO
     #   value: "bar"
     - name: ARGO_EXECUTOR_PLUGINS

@@ -225,10 +225,10 @@ ingress:
   #         name: use-annotation
 
 
-  tls:
-    - secretName: grafana.berlindevops.com-tls
-      hosts:
-       - grafana.berlindevops.com
+  # tls:
+  #   - secretName: grafana.berlindevops.com-tls
+  #     hosts:
+  #      - grafana.berlindevops.com
 
 resources: {}
 #  limits:
@@ -493,9 +493,8 @@ lifecycleHooks: {}
 
 ## Pass the plugins you want installed as a list.
 ##
-plugins: []
-  # - digrich-bubblechart-panel
-  # - grafana-clock-panel
+plugins:
+  - hamedkarbasi93-nodegraphapi-datasource
 
 ## Configure grafana datasources
 ## ref: http://docs.grafana.org/administration/provisioning/#datasources
@@ -513,6 +512,39 @@ datasources:
       jsonData:
         timeInterval: 30s
         tlsSkipVerify: true 
+  datasource-prometheus.yaml:
+    apiVersion: 1
+    datasources:
+      - name: Prometheus
+        type: prometheus
+        access: proxy
+        orgId: 1
+        url: http://prometheus-kube-prometheus-prometheus.prometheus.svc.cluster.local:9090
+        isDefault: false
+        editable: true
+        httpMethod: GET
+  datasource-loki.yaml:
+    apiVersion: 1
+    datasources:
+      - name: Loki
+        type: loki
+        access: proxy
+        orgId: 1
+        url: http://loki.loki.svc.cluster.local:3100
+        isDefault: false
+        editable: true
+        httpMethod: GET
+  datasource-nodegraph.yaml:
+    apiVersion: 1
+    datasources:
+      - name: Node Graph API Datasource Plugin
+        type: Node Graph API Datasource Plugin
+        access: proxy
+        orgId: 1
+        url: https://atos-assembly-controller.berlindevops.com
+        isDefault: false
+        editable: true
+        httpMethod: GET
 
 #  datasources.yaml:
 #    apiVersion: 1

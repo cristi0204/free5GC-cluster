@@ -1,0 +1,22 @@
+{
+    "attributes": {
+      "columns": [
+          "_source"
+      ],
+      "description": "",
+      "hits": 0,
+      "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"highlightAll\":true,\"version\":true,\"query\":{\"query\":\"(message: test)\",\"language\":\"kuery\"},\"filter\":[],\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\"}"
+      },
+      "sort": [],
+      "title": "Message contains test",
+      "version": 1
+    },
+    "references": [
+      {
+          "id": "indexpattern-sample",
+          "name": "kibanaSavedObjectMeta.searchSourceJSON.index",
+          "type": "index-pattern"
+      }
+    ]
+}

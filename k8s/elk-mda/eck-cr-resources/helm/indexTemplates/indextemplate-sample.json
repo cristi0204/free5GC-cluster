@@ -1,0 +1,10 @@
+{
+    "index_patterns" : ["index-*"],
+    "priority" : 1,
+    "template": {
+      "settings" : {
+        "number_of_shards" : 2,
+        "number_of_replicas" : 0
+      }
+    }
+}
