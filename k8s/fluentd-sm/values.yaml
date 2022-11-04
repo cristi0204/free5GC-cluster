@@ -79,10 +79,10 @@ readinessProbe:
 
 resources: 
    requests:
-     cpu: 200m
-     memory: 256Mi
+     cpu: 500m
+     memory: 512Mi
    limits:
-     memory: 256Mi
+     memory: 1024Mi
 
 ## only available if kind is Deployment
 autoscaling:
