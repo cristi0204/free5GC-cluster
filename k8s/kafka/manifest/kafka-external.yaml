@@ -12,7 +12,9 @@ spec:
   #type: NodePort
   externalName: kafka.kafka.svc.cluster.local
   ports:
-  - port: 9092
+  - name: tcp-kafka
+    port: 9092
+    targetPort: kafka-external
   selector:
     app.kubernetes.io/component: kafka
     app.kubernetes.io/instance: kafka
