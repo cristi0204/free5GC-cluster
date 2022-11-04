@@ -29,3 +29,10 @@ logstash:
 
 
 https://docs.bitnami.com/kubernetes/apps/logstash/configuration/use-multiple-pipelines/    
+
+
+Example of grok expression
+
+%{DATE_EU:date}, %{TIME:time}.\[%{WORD:application}:%{WORD:severity} %{HOSTNAME:hostname}.(?<alarmtype>[A-Z]*).(?<softwarecomponent>[A-Z]*).(?<alarmcode>[0-9]*)\].(?<additionalinfo>[0-9a-z_. \[\]]*) %{GREEDYDATA:message}
+
+27/09/2022, 00:00:02 [GCC:CL GCC11_APPLICATION_CKOCSCDR_0430] [check_ocs_cdrs.ksh 0] Correct number of OCS CDR files in origin directory
