@@ -34,6 +34,7 @@ rules:
       - argoproj.io
     resources:
       - workflowtaskresults
+      - workflows
     verbs:
       - create
   - apiGroups:
@@ -43,6 +44,7 @@ rules:
     verbs:
       - list
       - watch
+      - create
   - apiGroups:
       - argoproj.io
     resources:
