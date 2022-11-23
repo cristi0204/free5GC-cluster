@@ -1,0 +1,246 @@
+# If you intended to deploy Kubernetes in an air-gapped environment,
+# please consult the documentation on how to configure custom RKE images.
+nodes:
+- address: aos4
+  port: "22"
+  internal_address: aos4
+  role:
+  - controlplane
+  - worker
+  - etcd
+  hostname_override: aos4
+  user: root
+  docker_socket: /var/run/docker.sock
+  ssh_key: ""
+  ssh_key_path: ~/.ssh/id_rsa
+  ssh_cert: ""
+  ssh_cert_path: ""
+  labels: {}
+  taints: []
+- address: aos6
+  port: "22"
+  internal_address: aos6
+  role:
+  - controlplane
+  - worker
+  - etcd
+  hostname_override: aos6
+  user: root
+  docker_socket: /var/run/docker.sock
+  ssh_key: ""
+  ssh_key_path: ~/.ssh/id_rsa
+  ssh_cert: ""
+  ssh_cert_path: ""
+  labels: {}
+  taints: []
+services:
+  etcd:
+    image: ""
+    extra_args: {}
+    extra_args_array: {}
+    extra_binds: []
+    extra_env: []
+    win_extra_args: {}
+    win_extra_args_array: {}
+    win_extra_binds: []
+    win_extra_env: []
+    external_urls: []
+    ca_cert: ""
+    cert: ""
+    key: ""
+    path: ""
+    uid: 0
+    gid: 0
+    snapshot: null
+    retention: ""
+    creation: ""
+    backup_config: null
+  kube-api:
+    image: ""
+    extra_args: {}
+    extra_args_array: {}
+    extra_binds: []
+    extra_env: []
+    win_extra_args: {}
+    win_extra_args_array: {}
+    win_extra_binds: []
+    win_extra_env: []
+    service_cluster_ip_range: 10.43.0.0/16
+    service_node_port_range: ""
+    pod_security_policy: false
+    always_pull_images: false
+    secrets_encryption_config: null
+    audit_log: null
+    admission_configuration: null
+    event_rate_limit: null
+  kube-controller:
+    image: ""
+    extra_args: {}
+    extra_args_array: {}
+    extra_binds: []
+    extra_env: []
+    win_extra_args: {}
+    win_extra_args_array: {}
+    win_extra_binds: []
+    win_extra_env: []
+    cluster_cidr: 10.42.0.0/16
+    service_cluster_ip_range: 10.43.0.0/16
+  scheduler:
+    image: ""
+    extra_args: {}
+    extra_args_array: {}
+    extra_binds: []
+    extra_env: []
+    win_extra_args: {}
+    win_extra_args_array: {}
+    win_extra_binds: []
+    win_extra_env: []
+  kubelet:
+    image: ""
+    extra_args: {}
+    extra_args_array: {}
+    extra_binds: []
+    extra_env: []
+    win_extra_args: {}
+    win_extra_args_array: {}
+    win_extra_binds: []
+    win_extra_env: []
+    cluster_domain: cluster.local
+    infra_container_image: ""
+    cluster_dns_server: 10.43.0.10
+    fail_swap_on: false
+    generate_serving_certificate: false
+  kubeproxy:
+    image: ""
+    extra_args: {}
+    extra_args_array: {}
+    extra_binds: []
+    extra_env: []
+    win_extra_args: {}
+    win_extra_args_array: {}
+    win_extra_binds: []
+    win_extra_env: []
+network:
+  plugin: flannel
+  options:
+    flannel_iface: "eth0"
+  mtu: 0
+  node_selector: {}
+  update_strategy: null
+  tolerations: []
+authentication:
+  strategy: x509
+  sans: []
+  webhook: null
+addons: |-
+  ---
+  apiVersion: v1
+  data:
+    tls.crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUZSVENDQkMyZ0F3SUJBZ0lTQS9PMEJjRm9qMFQyc21kVFc5SFZqMXd6TUEwR0NTcUdTSWIzRFFFQkN3VUEKTURJeEN6QUpCZ05WQkFZVEFsVlRNUll3RkFZRFZRUUtFdzFNWlhRbmN5QkZibU55ZVhCME1Rc3dDUVlEVlFRRApFd0pTTXpBZUZ3MHlNakV4TURReE1UTTBORFZhRncweU16QXlNREl4TVRNME5EUmFNQjR4SERBYUJnTlZCQU1UCkV6Vm5MbUpsY214cGJtUmxkbTl3Y3k1amIyMHdnZ0VpTUEwR0NTcUdTSWIzRFFFQkFRVUFBNElCRHdBd2dnRUsKQW9JQkFRRHBZZUg4M0Nlb3pNNUdUeHBTUklkYTF6Q1VtVkF3Z1E4cTczYkpBaVRMbnZpRzk3dnFySERiU1F4cgpCbFJCekIyMGpPUzF5ZnhwRVVjb3BZNVBiNFlCbHJKbEs1U3pRS1pJZGNab0NXMHkxOFk2S0RBc2FiSkgrb0w4CmNHbTE0WXA2c3RhWXBCS2NhVGlMKzdmNjlVWUdRYlN4dVE4aUxtQ3dySVFjSC9HUEFiUXphNCtvcVlOdnNvTjIKZk1LMktNN0pLM0JJSXh5dm5pYVhxSGNsMVphY1NaZGp4b2ZzY3orU0lCSnhubldwR01NWm53cTVlMCt0UUZETAp0SUUxUkQ0RmV1OXFaRFEzMytOWWp1S3pKdXpDYXJwV2pZK3BLWFVkY3VQVnVlM1p0QS81M2tURDJzRExERUNWCmhqYUtDM0xRVDNkN2QrRTZ6Q2l4TytoNW1UR0JBZ01CQUFHamdnSm5NSUlDWXpBT0JnTlZIUThCQWY4RUJBTUMKQmFBd0hRWURWUjBsQkJZd0ZBWUlLd1lCQlFVSEF3RUdDQ3NHQVFVRkJ3TUNNQXdHQTFVZEV3RUIvd1FDTUFBdwpIUVlEVlIwT0JCWUVGS2FFVUFUTXFZWEFCcGk2bGp0cWNDeTh2UTg0TUI4R0ExVWRJd1FZTUJhQUZCUXVzeGUzCldGYkxybEFKUU9ZZnI1MkxGTUxHTUZVR0NDc0dBUVVGQndFQkJFa3dSekFoQmdnckJnRUZCUWN3QVlZVmFIUjAKY0RvdkwzSXpMbTh1YkdWdVkzSXViM0puTUNJR0NDc0dBUVVGQnpBQ2hoWm9kSFJ3T2k4dmNqTXVhUzVzWlc1agpjaTV2Y21jdk1EVUdBMVVkRVFRdU1DeUNGU291TldjdVltVnliR2x1WkdWMmIzQnpMbU52YllJVE5XY3VZbVZ5CmJHbHVaR1YyYjNCekxtTnZiVEJNQmdOVkhTQUVSVEJETUFnR0JtZUJEQUVDQVRBM0Jnc3JCZ0VFQVlMZkV3RUIKQVRBb01DWUdDQ3NHQVFVRkJ3SUJGaHBvZEhSd09pOHZZM0J6TG14bGRITmxibU55ZVhCMExtOXlaekNDQVFZRwpDaXNHQVFRQjFua0NCQUlFZ2ZjRWdmUUE4Z0IzQUhveWpGVFl0eTIySU9vNDRGSWU2WVFXY0RJVGhVMDcwaXZCCk9sZWpVdXRTQUFBQmhFS2k3dG9BQUFRREFFZ3dSZ0loQU12TUlRS1lEODZ0UzQxWDVOZTVaa0JiOEpKejFuU08KWExVNE1CTXBremFmQWlFQWxDbWc1VlRINmk3MzJRYm9aQ0NMb2s1TDQ1NDhzcEp6SGU0TGJJQnZ3MWtBZHdDMwpQdnNrMzV4TnVuWHlPY1c2V1BSc1hmeEN6M3FmTmNTZUhRbUJKZTIwbVFBQUFZUkNvdTdOQUFBRUF3QklNRVlDCklRRDNaeWlwVWxxcFNRenllTnRFOW5CQjV6SU40S0tHNUcyd2JxSno3cjdLRFFJaEFKcklBV2wyNTZlQjVablUKNGY4QklNOEg5N25lKzZ5VnU0UXM3RGlQRCswOE1BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQm0zb3VRNVN2agpqZkRjYnJDUWdXYUo4Rko2WXNkNUw5MTR6RXFBSXZYK3FycGFmV25PcWJCNmU3SWtOUWFaWTZFZi8yRldPNkRMClVIc1pNMEw3ZDhZMWRRRW9UdW4vb1dBd2NmL2h1dVZhaExSUlJCNE9LVVR5YzFhWEdWMEZ0enk5TzhITU1FVnkKM0N0UC9VL3N3NWE4WEZpZkZpa1J2SVNsM0FmajYzSDNIRTRIQjVnNk9SOFM0UzIraUJjVFB2NEhHbjI4QXV4YQpRdncrU0wzbHhRRzUwVzljYXlIVHhWUlV3ckVzejRiZVN1Sm84ZzRnUUNzM3NKZ3J4ZlRwaWJsY2NSbmcyckpJCmZTVWRodmFQaUwxb0cyaFM1dGtSNy8yS2Y3RGhHWWpuOVhNcStRQlRXa3BBZEh4T0drc2hHdDRldE5uVDNGS0gKamYwdnZPYlNTVWVlCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0KLS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUZGakNDQXY2Z0F3SUJBZ0lSQUpFckNFclBEQmluVS9iV0xpV25YMW93RFFZSktvWklodmNOQVFFTEJRQXcKVHpFTE1Ba0dBMVVFQmhNQ1ZWTXhLVEFuQmdOVkJBb1RJRWx1ZEdWeWJtVjBJRk5sWTNWeWFYUjVJRkpsYzJWaApjbU5vSUVkeWIzVndNUlV3RXdZRFZRUURFd3hKVTFKSElGSnZiM1FnV0RFd0hoY05NakF3T1RBME1EQXdNREF3CldoY05NalV3T1RFMU1UWXdNREF3V2pBeU1Rc3dDUVlEVlFRR0V3SlZVekVXTUJRR0ExVUVDaE1OVEdWMEozTWcKUlc1amNubHdkREVMTUFrR0ExVUVBeE1DVWpNd2dnRWlNQTBHQ1NxR1NJYjNEUUVCQVFVQUE0SUJEd0F3Z2dFSwpBb0lCQVFDN0FoVW96UGFnbE5NUEV1eU5WWkxEK0lMeG1hWjZRb2luWFNhcXRTdTV4VXl4cjQ1citYWElvOWNQClI1UVVWVFZYako2b29qa1o5WUk4UXFsT2J2VTd3eTdiamNDd1hQTlpPT2Z0ejJud1dnc2J2c0NVSkNXSCtqZHgKc3hQbkhLemhtKy9iNUR0RlVrV1dxY0ZUempUSVV1NjFydTJQM21CdzRxVlVxN1p0RHBlbFFEUnJLOU84WnV0bQpOSHo2YTR1UFZ5bVorREFYWGJweWIvdUJ4YTNTaGxnOUY4Zm5DYnZ4Sy9lRzNNSGFjVjNVUnVQTXJTWEJpTHhnClozVm1zL0VZOTZKYzVsUC9Pb2kyUjZYL0V4anFtQWwzUDUxVCtjOEI1ZldtY0JjVXIyT2svNW16azUzY1U2Y0cKL2tpRkhhRnByaVYxdXhQTVVnUDE3VkdoaTlzVkFnTUJBQUdqZ2dFSU1JSUJCREFPQmdOVkhROEJBZjhFQkFNQwpBWVl3SFFZRFZSMGxCQll3RkFZSUt3WUJCUVVIQXdJR0NDc0dBUVVGQndNQk1CSUdBMVVkRXdFQi93UUlNQVlCCkFmOENBUUF3SFFZRFZSME9CQllFRkJRdXN4ZTNXRmJMcmxBSlFPWWZyNTJMRk1MR01COEdBMVVkSXdRWU1CYUEKRkhtMFdlWjd0dVhrQVhPQUNJaklHbGoyNlp0dU1ESUdDQ3NHQVFVRkJ3RUJCQ1l3SkRBaUJnZ3JCZ0VGQlFjdwpBb1lXYUhSMGNEb3ZMM2d4TG1rdWJHVnVZM0l1YjNKbkx6QW5CZ05WSFI4RUlEQWVNQnlnR3FBWWhoWm9kSFJ3Ck9pOHZlREV1WXk1c1pXNWpjaTV2Y21jdk1DSUdBMVVkSUFRYk1Ca3dDQVlHWjRFTUFRSUJNQTBHQ3lzR0FRUUIKZ3Q4VEFRRUJNQTBHQ1NxR1NJYjNEUUVCQ3dVQUE0SUNBUUNGeWs1SFBxUDNoVVNGdk5WbmVMS1lZNjExVFI2VwpQVE5sY2xRdGdhRHF3KzM0SUw5ZnpMZHdBTGR1Ty9aZWxON2tJSittNzR1eUErZWl0Ulk4a2M2MDdUa0M1M3dsCmlrZm1aVzQvUnZUWjhNNlVLKzVVemhLOGpDZEx1TUdZTDZLdnpYR1JTZ2kzeUxnamV3UXRDUGtJVno2RDJRUXoKQ2tjaGVBbUNKOE1xeUp1NXpsenlaTWpBdm5uQVQ0NXRSQXhla3JzdTk0c1E0ZWdkUkNuYldTRHRZN2toK0JJbQpsSk5Yb0IxbEJNRUtJcTRRRFVPWG9SZ2ZmdURnaGplMVdyRzlNTCtIYmlzcS95Rk9Hd1hEOVJpWDhGNnN3Nlc0CmF2QXV2RHN6dWU1TDNzejg1SytFQzRZL3dGVkROdlpvNFRZWGFvNlowZitsUUtjMHQ4RFFZemsxT1hWdThycDIKeUpNQzZhbExiQmZPREFMWnZZSDduN2RvMUFabHM0STlkMVA0am5rRHJRb3hCM1VxUTloVmwzTEVLUTczeEYxTwp5SzVHaEREWDhvVmZHS0Y1dStkZWNJc0g0WWFUdzdtUDNHRnhKU3F2MyswbFVGSm9pNUxjNWRhMTQ5cDkwSWRzCmhDRXhyb0wxKzdtcnlJa1hQZUZNNVRnTzlyMHJ2WmFCRk92VjJ6MGdwMzVaMCtMNFdQbGJ1RWpOL2x4UEZpbisKSGxVanI4Z1JzSTNxZkpPUUZ5LzlyS0lKUjBZLzhPbXd0LzhvVFdneTFtZGVIbW1qazdqMW5Zc3ZDOUpTUTZadgpNbGRsVFRLQjN6aFRoVjErWFdZcDZyamQ1SlcxemJWV0VrTE54RTdHSlRoRVVHM3N6Z0JWR1A3cFNXVFVUc3FYCm5MUmJ3SE9vcTdoSHdnPT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQoKLS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUZZRENDQkVpZ0F3SUJBZ0lRUUFGM0lUZlU2VUs0N25hcVBHUUt0ekFOQmdrcWhraUc5dzBCQVFzRkFEQS8KTVNRd0lnWURWUVFLRXh0RWFXZHBkR0ZzSUZOcFoyNWhkSFZ5WlNCVWNuVnpkQ0JEYnk0eEZ6QVZCZ05WQkFNVApEa1JUVkNCU2IyOTBJRU5CSUZnek1CNFhEVEl4TURFeU1ERTVNVFF3TTFvWERUSTBNRGt6TURFNE1UUXdNMW93ClR6RUxNQWtHQTFVRUJoTUNWVk14S1RBbkJnTlZCQW9USUVsdWRHVnlibVYwSUZObFkzVnlhWFI1SUZKbGMyVmgKY21Ob0lFZHliM1Z3TVJVd0V3WURWUVFERXd4SlUxSkhJRkp2YjNRZ1dERXdnZ0lpTUEwR0NTcUdTSWIzRFFFQgpBUVVBQTRJQ0R3QXdnZ0lLQW9JQ0FRQ3Q2Q1J6OUJRMzg1dWVLMWNvSEllKzNMZmZPSkNNYmp6bVY2QjQ5M1hDCm92NzFhbTcyQUU4bzI5NW9obXhFazdheFkvMFVFbXUvSDlMcU1ac2hmdEV6UExwSTlkMTUzN080L3hMeElacEwKd1lxR2NXbEtabVpzajM0OGNMK3RLU0lHOCtUQTVvQ3U0a3VQdDVsK2xBT2YwMGVYZkpsSUkxUG9PSzVQQ20rRApMdEZKVjR5QWRMYmFMOUE0alhzRGNDRWJkZkl3UFBxUHJ0M2FZNnZyRmsvQ2poRkxmczhMNlArMWR5NzBzbnRLCjRFd1NKUXh3alFNcG9PRlRKT3dUMmU0WnZ4Q3pTb3cvaWFOaFVkNnNod2VVOUdOeDdDN2liMXVZZ2VHSlhEUjUKYkhidk81QmllZWJicEpvdkpzWFFFT0VPM3RrUWpoYjd0L2VvOThmbEFnZVlqellJbGVmaU41WU5ObldlK3c1eQpzUjJidkFQNVNRWFlnZDBGdENyV1FlbXNBWGFWQ2cvWTM5VzlFaDgxTHlnWGJOS1l3YWdKWkhkdVJ6ZTZ6cXhaClhtaWRmM0xXaWNVR1FTaytXVDdkSnZVa3lSR25XcU5NUUI5R29abTFwenBSYm9ZN25uMXlweElGZUZudFBsRjQKRlFzRGo0M1FMd1d5UG50S0hFdHpCUkw4eHVyZ1VCTjhRNU4wczhwMDU0NGZBUWpRTU5SYmNUYTBCN3JCTURCYwpTTGVDTzVpbWZXQ0tvcU1wZ3N5NnZZTUVHNktEQTBHaDFnWHhHOEsyOEtoOGhqdEdxRWdxaU54Mm1uYS9IMnFsClBSbVA2emp6Wk43SUt3MEtLUC8zMitJVlF0UWkwQ2RkNFhuK0dPZHdpSzFPNXRtTE9zYmRKMUZ1Lzd4azlUTkQKVHdJREFRQUJvNElCUmpDQ0FVSXdEd1lEVlIwVEFRSC9CQVV3QXdFQi96QU9CZ05WSFE4QkFmOEVCQU1DQVFZdwpTd1lJS3dZQkJRVUhBUUVFUHpBOU1Ec0dDQ3NHQVFVRkJ6QUNoaTlvZEhSd09pOHZZWEJ3Y3k1cFpHVnVkSEoxCmMzUXVZMjl0TDNKdmIzUnpMMlJ6ZEhKdmIzUmpZWGd6TG5BM1l6QWZCZ05WSFNNRUdEQVdnQlRFcDdHa2V5eHgKK3R2aFM1QjEvOFFWWUlXSkVEQlVCZ05WSFNBRVRUQkxNQWdHQm1lQkRBRUNBVEEvQmdzckJnRUVBWUxmRXdFQgpBVEF3TUM0R0NDc0dBUVVGQndJQkZpSm9kSFJ3T2k4dlkzQnpMbkp2YjNRdGVERXViR1YwYzJWdVkzSjVjSFF1CmIzSm5NRHdHQTFVZEh3UTFNRE13TWFBdm9DMkdLMmgwZEhBNkx5OWpjbXd1YVdSbGJuUnlkWE4wTG1OdmJTOUUKVTFSU1QwOVVRMEZZTTBOU1RDNWpjbXd3SFFZRFZSME9CQllFRkhtMFdlWjd0dVhrQVhPQUNJaklHbGoyNlp0dQpNQTBHQ1NxR1NJYjNEUUVCQ3dVQUE0SUJBUUFLY3dCc2xtNy9EbExRcnQyTTUxb0dyUytvNDQrL3lRb0RGVkRDCjVXeEN1MitiOUxSUHdrU0lDSFhNNndlYkZHSnVlTjdzSjdvNVhQV2lvVzVXbEhBUVU3Rzc1Sy9Rb3NNckFkU1cKOU1VZ05UUDUyR0UyNEhHTnRMaTFxb0pGbGNEeXFTTW81OWFoeTJjSTJxQkRMS29ia3gvSjN2V3JhVjBUOVZ1RwpXQ0xLVFZYa2NHZHR3bGZGUmpsQno0cFlnMWh0bWY1WDZEWU84QTRqcXYySWw5RGpYQTZVU2JXMUZ6WFNMcjlPCmhlOFk0SVdTNndZN2JDa2pDV0RjUlFKTUVoZzc2ZnNPM3R4RStGaVlydXE5UlVXaGlGMW15djRRNlcrQ3lCRkMKRGZ2cDdPT0dBTjZkRU9NNCtxUjlzZGpvU1lLRUJwc3I2R3RQQVF3NGR5NzUzZWM1Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+    tls.key: LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0tCk1JSUV2UUlCQURBTkJna3Foa2lHOXcwQkFRRUZBQVNDQktjd2dnU2pBZ0VBQW9JQkFRRHBZZUg4M0Nlb3pNNUcKVHhwU1JJZGExekNVbVZBd2dROHE3M2JKQWlUTG52aUc5N3ZxckhEYlNReHJCbFJCekIyMGpPUzF5ZnhwRVVjbwpwWTVQYjRZQmxySmxLNVN6UUtaSWRjWm9DVzB5MThZNktEQXNhYkpIK29MOGNHbTE0WXA2c3RhWXBCS2NhVGlMCis3ZjY5VVlHUWJTeHVROGlMbUN3cklRY0gvR1BBYlF6YTQrb3FZTnZzb04yZk1LMktNN0pLM0JJSXh5dm5pYVgKcUhjbDFaYWNTWmRqeG9mc2N6K1NJQkp4bm5XcEdNTVpud3E1ZTArdFFGREx0SUUxUkQ0RmV1OXFaRFEzMytOWQpqdUt6SnV6Q2FycFdqWStwS1hVZGN1UFZ1ZTNadEEvNTNrVEQyc0RMREVDVmhqYUtDM0xRVDNkN2QrRTZ6Q2l4Ck8raDVtVEdCQWdNQkFBRUNnZ0VBR1dCUlNFTlA5S1RBVVJqTXplRXhyb2p6ZVZUcVNUdmZRRlhsWHBuakVsam8Kd1JReTFLT0hhZkNaYnhHekc2eHNGbk96Y3FqUnowTFhyKzNBZVphd3hYOXpTbGpneEZUbFA3KytvUlZWVUUveAo5K1RpeUJGK0Z5R0FHSjdJZjhSVVlGOE53bThrcnVrcUF0Nk45TFd5dFg5emZGZVk4NmlEVHZLVE10T3VXbFFwCjdIVWxNYzlPL3BRNVpkc3pwSHhvUGZLMkp1RHRTSkdsbzN4V3Jpc0RSU3ZJd2c0S3BGeENEditaSVh5SGdxam8KUllySURwRmdoWFcxTzVoSDNBUXl0UUwvaW5zaHUzbEgxWEhmRzgyekc3WFJyZUNsbXRWQ1kwdmorRFpSSzB6WAo5ZFBHVkxWR042ZEt1dnZOcmpjUUpPckhwVHcwcHBHQUVVSUFubjlqSVFLQmdRRDdoNG16RTNBbjJ2ZEQybW52Ci9OUlJtTGFNOEgvYzcrNzdYN2RtTXJLU2I0eXhEVkNGdDA5QWtpZTRjeERnRkovOTU2eStCbTBZZjZ5L25PUFQKNnlZY25QQ29MMXQ5Y09pNm1qM0twaWxqVHlqd1RTM2JIbGNWQnlhU1BwbWtxZTFvZ1BOZHBQNlBIaW1ZaUpLdAphWUVTam1TOU1IOFFVUDZzdHZYL3dUdU5mUUtCZ1FEdGg4Wi8zTmNKNUY1cmIxeVBEWWt6VUs3TGt5bUhzRFFDCjNzYjAxcCtmcG82UE1LT3VEcXN6c1R3K3B3MXcwbmFDYmtNbEQ5VnFUZ3RRd2tTWEFXZGtIUGNKNDhqVkFRNHQKQjBFeUFBZEdsRmlveC9xaHFoMzlNNzhXdmVvaUw2SEFCVkkzZ0x2QnMwd3dqZ3U1bi9tV0V0SitnM04zcGZpawpuZ1FIQmRIRFZRS0JnUUM5c0NtWWMwQlJ6a0JMVzV3bzhITHVWa3pWWFVvUVJLSGwwUGx1aVMxQ1lmMm9TSEpCClpVelBWV20vSUlmSmRjUnlweFVPK2Ftc29CeVhKS3BzVnhvVzJnUmowZE1kZHRrTVlPWFl2aGJZWGdweHJzSzIKVE5zL2NIVVdOVCtKZnQwYndxUEdLM2dPVnFEbjk1Y21VRHFXMCt3RkFWM1I0RU12M1lzSHBhSlR3UUtCZ0hSZgpETlVmOFFxYm85YW0zSVlKYjZxQVlPTEQycGpycnMrcExYaE9uaTJ0Z0RLTzllSVV0YlBCcFc1Y2thMHdyM2IvClprNEdEOXpoRjVJZFcxVlFEc054bldadS9ybThwcUZRNkpRQ2g0NEFwOThvK3BXeHJyZWFYb2haeXhlc2xtWnAKTlBxVVMyaCsyMWorZnFnV3hFVE9PK3BYcEg1K0JlOUFxMkIxYld0eEFvR0FacmxncXBveHN1elZTK3g1RWEvMQpOMFptQjRXWG5ZVE1UcG1PSjRnYWJxRHBDY052M3Y3bkVxSFVKNy93RFE3SlNSWVArODRBTXJkN1FVTzRKNm91CkFleEFvbkZvZ2g2NHFuOXNFVkxsWFI4NWNqS1IwVnUyeFRybGt2Yzdkd1drcmliVHY3UE4yVVZTQnRmeTFjRWIKUmhvK2NjYW1JYzFWOFJ0dkNoYmtHaW89Ci0tLS0tRU5EIFBSSVZBVEUgS0VZLS0tLS0K
+  kind: Secret
+  metadata:
+    creationTimestamp: null
+    name: ingress-default-cert
+    namespace: ingress-nginx
+  type: kubernetes.io/tls
+addons_include: []
+system_images:
+  etcd: rancher/mirrored-coreos-etcd:v3.5.4
+  alpine: rancher/rke-tools:v0.1.87
+  nginx_proxy: rancher/rke-tools:v0.1.87
+  cert_downloader: rancher/rke-tools:v0.1.87
+  kubernetes_services_sidecar: rancher/rke-tools:v0.1.87
+  kubedns: rancher/mirrored-k8s-dns-kube-dns:1.21.1
+  dnsmasq: rancher/mirrored-k8s-dns-dnsmasq-nanny:1.21.1
+  kubedns_sidecar: rancher/mirrored-k8s-dns-sidecar:1.21.1
+  kubedns_autoscaler: rancher/mirrored-cluster-proportional-autoscaler:1.8.5
+  coredns: rancher/mirrored-coredns-coredns:1.9.3
+  coredns_autoscaler: rancher/mirrored-cluster-proportional-autoscaler:1.8.5
+  nodelocal: rancher/mirrored-k8s-dns-node-cache:1.21.1
+  kubernetes: rancher/hyperkube:v1.24.4-rancher1
+  flannel: rancher/mirrored-coreos-flannel:v0.15.1
+  flannel_cni: rancher/flannel-cni:v0.3.0-rancher6
+  calico_node: rancher/mirrored-calico-node:v3.22.0
+  calico_cni: rancher/calico-cni:v3.22.0-rancher1
+  calico_controllers: rancher/mirrored-calico-kube-controllers:v3.22.0
+  calico_ctl: rancher/mirrored-calico-ctl:v3.22.0
+  calico_flexvol: rancher/mirrored-calico-pod2daemon-flexvol:v3.22.0
+  canal_node: rancher/mirrored-calico-node:v3.22.0
+  canal_cni: rancher/calico-cni:v3.22.0-rancher1
+  canal_controllers: rancher/mirrored-calico-kube-controllers:v3.22.0
+  canal_flannel: rancher/mirrored-flannelcni-flannel:v0.17.0
+  canal_flexvol: rancher/mirrored-calico-pod2daemon-flexvol:v3.22.0
+  weave_node: weaveworks/weave-kube:2.8.1
+  weave_cni: weaveworks/weave-npc:2.8.1
+  pod_infra_container: rancher/mirrored-pause:3.6
+  ingress: rancher/nginx-ingress-controller:nginx-1.2.1-rancher1
+  ingress_backend: rancher/mirrored-nginx-ingress-controller-defaultbackend:1.5-rancher1
+  ingress_webhook: rancher/mirrored-ingress-nginx-kube-webhook-certgen:v1.1.1
+  metrics_server: rancher/mirrored-metrics-server:v0.6.1
+  windows_pod_infra_container: rancher/mirrored-pause:3.6
+  aci_cni_deploy_container: noiro/cnideploy:5.2.3.2.1d150da
+  aci_host_container: noiro/aci-containers-host:5.2.3.2.1d150da
+  aci_opflex_container: noiro/opflex:5.2.3.2.1d150da
+  aci_mcast_container: noiro/opflex:5.2.3.2.1d150da
+  aci_ovs_container: noiro/openvswitch:5.2.3.2.1d150da
+  aci_controller_container: noiro/aci-containers-controller:5.2.3.2.1d150da
+  aci_gbp_server_container: noiro/gbp-server:5.2.3.2.1d150da
+  aci_opflex_server_container: noiro/opflex-server:5.2.3.2.1d150da
+ssh_key_path: ~/.ssh/id_rsa
+ssh_cert_path: ""
+ssh_agent_auth: false
+authorization:
+  mode: rbac
+  options: {}
+ignore_docker_version: null
+enable_cri_dockerd: null
+kubernetes_version: ""
+private_registries: []
+ingress:
+  provider: "nginx"
+  options: {}
+  node_selector: {}
+  extra_args:
+    default-ssl-certificate: "ingress-nginx/ingress-default-cert"
+  dns_policy: "ClusterFirstWithHostNet"
+  extra_envs: []
+  extra_volumes: []
+  extra_volume_mounts: []
+  update_strategy: null
+  http_port: 0
+  https_port: 0
+  network_mode: ""
+  tolerations: []
+  default_backend: null
+  default_http_backend_priority_class_name: ""
+  nginx_ingress_controller_priority_class_name: ""
+  default_ingress_class: null
+cluster_name: ""
+cloud_provider:
+  name: ""
+prefix_path: ""
+win_prefix_path: ""
+addon_job_timeout: 0
+bastion_host:
+  address: ""
+  port: ""
+  user: ""
+  ssh_key: ""
+  ssh_key_path: ""
+  ssh_cert: ""
+  ssh_cert_path: ""
+  ignore_proxy_env_vars: false
+monitoring:
+  provider: ""
+  options: {}
+  node_selector: {}
+  update_strategy: null
+  replicas: null
+  tolerations: []
+  metrics_server_priority_class_name: ""
+restore:
+  restore: false
+  snapshot_name: ""
+rotate_encryption_key: false
+dns: null
