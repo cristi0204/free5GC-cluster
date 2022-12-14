@@ -1,1 +1,0 @@
-{"auths": {"https://registry.gitlab.com":{"username":"swapnil743","password":"YH3EytezZY3xpyKKHqzn","email":"atosnet@berlindevops.com","auth":"c3dhcG5pbDc0MzpZSDNFeXRlelpZM3hweUtLSHF6bgo="}}}
