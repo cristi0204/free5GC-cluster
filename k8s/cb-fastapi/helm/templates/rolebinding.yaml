@@ -1,0 +1,11 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: {{ include "cb-fastapi.fullname" . }}-rolebinding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: {{ include "cb-fastapi.fullname" . }}-role
+subjects:
+  - kind: ServiceAccount
+    name: {{ include "cb-fastapi.serviceAccountName" . }}
