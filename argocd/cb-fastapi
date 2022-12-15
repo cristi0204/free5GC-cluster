@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cb-fastapi
+spec:
+  destination:
+    name: ''
+    namespace: cb-fastapi
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: k8s/cb-fastapi/helm
+    repoURL: 'https://gitlab.com/atosnet/cluster.git'
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - ../values.yaml
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
