@@ -1,0 +1,114 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Sensor
+metadata:
+  name: kafka
+spec:
+  template:
+    serviceAccountName: argo-workflow
+  dependencies:
+    - name: test-dep
+      eventSourceName: kafka
+      eventName: example
+  triggers:
+    - template:
+        name: kafka-workflow-trigger
+        k8s:
+          operation: create
+          source:
+            resource:
+              apiVersion: argoproj.io/v1alpha1
+              kind: Workflow
+              metadata:
+                generateName: kafka-workflow-
+              spec:
+                serviceAccountName: argo-workflow
+                imagePullSecrets:
+                  - name: aop-image-pull
+                entrypoint: main
+                arguments:
+                  parameters:
+                  # this is the value that should be overridden
+                  - name: value                
+                templates:
+                - name: main 
+                  dag:
+                    tasks: 
+                      - name: python-executor
+                        template: python-executor
+                        arguments: 
+                          parameters: 
+                            - name: value
+                              value: "{{workflow.parameters.value}}"
+                      - name: check-url
+                        template: check-url
+                        depends: python-executor
+                        arguments:
+                          parameters:
+                            - name: url
+                              value: "{{tasks.python-executor.outputs.parameters.sum}}"
+                      - name: verify
+                        template: verify
+                        depends: check-url
+                        arguments:
+                          parameters:
+                            - name: message
+                              value: "{{tasks.check-url.outputs.result}}"
+                - name: python-executor
+                  # plugin:
+                  #   hello: {}
+                  inputs:
+                    parameters:
+                    - name: value
+                  plugin:
+                    python: 
+                      expression: |
+                        {"sum": parameters["value"]}
+                  outputs:
+                    parameters:
+                      - name: sum
+                        valueFrom:
+                          supplied: { }
+                - name: check-url
+                  inputs:
+                    parameters:
+                      - name: url
+              
+                  script:
+                    image: harbor.berlindevops.com/aac/ops:latest
+                    command: 
+                      - python
+                    source: |
+                      import json
+                      import requests
+                      data = '{{inputs.parameters.url}}'
+                      res = json.loads(data)
+                      status = requests.head(res["url"],timeout=30).status_code
+                      if status != 200:
+                          print("Wrong URL", res["url"])
+                          exit(1)
+                      else:
+                          print("Correct URL: ",status)
+
+
+                - name: verify
+                  inputs:
+                    parameters:
+                      - name: message
+                  container:
+                    image: alpine:latest
+                    command: [sh, -c]
+                    args: ["echo result : {{inputs.parameters.message}}"]
+                #   # outputs:
+                #   #   parameters:
+                  #     - name: value
+                  #       valueFrom:
+                  #         supplied: { }
+                  # container:
+                  #   image: docker/whalesay:latest
+                  #   command: [cowsay]
+                  #   args: ["{{inputs.parameters.message}}"]
+          parameters:
+            - src:
+                dependencyName: test-dep
+                dataKey: body
+              dest: spec.arguments.parameters.0.value
