@@ -57,6 +57,7 @@ services:
     audit_log: null
     admission_configuration: null
     event_rate_limit: null
+    service_node_port_range: 443-32767
   kube-controller:
     image: ""
     extra_args: {}
@@ -170,7 +171,7 @@ enable_cri_dockerd: null
 kubernetes_version: ""
 private_registries: []
 ingress:
-  provider: ""
+  provider: none
   options: {}
   node_selector: {}
   extra_args: {}
