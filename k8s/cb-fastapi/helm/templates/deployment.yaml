@@ -5,7 +5,7 @@ metadata:
   labels:
     # {{- include "cb-fastapi.labels" . | nindent 4 }}
     app.kubernetes.io/name: {{ include "cb-fastapi.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+    # app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
     helm.sh/chart: {{ include "cb-fastapi.chart" . }}
 spec:
