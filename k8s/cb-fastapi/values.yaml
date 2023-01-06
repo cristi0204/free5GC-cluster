@@ -24,8 +24,8 @@ image:
   repository: registry.gitlab.com/atosnet/cb-fastapi
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  # tag: latest
-  tag: 7fdc5ed
+  tag: latest
+  # tag: 7fdc5ed
 
 imagePullSecrets:
   - name: atosregistrykey
