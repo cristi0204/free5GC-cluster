@@ -21,11 +21,11 @@ imageCredentials:
 #   # Overrides the image tag whose default is the chart appVersion.
 #   tag: latest
 image:
-  repository: registry.gitlab.com/atosnet/cb-fastapi
+  repository: registry.gitlab.com/atosnet/cb-fastapi # {"$imagepolicy": "cb-fastapi:cb-fastapp-repo:name"}
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: latest
-  # tag: 7fdc5ed
+  # tag: latest
+  tag: main-1673860865 #{"$imagepolicy": "cb-fastapi:cb-fastapp-repo:tag"}
 
 imagePullSecrets:
   - name: atosregistrykey
