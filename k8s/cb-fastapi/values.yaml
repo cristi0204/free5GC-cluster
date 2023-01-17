@@ -25,7 +25,7 @@ image:
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   # tag: latest
-  tag: main-1673860865 #{"$imagepolicy": "cb-fastapi:cb-fastapp-repo:tag"}
+  tag: main-1673860865 # {"$imagepolicy": "cb-fastapi:cb-fastapp-repo:tag"}
 
 imagePullSecrets:
   - name: atosregistrykey
