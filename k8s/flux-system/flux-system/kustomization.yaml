@@ -4,3 +4,7 @@ resources:
 - gotk-components.yaml
 - gotk-sync.yaml
 - cb-fastapi_newhr.yaml
+images:
+- name: registry.gitlab.com/atosnet/cb-fastapi  
+  newName: registry.gitlab.com/atosnet/cb-fastapi # {"$imagepolicy": "flux-system:cb-fastapp-repo:name"}
+  newTag: main-1673860865 # {"$imagepolicy": "flux-system:cb-fastapp-repo:tag"}
