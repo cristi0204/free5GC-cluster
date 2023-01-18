@@ -25,8 +25,8 @@ spec:
     fullnameOverride: ""
     image:
       pullPolicy: Always
-      repository: registry.gitlab.com/atosnet/cb-fastapi # {"$imagepolicy": "flux-system:cb-fastapp-repo:name"}
-      tag: main--system:cb-fastapp-repo:tag"}
+      repository: registry.gitlab.com/atosnet/cb-fastapi 
+      tag: main-1673872278
     imageCredentials:
       email: atosnet@berlindevops.com
       password: YH3EytezZY3xpyKKHqzn
