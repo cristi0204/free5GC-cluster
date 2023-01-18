@@ -31,10 +31,10 @@ annotations: {}
 # https://docs.gitops.weave.works/docs/configuration/securing-access-to-the-dashboard/#login-via-an-oidc-provider
 oidcSecret:
   create: false
-  # clientID: gitops
-  # clientSecret: oidc.keycloak.clientSecret
-  # issuerURL: https://keycloak.berlindevops.com/realms/master
-  # redirectURL: https://gitops.berlindevops.com/oauth2/callback
+  # clientID:
+  # clientSecret:
+  # issuerURL:
+  # redirectURL:
 serviceAccount:
   # -- Specifies whether a service account should be created
   create: true
@@ -49,14 +49,12 @@ rbac:
   # -- If non-empty, this limits the resources that the service
   # account can impersonate. This applies to both users and groups, e.g.
   # `['user1@corporation.com', 'user2@corporation.com', 'operations']`
-  impersonationResourceNames: ["gitops-reader"]
+  impersonationResourceNames: []
   # -- Limit the type of principal that can be impersonated
   impersonationResources: ["users", "groups"]
-  # impersonationResources: []
   # -- If non-empty, this limits the secrets that can be accessed by
   # the service account to the specified ones, e.g. `['weave-gitops-enterprise-credentials']`
   viewSecretsResourceNames: ["cluster-user-auth", "oidc-auth"]
-  # viewSecretsResourceNames: []
   # -- If non-empty, these additional rules will be appended to the RBAC role and the cluster role.
   # for example,
   # additionalRules:
@@ -67,26 +65,24 @@ rbac:
 adminUser:
   # -- Whether the local admin user should be created.
   # If you use this make sure you add it to `rbac.impersonationResourceNames`.
-  create: true
+  create: false
   # -- Specifies whether the clusterRole & binding to the admin user should be created.
   # Will be created only if `adminUser.create` is enabled. Without this,
   # the adminUser will only be able to see resources in the target namespace.
   createClusterRole: true
-  # createClusterRole: false
   # -- Whether we should create the secret for the local
   # adminUser. Will be created only if `adminUser.create` is
   # enabled. Without this, we'll still set up the roles and
   # permissions, but the secret with username and password has to be
   # provided separately.
   createSecret: true
-  # createSecret: false
   # -- Set username for local admin user, this should match the value in the secret `cluster-user-auth`
   # which can be created with `adminUser.createSecret`. Requires `adminUser.create`.
-  username: admin
+  username: gitops-test-user
   # -- (string) Set the password for local admin user. Requires `adminUser.create` and `adminUser.createSecret`
   # This needs to have been hashed using bcrypt.
   # You can do this via our CLI with `gitops get bcrypt-hash`.
-  passwordHash: "$2a$10$8UHg0xTcAPPw7AEFCIewYeq6042KLyNnbg0tUeuOWdWDErl85AjpW"
+  passwordHash:
 podAnnotations: {}
 podLabels: {}
 # aadpodidbinding: identity
@@ -110,21 +106,21 @@ service:
   # nodePort:
   annotations: {}
 ingress:
-  enabled: true
-  className: "nginx"
+  enabled: false
+  className: ""
   annotations: {}
   # kubernetes.io/ingress.class: nginx
   # kubernetes.io/tls-acme: "true"
   hosts:
-  - host: gitops.cicd.berlindevops.com
-    paths:
-      - path: /
-        pathType: Prefix
+  # - host: chart-example.local
+  #   paths:
+  #     - path: /
+  #       pathType: ImplementationSpecific
   #
-  tls:
-   - secretName: gitops-tls
-     hosts:
-       - gitops.cicd.berlindevops.com
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
 extraVolumes: []
 extraVolumeMounts: []
 # Example using extraVolumes and extraVolumeMounts to load 'oidc-auth' secret 
@@ -189,7 +185,7 @@ serverTLS:
   #  --key=path/to/key/file
 metrics:
   # -- Start the metrics exporter
-  enabled: true
+  enabled: false
   service:
     # -- Port to start the metrics exporter on
     port: 2112
