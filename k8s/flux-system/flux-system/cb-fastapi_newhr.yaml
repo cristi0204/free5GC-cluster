@@ -26,7 +26,7 @@ spec:
     image:
       pullPolicy: Always
       repository: registry.gitlab.com/atosnet/cb-fastapi 
-      tag: main-1674031925 
+      tag: main-1674044431
     imageCredentials:
       email: atosnet@berlindevops.com
       password: YH3EytezZY3xpyKKHqzn
