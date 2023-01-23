@@ -1,0 +1,10 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- gotk-components.yaml
+- gotk-sync.yaml
+- cb-fastapi_newhr.yaml
+images:
+- name: registry.gitlab.com/atosnet/cb-fastapi  
+  newName: registry.gitlab.com/atosnet/cb-fastapi # {"$imagepolicy": "flux-system:cb-fastapp-repo:name"}
+  newTag: main-1673872278 # {"$imagepolicy": "flux-system:cb-fastapp-repo:tag"}

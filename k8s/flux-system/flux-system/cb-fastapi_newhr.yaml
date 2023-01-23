@@ -1,0 +1,70 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: cb-fastapi
+  namespace: cb-fastapi
+spec:
+  chart:
+    spec:
+      chart: ./k8s/cb-fastapi/helm
+      reconcileStrategy: Revision 
+      sourceRef:
+        kind: GitRepository
+        name: cb-fastapi
+  interval: 1m
+  values:
+    affinity: {}
+    apiClusterRole: cb-fastapi-role-cluster
+    autoscaling:
+      enabled: false
+      maxReplicas: 100
+      minReplicas: 1
+      targetCPUUtilizationPercentage: 80
+    extraEnvVars: []
+    fullnameOverride: ""
+    image:
+      pullPolicy: Always
+      repository: registry.gitlab.com/atosnet/cb-fastapi 
+      tag: main-1674044431 # {"$imagepolicy": "cb-fastapi:cb-fastapp-repo:tag"}
+    imageCredentials:
+      email: atosnet@berlindevops.com
+      password: YH3EytezZY3xpyKKHqzn
+      registry: registry.gitlab.com
+      username: swapnil743
+    imagePullSecrets:
+    - name: atosregistrykey
+    ingress:
+      annotations: {}
+      className: nginx
+      enabled: true
+      hosts:
+      - host: gitlab-webhook.cicd.berlindevops.com
+        paths:
+        - backend:
+            service:
+              name: cb-fastapi
+              port:
+                number: 8000
+          path: /
+          pathType: Prefix
+      tls:
+      - hosts:
+        - gitlab-webhook.cicd.berlindevops.com
+        secretName: cb-fastapi-tls
+    nameOverride: ""
+    nodeSelector: {}
+    podAnnotations: {}
+    podSecurityContext: {}
+    replicaCount: 1
+    resources: {}
+    securityContext: {}
+    service:
+      port: 8000
+      type: ClusterIP
+    serviceAccount:
+      annotations: {}
+      create: true
+      name: cb-fastapi
+    tolerations: []
+
