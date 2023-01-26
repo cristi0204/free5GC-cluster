@@ -26,7 +26,7 @@ spec:
     image:
       pullPolicy: Always
       repository: registry.gitlab.com/atosnet/cb-fastapi 
-      tag: main-1674044431 # {"$imagepolicy": "cb-fastapi:cb-fastapp-repo:tag"}
+      tag: main-1674745082
     imageCredentials:
       email: atosnet@berlindevops.com
       password: YH3EytezZY3xpyKKHqzn
