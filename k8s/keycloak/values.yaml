@@ -540,7 +540,7 @@ ingress:
   apiVersion: ""
   ## @param ingress.hostname Default host for the ingress record
   ##
-  hostname: keycloak.berlindevops.com
+  hostname: keycloak.cicd.berlindevops.com
   ## @param ingress.path Default path for the ingress record
   ##
   path: /

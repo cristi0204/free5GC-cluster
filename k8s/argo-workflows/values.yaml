@@ -407,7 +407,7 @@ server:
     ## Hostnames must be provided if Ingress is enabled.
     ## Secrets must be manually created in the namespace
     hosts:
-      - argoworkflows.berlindevops.com
+      - argoworkflows.cicd.berlindevops.com
     # -- List of ingress paths
     paths:
       - /
@@ -436,7 +436,7 @@ server:
       #     - argoworkflows.example.com
       - secretName: argoworkflows-tls-certificate
         hosts:
-           - argoworkflows.berlindevops.com
+           - argoworkflows.cicd.berlindevops.com
 
   clusterWorkflowTemplates:
     # -- Create a ClusterRole and CRB for the server to access ClusterWorkflowTemplates.
@@ -446,14 +446,14 @@ server:
     
   # -- SSO configuration when SSO is specified as a server auth mode.
   sso:
-     issuer: https://keycloak.berlindevops.com/realms/master
+     issuer: https://keycloak.cicd.berlindevops.com/realms/master
      clientId:
        name: argoworkflows-secret
        key: clientId
      clientSecret:
        name: argoworkflows-secret
        key: oidc.keycloak.clientSecret
-     redirectUrl: https://argoworkflows.berlindevops.com/oauth2/callback
+     redirectUrl: https://argoworkflows.cicd.berlindevops.com/oauth2/callback
      rbac:
        enabled: true
      scopes:

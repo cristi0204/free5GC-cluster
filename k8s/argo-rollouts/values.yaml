@@ -244,7 +244,7 @@ dashboard:
     ## Hostnames must be provided if Ingress is enabled.
     ## Secrets must be manually created in the namespace
     hosts: 
-       - argorollouts.berlindevops.com
+       - argorollouts.cicd.berlindevops.com
       # - argorollouts.example.com
 
     # -- Dashboard ingress paths
@@ -271,7 +271,7 @@ dashboard:
     tls: 
        - secretName: argorollouts-tls
          hosts:
-           - argorollouts.berlindevops.com
+           - argorollouts.cicd.berlindevops.com
       # - secretName: argorollouts-example-tls
       #   hosts:
       #     - argorollouts.example.com
