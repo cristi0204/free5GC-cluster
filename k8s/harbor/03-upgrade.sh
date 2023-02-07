@@ -1,5 +1,5 @@
 
-CERTBASE=../../lets/do-berlindevops.com
+CERTBASE=../../lets/do-cicd.berlindevops.com
 SECRETNAME=harbor.berlindevops.com-tls
 
 kubectl -n harbor delete secret $SECRETNAME

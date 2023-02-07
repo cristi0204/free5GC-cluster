@@ -36,8 +36,8 @@ expose:
       notarySecretName: "harbor.berlindevops.com-tls"
   ingress:
     hosts:
-      core: harbor.berlindevops.com
-      notary: notary.harbor.berlindevops.com
+      core: harbor.cicd.berlindevops.com
+      notary: notary.harbor.cicd.berlindevops.com
     # set to the type of ingress controller if it has specific requirements.
     # leave as `default` for most ingress controllers.
     # set to `gce` if using the GCE ingress controller
@@ -120,7 +120,7 @@ expose:
 # the IP address of k8s node
 #
 # If Harbor is deployed behind the proxy, set it as the URL of proxy
-externalURL: https://harbor.berlindevops.com
+externalURL: https://harbor.cicd.berlindevops.com
 
 # The internal TLS used for harbor components secure communicating. In order to enable https
 # in each components tls cert files need to provided in advance.
@@ -216,7 +216,7 @@ persistence:
       storageClass: "longhorn"
       subPath: ""
       accessMode: ReadWriteOnce
-      size: 10Gi
+      size: 100Gi
     chartmuseum:
       existingClaim: ""
       storageClass: "longhorn"
