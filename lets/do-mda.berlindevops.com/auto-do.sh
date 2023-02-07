@@ -1,4 +1,4 @@
-DOMAIN="cicd.berlindevops.com"
+DOMAIN="mda.berlindevops.com"
 EMAIL="peter@neux.io"
 certbot certonly --dns-digitalocean --dns-digitalocean-credentials $HOME/.do/do.ini --logs-dir logs/ --config-dir logs/ --work-dir logs/ --email=$EMAIL --agree-tos -d $DOMAIN -d *.$DOMAIN
 
